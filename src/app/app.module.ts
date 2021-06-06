@@ -7,11 +7,13 @@ import { MainHeaderComponent } from './main-header/main-header.component';
 
 //font awesome use
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainHeaderComponent
+    MainHeaderComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
