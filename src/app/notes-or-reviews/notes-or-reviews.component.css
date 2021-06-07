@@ -1,0 +1,43 @@
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  padding: 5px;
+  margin: 5px;
+}
+
+.notes-container textarea {
+  width: 100%;
+}
+
+.add-note {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100px;
+  border-radius: 5px;
+  color: white;
+  background-color: #3793cb;
+  border: none;
+  padding: 5px;
+}
+
+.newNote {
+  min-height: 50px;
+  width: 100%;
+  border: 1px solid #98a09e;
+  background-color: #f4faf8;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 5px 0px;
+  border-radius: 5px;
+}
+
+.remove-note {
+  border: none;
+  background-color: #f4faf8;
+  padding: 0px 10px 0px 20px;
+}
