@@ -5,15 +5,26 @@ import * as Sentry from "@sentry/angular";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from './main-header/main-header.component';
-
-//font awesome use
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { ReviewsComponent } from './reviews/reviews.component';
+
+//font awesome use
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// Firebase services + enviorment module
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { DashboardComponent } from './FireBase/dashboard/dashboard.component';
+import { SignInComponent } from './FireBase/sign-in/sign-in.component';
+import { SignUpComponent } from './FireBase/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './FireBase/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +35,20 @@ import { ReviewsComponent } from './reviews/reviews.component';
     NotesOrReviewsComponent,
     SideMenuComponent,
     BookViewComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [
     {
@@ -49,6 +68,6 @@ import { ReviewsComponent } from './reviews/reviews.component';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
