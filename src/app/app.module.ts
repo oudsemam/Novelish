@@ -4,14 +4,30 @@ import {Router} from '@angular/router';
 import * as Sentry from "@sentry/angular";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
+
+//font awesome use
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ShelfComponent } from './shelf/shelf.component';
+import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { BookViewComponent } from './book-view/book-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainHeaderComponent,
+    SearchBarComponent,
+    ShelfComponent,
+    NotesOrReviewsComponent,
+    SideMenuComponent,
+    BookViewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [
     {

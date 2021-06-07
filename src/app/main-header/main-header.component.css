@@ -1,0 +1,67 @@
+.novelish-logo {
+    width:180px;
+}
+
+.shelf {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #435c5f;
+  color: #98a09e;
+}
+.shelf:hover {
+  color: white;
+  background-color: #435c5f;
+}
+
+.icon-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 0 10px 0;
+  background-color: white;
+  border-top: 1px solid #cecece;
+}
+
+.nav-icon {
+  color: #4d434b;
+}
+
+.nav-icon:hover {
+  color: #3793CD;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+  .nav-parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+  }
+
+  .icon-nav {
+    position: relative;
+    width: 30vw;
+  }
+}
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icon-nav {
+  border: none;
+}
