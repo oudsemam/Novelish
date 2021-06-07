@@ -13,6 +13,7 @@ import { ShelfComponent } from './shelf/shelf.component';
 import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BookViewComponent } from './book-view/book-view.component';
     ShelfComponent,
     NotesOrReviewsComponent,
     SideMenuComponent,
-    BookViewComponent
+    BookViewComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
