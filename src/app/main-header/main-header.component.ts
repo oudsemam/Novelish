@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
   faBook,
-  faUserCircle
+  faUserCircle,
+  faBars
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +13,7 @@ import {
 export class MainHeaderComponent implements OnInit {
   faBook = faBook;
   faUserCircle = faUserCircle;
+  faBars = faBars;
 
   constructor() {}
 

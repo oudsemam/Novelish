@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { BookViewComponent } from './book-view/book-view.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.com
     MainHeaderComponent,
     SearchBarComponent,
     ShelfComponent,
-    NotesOrReviewsComponent
+    NotesOrReviewsComponent,
+    SideMenuComponent,
+    BookViewComponent
   ],
   imports: [
     BrowserModule,
