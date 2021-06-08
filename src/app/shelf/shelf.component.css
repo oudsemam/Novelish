@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+h2 {
+    font-family: 'Long Cang', cursive;
+    padding-bottom: 10px;
+}
+
+.shelf_container {
+    margin: 10px;
+    padding: 8px;
+    border: 1px solid #3793cb;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.books {
+
+}
