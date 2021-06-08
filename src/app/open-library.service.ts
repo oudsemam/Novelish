@@ -9,12 +9,14 @@ export class OpenLibraryService {
 
   constructor(private http: HttpClient) { }
 
-  searchTitle(searchTerm:string, type:string): Observable<any>{
+  searchTitle(searchTerm:string): Observable<any>{
 
-    //Searches based on title
-    // if (type == "title"){
       let title = searchTerm.replace(/\s/g,'+')
       return this.http.get(`http://openlibrary.org/search.json?title=${title}`)
-    // }
+  }
+
+  searchAuthor(searchTerm:string): Observable<any>{
+    let author = searchTerm.replace(/\s/g,'+')
+    return this.http.get(`http://openlibrary.org/search.json?author=${author}`)
   }
 }
