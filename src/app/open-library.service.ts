@@ -19,4 +19,8 @@ export class OpenLibraryService {
     let author = searchTerm.replace(/\s/g,'+')
     return this.http.get(`http://openlibrary.org/search.json?author=${author}`)
   }
+
+  getCover(isbn:string): Observable<any>{
+    return this.http.get(`http://covers.openlibrary.org/b/isbn/${isbn}-m.jpg`)
+  }
 }
