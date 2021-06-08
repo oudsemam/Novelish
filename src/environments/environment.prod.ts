@@ -1,9 +1,9 @@
 export const environment = {
-  production: true,
+  production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    firebaseConfig: {
+  firebase: {
     apiKey: "AIzaSyCsqWCSMD1HNYroUw73jiqro21GyaFeqZc",
     authDomain: "novelish-reviews.firebaseapp.com",
     projectId: "novelish-reviews",
