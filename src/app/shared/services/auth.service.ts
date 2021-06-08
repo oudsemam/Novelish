@@ -6,7 +6,6 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { userInfo } from 'os';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +26,8 @@ export class AuthService {
       if (User) {
         this.userData = User;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
       } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
+        localStorage.clearItem('user');
       }
     });
   }
@@ -86,8 +83,8 @@ export class AuthService {
 
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null ? true : false;
+    const userStorage = localStorage.getItem('user');
+    return userStorage !== null ? true : false;
   }
 
   // // Sign in with Google
