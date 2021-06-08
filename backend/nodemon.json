@@ -1,0 +1,13 @@
+{
+	"watch": [
+		"**/*.ts",
+		"**/*.js",
+		"**/*.sql",
+		"**/*.json"
+	],
+	"ignore": [
+		"**/*.spec.ts"
+	],
+	"ext": "ts js json sql",
+	"exec": "node server.js"
+}
