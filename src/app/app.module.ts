@@ -26,6 +26,9 @@ import { SignUpComponent } from './FireBase/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './FireBase/verify-email/verify-email.component';
 
+// Auth service
+import { AuthService } from "./shared/services/auth.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,7 @@ import { VerifyEmailComponent } from './FireBase/verify-email/verify-email.compo
     AngularFirestoreModule,
   ],
   providers: [
+    AuthService,
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({
