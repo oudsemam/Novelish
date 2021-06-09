@@ -242,4 +242,13 @@ routes.delete('/notes/:user_id/:book_id', async (req, res) => {
     res.status(204).send();
 });
 
+routes.get('/notes/:user_id/:book_id', async (req, res) => {
+    res.json(await db.oneOrNone(`SELECT * from notes WHERE user_id = $(user_id) and book_id = $(book_id)`,
+    {
+        user_id: +req.params.user_id,
+        book_id: +req.params.book_id
+    }));    
+
+});
+
 module.exports = routes;
