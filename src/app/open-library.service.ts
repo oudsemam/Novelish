@@ -6,7 +6,8 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class OpenLibraryService {
-
+  resultList: [] = []
+  private subject = new Subject<any>();
   constructor(private http: HttpClient) { }
 
   searchTitle(searchTerm:string): Observable<any>{
@@ -26,5 +27,21 @@ export class OpenLibraryService {
 
   getBook(isbn:string): Observable<any>{
     return this.http.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+  }
+
+  sendResult(resultList: []){
+    this.subject.next(resultList);
+  }
+
+  getSubject(){
+    return this.subject.asObservable();
+  }
+
+  addResults(books: []){
+    this.resultList = books;
+  }
+
+  getResults(){
+    return this.resultList;
   }
 }
