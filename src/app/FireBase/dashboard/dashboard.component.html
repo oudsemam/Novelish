@@ -8,15 +8,11 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active">
-              <fa-icon [icon]="faUserCircle" size="lg" class="user-icon"></fa-icon> User Profile
-            </a>
+            <span routerLink="/dashboard"><fa-icon [icon]="faUserCircle" size="lg" class="user-icon"></fa-icon> User Profile</span>
           </li>
           <!-- Calling SignOut() Api from AuthService -->
           <li class="nav-item">
-            <a class="nav-link" (click)="authService.SignOut()">
-              <fa-icon [icon]="faSignOutAlt" size="lg" class="user-icon"></fa-icon>Log out
-            </a>
+            <span (click)="authService.SignOut()"><fa-icon [icon]="faSignOutAlt" size="lg" class="user-icon"></fa-icon>Log out</span>
           </li>
         </ul>
       </div>
