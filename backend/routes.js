@@ -306,4 +306,49 @@ routes.post('/reviews/:user_id/:book_id', async (req, res)=> {
     };
 });
 
+routes.put('/reviews/:user_id/:book_id', async (req, res) => {
+    await db.oneOrNone(`UPDATE reviews SET rating = $(rating), review = $(review), plot = $(plot), character = $(character), world = $(world), 
+    pacing = $(pacing), organization = $(organization), informative = $(informative), writing = $(writing), 
+    readability = $(readability), worth = $(worth), editing = $(editing), accuracy = $(accuracy) 
+    WHERE user_id = $(user_id) and book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id,
+            user_id: +req.params.user_id,
+            rating: req.body.rating,
+            review: req.body.review,
+            plot: req.body.plot,
+            character: req.body.character,
+            world: req.body.world,
+            pacing: req.body.pacing,
+            organization: req.body.organization,
+            informative: req.body.informative,
+            writing: req.body.writing,
+            readability: req.body.readability,
+            worth: req.body.worth,
+            editing: req.body.editing,
+            accuracy: req.body.accuracy
+    });
+
+    const updatedReview = await db.one(`SELECT * from reviews
+    INNER JOIN books b ON b.id = reviews.book_id
+    INNER JOIN users u ON u.id = reviews.book_id
+    WHERE user_id = $(user_id) AND book_id = $(book_id)`, 
+    {
+        user_id: +req.params.user_id,
+        book_id: +req.params.book_id
+    });
+
+    res.status(201).json(updatedReview);
+});
+
+routes.delete('/reviews/:user_id/:book_id', async (req, res) => {
+    await db.none(`DELETE from reviews WHERE user_id = $(user_id) AND book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id,
+        user_id: +req.params.user_id
+    });
+
+    res.status(204).send();
+});
+
 module.exports = routes;
