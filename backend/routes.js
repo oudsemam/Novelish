@@ -70,19 +70,19 @@ routes.post('/users', async (req, res) => {
 routes.post('/books/:user_id/:shelf', async (req, res) => {
     try {
         const result = await db.one(`
-        INSERT INTO books (title, author, genre, rating, subject, setting, time_period, language, isbn) 
-        VALUES ($(title), $(author), $(genre), $(rating), $(subject), $(setting), $(time_period), $(language), $(isbn))
+        INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
+        VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
         RETURNING id`,
         {
             title: req.body.title,
             author: req.body.author,
             genre: req.body.genre,
-            rating: req.body.rating,
             subject: req.body.subject,
             setting: req.body.setting,
             time_period: req.body.time_period,
             language: req.body.language,
-            isbn: req.body.isbn
+            isbn: req.body.isbn,
+            progress: req.body.progress
         });
         
         await db.oneOrNone(`INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`, 
@@ -92,7 +92,7 @@ routes.post('/books/:user_id/:shelf', async (req, res) => {
             book_id: result.id
         });
 
-        const book = await db.oneOrNone(`SELECT shelf, user_id, title, author, genre, rating, subject, setting, time_period, language, isbn from shelves
+        const book = await db.oneOrNone(`SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
         INNER JOIN users u ON u.id = shelves.user_id
         INNER JOIN books b ON b.id = shelves.book_id
         WHERE b.id = $(book_id) AND u.id = $(user_id)`,
