@@ -1,5 +1,5 @@
 /*created the box that contains the content with drop shaddow and centered content*/
-#whole {
+.whole {
   width: 900px;
   height: 500px;
   position: fixed;
@@ -10,7 +10,7 @@
 }
 
 /*created ~2/3 on left white box*/
-#signIn {
+.sign {
   background-color: #F4FAF8 ;
   position: fixed;
   right: 0;
@@ -36,9 +36,8 @@
   margin-right: 80px;
 }
 
-h2 {
+h3 {
   font-size: 20px;
-  margin: 0;
 }
 
 span {
@@ -46,13 +45,9 @@ span {
 }
 
 /*white side with sign in information*/
-#welcome {
+.welcome {
   margin-top: 140px;
   margin-left: 180px;
-}
-
-h1 {
-  font-size: 20px;
 }
 
 /*input box with rounded corners*/
@@ -117,7 +112,7 @@ img{
 }
 
 .redirectToLogin{
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 

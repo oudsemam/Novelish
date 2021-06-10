@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  faBookReader = faBookReader;
 
   constructor(
     public authService: AuthService
