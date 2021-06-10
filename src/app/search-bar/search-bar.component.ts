@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { OpenLibraryService } from '../open-library.service';
 import { Observable, Subscription } from 'rxjs';
@@ -18,6 +18,11 @@ export class SearchBarComponent implements OnInit {
   constructor(private OLService: OpenLibraryService) { }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy(){
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   search(){

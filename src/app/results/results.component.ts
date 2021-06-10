@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { OpenLibraryService } from '../open-library.service';
 
 @Component({
   selector: 'app-results',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private OLService: OpenLibraryService) { }
 
   ngOnInit(): void {
   }
