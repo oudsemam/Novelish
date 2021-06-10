@@ -28,6 +28,7 @@ import { VerifyEmailComponent } from './FireBase/verify-email/verify-email.compo
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { MainHomePageComponent } from './main-home-page/main-home-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AuthService } from "./shared/services/auth.service";
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    MainHomePageComponent,
   ],
   imports: [
     BrowserModule,
