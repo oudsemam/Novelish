@@ -70,19 +70,19 @@ routes.post('/users', async (req, res) => {
 routes.post('/books/:user_id/:shelf', async (req, res) => {
     try {
         const result = await db.one(`
-        INSERT INTO books (title, author, genre, rating, subject, setting, time_period, language, isbn) 
-        VALUES ($(title), $(author), $(genre), $(rating), $(subject), $(setting), $(time_period), $(language), $(isbn))
+        INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
+        VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
         RETURNING id`,
         {
             title: req.body.title,
             author: req.body.author,
             genre: req.body.genre,
-            rating: req.body.rating,
             subject: req.body.subject,
             setting: req.body.setting,
             time_period: req.body.time_period,
             language: req.body.language,
-            isbn: req.body.isbn
+            isbn: req.body.isbn,
+            progress: req.body.progress
         });
         
         await db.oneOrNone(`INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`, 
@@ -92,7 +92,7 @@ routes.post('/books/:user_id/:shelf', async (req, res) => {
             book_id: result.id
         });
 
-        const book = await db.oneOrNone(`SELECT shelf, user_id, title, author, genre, rating, subject, setting, time_period, language, isbn from shelves
+        const book = await db.oneOrNone(`SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
         INNER JOIN users u ON u.id = shelves.user_id
         INNER JOIN books b ON b.id = shelves.book_id
         WHERE b.id = $(book_id) AND u.id = $(user_id)`,
@@ -234,6 +234,115 @@ routes.put('/notes/:user_id/:book_id', async (req, res) => {
 
 routes.delete('/notes/:user_id/:book_id', async (req, res) => {
     await db.none(`DELETE from notes WHERE user_id = $(user_id) AND book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id,
+        user_id: +req.params.user_id
+    });
+
+    res.status(204).send();
+});
+
+routes.get('/notes/:user_id/:book_id', async (req, res) => {
+    res.json(await db.oneOrNone(`SELECT * from notes WHERE user_id = $(user_id) and book_id = $(book_id)`,
+    {
+        user_id: +req.params.user_id,
+        book_id: +req.params.book_id
+    }));    
+
+});
+
+routes.get('/reviews/:book_id', async (req, res)=> {
+    res.json(await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id
+    }));
+});
+
+routes.get('/reviews/:user_id/:book_id', async (req, res)=> {
+    res.json(await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id) and user_id = $(user_id)`,
+    {
+        book_id: +req.params.book_id,
+        user_id: +req.params.user_id
+    }));
+});
+
+routes.post('/reviews/:user_id/:book_id', async (req, res)=> {
+    try {
+
+        await db.none(`
+        INSERT INTO reviews (book_id, user_id, rating, review, plot, character, world, pacing, organization, informative, writing, readability,
+            worth, editing, accuracy) VALUES ($(book_id), $(user_id), $(rating), $(review), $(plot), $(character), $(world), $(pacing), $(organization),
+            $(informative), $(writing), $(readability), $(worth), $(editing), $(accuracy))`,
+        {
+            book_id: +req.params.book_id,
+            user_id: +req.params.user_id,
+            rating: req.body.rating,
+            review: req.body.review,
+            plot: req.body.plot,
+            character: req.body.character,
+            world: req.body.world,
+            pacing: req.body.pacing,
+            organization: req.body.organization,
+            informative: req.body.informative,
+            writing: req.body.writing,
+            readability: req.body.readability,
+            worth: req.body.worth,
+            editing: req.body.editing,
+            accuracy: req.body.accuracy
+        });
+
+        const newReview = await db.one(`SELECT * FROM reviews WHERE user_id = $(user_id) AND book_id = $(book_id)`,
+        {
+            user_id: +req.params.user_id,
+            book_id: +req.params.book_id
+        });
+
+        return res.status(201).json(newReview);
+
+    } catch (error) {
+        if (error.constraint === 'reviews_pkey') {
+            return res.status(400).send("You've already reviewed this book.")
+        }
+    };
+});
+
+routes.put('/reviews/:user_id/:book_id', async (req, res) => {
+    await db.oneOrNone(`UPDATE reviews SET rating = $(rating), review = $(review), plot = $(plot), character = $(character), world = $(world), 
+    pacing = $(pacing), organization = $(organization), informative = $(informative), writing = $(writing), 
+    readability = $(readability), worth = $(worth), editing = $(editing), accuracy = $(accuracy) 
+    WHERE user_id = $(user_id) and book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id,
+            user_id: +req.params.user_id,
+            rating: req.body.rating,
+            review: req.body.review,
+            plot: req.body.plot,
+            character: req.body.character,
+            world: req.body.world,
+            pacing: req.body.pacing,
+            organization: req.body.organization,
+            informative: req.body.informative,
+            writing: req.body.writing,
+            readability: req.body.readability,
+            worth: req.body.worth,
+            editing: req.body.editing,
+            accuracy: req.body.accuracy
+    });
+
+    const updatedReview = await db.one(`SELECT * from reviews
+    INNER JOIN books b ON b.id = reviews.book_id
+    INNER JOIN users u ON u.id = reviews.book_id
+    WHERE user_id = $(user_id) AND book_id = $(book_id)`, 
+    {
+        user_id: +req.params.user_id,
+        book_id: +req.params.book_id
+    });
+
+    res.status(201).json(updatedReview);
+});
+
+routes.delete('/reviews/:user_id/:book_id', async (req, res) => {
+    await db.none(`DELETE from reviews WHERE user_id = $(user_id) AND book_id = $(book_id)`,
     {
         book_id: +req.params.book_id,
         user_id: +req.params.user_id

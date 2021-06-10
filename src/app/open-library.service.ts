@@ -23,4 +23,8 @@ export class OpenLibraryService {
   getCover(isbn:string): Observable<any>{
     return this.http.get(`http://covers.openlibrary.org/b/isbn/${isbn}-m.jpg`)
   }
+
+  getBook(isbn:string): Observable<any>{
+    return this.http.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+  }
 }
