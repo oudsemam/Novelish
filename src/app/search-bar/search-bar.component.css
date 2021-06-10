@@ -22,6 +22,11 @@
   padding: 0 5px;
 }
 
+.search-dropdown {
+  display: flex;
+  flex-direction: row;
+}
+
 #search-button {
   background-color: white;
   padding: 8px 5px;
@@ -42,7 +47,7 @@
   .search-filter-component {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
   }

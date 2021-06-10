@@ -27,7 +27,7 @@ export class AuthService {
         this.userData = User;
         localStorage.setItem('user', JSON.stringify(this.userData));
       } else {
-        localStorage.clearItem('user');
+        localStorage.removeItem('user');
       }
     });
   }
@@ -39,7 +39,7 @@ export class AuthService {
       .then((result) => {
         this.SetUserData(result.user);
         this.ngZone.run(() => {
-          this.router.navigate(['explore']);
+          this.router.navigate(['dashboard']);
         });
       })
       .catch((error) => {
@@ -56,6 +56,9 @@ export class AuthService {
         up and returns promise */
         // this.SendVerificationMail();
         this.SetUserData(result.user);
+        this.ngZone.run(() => {
+          this.router.navigate(['sign-in'])
+        })
       })
       .catch((error) => {
         window.alert(error.message);
