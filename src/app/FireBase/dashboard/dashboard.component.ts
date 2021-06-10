@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Router } from "@angular/router";
+import { faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,9 @@ import { Router } from "@angular/router";
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  faUserCircle = faUserCircle;
+  faSignOutAlt = faSignOutAlt;
+  
 
   constructor(
     public authService: AuthService,

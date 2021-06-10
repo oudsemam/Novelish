@@ -1,10 +1,5 @@
-<!-- Top navigation -->
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
-    <img class="brand-logo" src="assets/logo-positronx-white.svg" alt="positronX.io Logo">
-  </a>
-</nav>
-
+<app-main-header></app-main-header>
+<app-search-bar></app-search-bar>
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
@@ -14,13 +9,13 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link active">
-              <i class="fas fa-user"></i>User Profile
+              <fa-icon [icon]="faUserCircle" size="lg" class="user-icon"></fa-icon> User Profile
             </a>
           </li>
           <!-- Calling SignOut() Api from AuthService -->
           <li class="nav-item">
             <a class="nav-link" (click)="authService.SignOut()">
-              <i class="fas fa-sign-out-alt"></i>Log out
+              <fa-icon [icon]="faSignOutAlt" size="lg" class="user-icon"></fa-icon>Log out
             </a>
           </li>
         </ul>
@@ -44,7 +39,7 @@
                 <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
                 <p>User ID: <strong>{{user.uid}}</strong></p>
                 <p>Email: <strong>{{user.email}}</strong></p>
-                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+                <!-- <p>Email Verified: <strong>{{user.emailVerified}}</strong></p> -->
               </div>
             </div>
           </div>
