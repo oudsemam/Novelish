@@ -1,0 +1,22 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.inner-adjust {
+    padding-left: 80px;
+}
