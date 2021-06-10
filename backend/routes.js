@@ -251,4 +251,59 @@ routes.get('/notes/:user_id/:book_id', async (req, res) => {
 
 });
 
+routes.get('/reviews/:book_id', async (req, res)=> {
+    res.json(await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id)`,
+    {
+        book_id: +req.params.book_id
+    }));
+});
+
+routes.get('/reviews/:user_id/:book_id', async (req, res)=> {
+    res.json(await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id) and user_id = $(user_id)`,
+    {
+        book_id: +req.params.book_id,
+        user_id: +req.params.user_id
+    }));
+});
+
+routes.post('/reviews/:user_id/:book_id', async (req, res)=> {
+    try {
+
+        await db.none(`
+        INSERT INTO reviews (book_id, user_id, rating, review, plot, character, world, pacing, organization, informative, writing, readability,
+            worth, editing, accuracy) VALUES ($(book_id), $(user_id), $(rating), $(review), $(plot), $(character), $(world), $(pacing), $(organization),
+            $(informative), $(writing), $(readability), $(worth), $(editing), $(accuracy))`,
+        {
+            book_id: +req.params.book_id,
+            user_id: +req.params.user_id,
+            rating: req.body.rating,
+            review: req.body.review,
+            plot: req.body.plot,
+            character: req.body.character,
+            world: req.body.world,
+            pacing: req.body.pacing,
+            organization: req.body.organization,
+            informative: req.body.informative,
+            writing: req.body.writing,
+            readability: req.body.readability,
+            worth: req.body.worth,
+            editing: req.body.editing,
+            accuracy: req.body.accuracy
+        });
+
+        const newReview = await db.one(`SELECT * FROM reviews WHERE user_id = $(user_id) AND book_id = $(book_id)`,
+        {
+            user_id: +req.params.user_id,
+            book_id: +req.params.book_id
+        });
+
+        return res.status(201).json(newReview);
+
+    } catch (error) {
+        if (error.constraint === 'reviews_pkey') {
+            return res.status(400).send("You've already reviewed this book.")
+        }
+    };
+});
+
 module.exports = routes;

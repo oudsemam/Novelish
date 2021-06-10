@@ -29,6 +29,30 @@ CREATE TABLE notes (
 	PRIMARY KEY (book_id, user_id)
 );
 
+ALTER TABLE books
+DROP COLUMN rating;
+
+CREATE TABLE reviews (
+	book_id integer REFERENCES books(id) ON DELETE CASCADE NOT NULL,
+	user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+	rating smallint NULL,
+	review text null,
+	plot boolean null,
+	character boolean null,
+	world boolean null,
+	pacing boolean null,
+	organization boolean null,
+	informative boolean null,
+	writing boolean null,
+	readability boolean null,
+	worth boolean null,
+	editing boolean null,
+	accuracy boolean null,
+	PRIMARY KEY (book_id, user_id)
+);
+
+ALTER TABLE books
+ADD COLUMN progress decimal(5,2) null
 
 ALTER TABLE users
 ADD CONSTRAINT unique_email UNIQUE (email);
