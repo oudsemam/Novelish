@@ -24,7 +24,6 @@ import { DashboardComponent } from './FireBase/dashboard/dashboard.component';
 import { SignInComponent } from './FireBase/sign-in/sign-in.component';
 import { SignUpComponent } from './FireBase/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './FireBase/verify-email/verify-email.component';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
@@ -44,7 +43,6 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent,
     MainHomePageComponent,
   ],
   imports: [
