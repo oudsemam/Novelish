@@ -27,6 +27,7 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { ResultsComponent } from './results/results.component';
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
 
 @NgModule({
@@ -43,6 +44,8 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
+    VerifyEmailComponent,
+    ResultsComponent,
     MainHomePageComponent,
   ],
   imports: [
