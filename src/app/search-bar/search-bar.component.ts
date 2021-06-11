@@ -28,17 +28,9 @@ export class SearchBarComponent implements OnInit {
   search(){
     if(this.book)
     {this.subscription = this.OLService.searchTitle(this.searchTerm)
-    .subscribe((Response) =>{
-      let resultList = Response.docs;
-      this.OLService.addResults(resultList);
-      this.OLService.sendResult(resultList);
-    })}
+    .subscribe(()=>{})}
     if(this.author)
     {this.subscription = this.OLService.searchAuthor(this.searchTerm)
-    .subscribe((Response) =>{
-      let resultList = Response.docs;
-      this.OLService.addResults(resultList);
-      this.OLService.sendResult(resultList);
-    })}
+      .subscribe(()=>{})}
   }
 }

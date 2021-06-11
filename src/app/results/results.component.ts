@@ -11,10 +11,10 @@ export class ResultsComponent implements OnInit {
   subscription: Subscription | null = null
   constructor(private OLService: OpenLibraryService) { }
 
-  resultList: [] | null = null
-  result:any = null
+  resultList: any[]  = []
+  result:any 
   ngOnInit(): void {
-    this.resultList = this.OLService.getResults()
+    // this.resultList = this.OLService.getResults()
     this.subscription = this.OLService.getSubject().subscribe((subject)=>{
       if(subject){
         this.resultList = subject;
