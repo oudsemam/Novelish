@@ -1,17 +1,21 @@
-<div class="columns">
-    <div class="pros">
-        <h2>Pros</h2>
-        <button >
-            <fa-icon [icon]="faPlusCircle" size="lg" class="circle"></fa-icon>
-        Plot Development
-        </button>
-    </div>
-    
-
+  <div class="flexColumn">
+    <h2>Pros</h2>
+    <h2>Categories</h2>
+    <h2>Cons</h2>
+  
+  </div>
+<div *ngFor="let i of reviewCategories" class="flexColumn">
+    <button class="pro">
+        <fa-icon [icon]="faPlusCircle" size="lg" class="positive"></fa-icon>
+      {{ i.reviewCategory }}
+    </button>
+    <button class="neutral">
+      <fa-icon [icon]="faPlusCircle" size="lg" class="positive" ></fa-icon>
+      {{ i.reviewCategory }}
+      <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
+    </button>
+    <button class="con">
+      {{ i.reviewCategory }}
+      <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
+    </button>
 </div>
-<button>
-    <fa-icon [icon]="faPlusCircle" size="lg" class="circle"></fa-icon>
-    Plot Development
-    <fa-icon [icon]="faMinusCircle" size="lg" class="circle"></fa-icon>
-</button>
-
