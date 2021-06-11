@@ -44,7 +44,6 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent,
     ResultsComponent,
     MainHomePageComponent,
   ],
