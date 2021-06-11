@@ -14,14 +14,17 @@ import { switchMap } from 'rxjs/operators';
 export class BookViewComponent implements OnInit {
   faDumpsterFire = faDumpsterFire;
   ibsn: string = ''
-  subscription: Subscription | null = null
+  OLSubscription: Subscription | null = null
+  NBSubscription: Subscription | null = null
   constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
    
-    this.subscription = this.activatedRoute.paramMap
+    this.OLSubscription = this.activatedRoute.paramMap
 			.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
 			.subscribe((ibsn) => this.ibsn = ibsn);
+
+    // this.NBSubscription = 
   }
 
 }

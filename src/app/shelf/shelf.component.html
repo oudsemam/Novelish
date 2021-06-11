@@ -1,16 +1,13 @@
 
 <h1>Welcome to your library</h1>
 
-
-<div class="shelf_container">
-    
-    <div class="shelf">
-        <h2>Have Read</h2>
-        <div class="books">
-            Each book on the shelf should feature the cover image with a nice drop shadow, 
-            a hover grow effect, and that's it, I think. This section would be repeated, using *ngFor, 
-            for each shelf associated with that user
+<section *ngFor="let shelf of shelves">
+    <h2>{{ shelf.shelfName }}</h2>
+    <div class="shelf_container">
+        <div *ngFor="let book of books" class="books">
+            <img src="{{ book.cover }}">
         </div>
     </div>
+        <!-- <a routerLink="/shelves/{{ book_id }}"></a> -->
 
-</div>
+</section>
