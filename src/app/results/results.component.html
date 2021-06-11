@@ -1,1 +1,7 @@
-<p>results works!</p>
+<div *ngFor="let result of resultList">
+  {{ result.title }} by {{ result.author_name }}
+  <img
+    src="http://covers.openlibrary.org/b/isbn/{{ result.isbn[0] }}-S.jpg"
+    alt="{{ result.title }}"
+  />
+</div>
