@@ -1,4 +1,5 @@
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import * as Sentry from "@sentry/angular";
@@ -55,7 +56,6 @@ import { AuthService } from "./shared/services/auth.service";
     ReviewToggleButtonComponent,
     ShelvesComponent,
     BookComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -64,6 +64,7 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    HttpClientModule,
   ],
   providers: [
     AuthService,
