@@ -30,10 +30,8 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 import { AuthService } from "./shared/services/auth.service";
 import { ResultsComponent } from './results/results.component';
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
-import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
 import { ShelvesComponent } from './shelves/shelves.component';
 import { BookComponent } from './book/book.component';
-
 
 @NgModule({
   declarations: [
@@ -51,10 +49,8 @@ import { BookComponent } from './book/book.component';
     ForgotPasswordComponent,
     ResultsComponent,
     MainHomePageComponent,
-    ReviewToggleButtonComponent,
     ShelvesComponent,
     BookComponent,
-
   ],
   imports: [
     BrowserModule,
