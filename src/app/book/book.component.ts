@@ -3,6 +3,8 @@ import { Book } from '../book';
 import { Shelf } from '../shelf';
 import { BooksService } from '../books.service'
 import { OpenLibraryService } from '../open-library.service';
+import { NovelishBackendService } from '../novelish-backend.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-book',
@@ -14,12 +16,13 @@ export class BookComponent implements OnInit {
 
   @Input() book: Book | null = null;
   
-  constructor(private OLService: OpenLibraryService) { }
+
+  constructor(private OLService: OpenLibraryService, private NBService: NovelishBackendService) { }
   
   
 
   ngOnInit(): void {
-    this.bookList = this.OLService.getCover("978-0765326355")
+    
   }
 
 }

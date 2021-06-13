@@ -24,7 +24,7 @@ export class BookViewComponent implements OnInit {
 			.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
 			.subscribe((ibsn) => this.ibsn = ibsn);
 
-    // this.NBSubscription = 
+    // this.NBSubscription = this.backend.get
   }
 
 }
