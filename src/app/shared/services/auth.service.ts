@@ -6,6 +6,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { NovelishBackendService } from 'src/app/novelish-backend.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,16 +14,16 @@ import { Router } from '@angular/router';
 export class AuthService {
   userData: any; // Save logged in user data
 
-
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    public NovelishBackendService: NovelishBackendService,
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe((User:any) => {
+    this.afAuth.authState.subscribe((User: any) => {
       if (User) {
         this.userData = User;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -33,14 +34,20 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email:string, password:string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SetUserData(result.user);
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
+  SignIn(email: any, password: any) {
+    this.afAuth
+      .setPersistence('session')
+      .then(() => {
+        this.afAuth
+          .signInWithEmailAndPassword(email, password)
+          .then((result) => {
+            this.ngZone.run(() => {
+              this.router.navigate(['profile']);
+            });
+            this.SetUserData(result.user);
+            this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
+            console.log(result.user);
+          });
       })
       .catch((error) => {
         window.alert(error.message);
@@ -48,32 +55,25 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email:string, password:string) {
+  SignUp(email: string, password: string) {
+    // check against users table if email exists, if not alert "not authorized, please contact your admin"
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
-        // this.SendVerificationMail();
         this.SetUserData(result.user);
+        // when create a way to add approved emails/users then turn on these comments
+        this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
         this.ngZone.run(() => {
-          this.router.navigate(['sign-in'])
-        })
+          this.router.navigate(['sign-in']);
+        });
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
 
-  // // Send email verfificaiton when new user sign up
-  // SendVerificationMail() {
-  //   return this.afAuth.currentUser.sendEmailVerification().then(() => {
-  //     this.router.navigate(['verify-email-address']);
-  //   });
-  // }
-
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail:any) {
+  ForgotPassword(passwordResetEmail: any) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -90,13 +90,8 @@ export class AuthService {
     return userStorage !== null ? true : false;
   }
 
-  // // Sign in with Google
-  // GoogleAuth() {
-  //   return this.AuthLogin(new GoogleAuthProvider());
-  // }
-
   // Auth logic to run auth providers
-  AuthLogin(provider:any) {
+  AuthLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
@@ -113,7 +108,7 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(User:any) {
+  SetUserData(User: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${User.uid}`
     );
@@ -138,9 +133,3 @@ export class AuthService {
     });
   }
 }
-
-// Returns true when user is logged in and email is verified
-// get isLoggedIn(): boolean {
-//   cost user = JSON.parse(localStorage.getItem('user'));
-//   return (user !== null && userInfo.emailVerified !== false) ? true : false;
-// }
