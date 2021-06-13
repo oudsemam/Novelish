@@ -1,4 +1,3 @@
 export interface Shelf {
-    shelfName: string,
-    
+    shelfName: string
 }

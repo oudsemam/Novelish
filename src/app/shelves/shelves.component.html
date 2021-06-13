@@ -1,0 +1,8 @@
+<h1>Welcome to your library</h1>
+
+<ul>
+    <li *ngFor="let shelf of shelves"> 
+        <app-shelf [shelf]="shelf"></app-shelf>
+        <h2>{{ shelf.shelfName }}</h2>
+    </li>
+</ul>

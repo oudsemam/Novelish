@@ -4,5 +4,10 @@ export interface Book {
     genre: string,
     isbn: number,
     progress: number,
-    cover: string
+    cover: string,
+    want: boolean,
+    read: boolean,
+    dnf: boolean,
+    burn: boolean,
+    current: boolean
 }
