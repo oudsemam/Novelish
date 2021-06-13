@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { OpenLibraryService } from '../open-library.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,10 +10,27 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 })
 export class SearchBarComponent implements OnInit {
   faSearch = faSearch;
+  searchTerm: string = '';
+  subscription: Subscription | null = null;
+  book: boolean = false
+  author: boolean = false
 
-  constructor() { }
+  constructor(private OLService: OpenLibraryService) { }
 
   ngOnInit(): void {
   }
+  ngOnDestroy(){
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
+  search(){
+    if(this.book)
+    {this.subscription = this.OLService.searchTitle(this.searchTerm)
+    .subscribe(()=>{})}
+    if(this.author)
+    {this.subscription = this.OLService.searchAuthor(this.searchTerm)
+      .subscribe(()=>{})}
+  }
 }

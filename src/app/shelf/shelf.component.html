@@ -1,16 +1,8 @@
+<ul>
+    <li *ngFor="let book of books" class="books">
+        <app-book [book]="book">
+            
+        </app-book>
+    </li>
 
-<h1>Welcome to your library</h1>
-
-
-<div class="shelf_container">
-    
-    <div class="shelf">
-        <h2>Have Read</h2>
-        <div class="books">
-            Each book on the shelf should feature the cover image with a nice drop shadow, 
-            a hover grow effect, and that's it, I think. This section would be repeated, using *ngFor, 
-            for each shelf associated with that user
-        </div>
-    </div>
-
-</div>
+</ul>
