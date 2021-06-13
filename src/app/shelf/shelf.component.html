@@ -1,13 +1,8 @@
+<ul>
+    <li *ngFor="let book of books" class="books">
+        <app-book [book]="book">
+            
+        </app-book>
+    </li>
 
-<h1>Welcome to your library</h1>
-
-<section *ngFor="let shelf of shelves">
-    <h2>{{ shelf.shelfName }}</h2>
-    <div class="shelf_container">
-        <div *ngFor="let book of books" class="books">
-            <img src="{{ book.cover }}">
-        </div>
-    </div>
-        <!-- <a routerLink="/shelves/{{ book_id }}"></a> -->
-
-</section>
+</ul>

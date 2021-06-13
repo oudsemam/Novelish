@@ -12,6 +12,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 
+
 //font awesome use
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -29,6 +30,8 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 import { AuthService } from "./shared/services/auth.service";
 import { ResultsComponent } from './results/results.component';
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
+import { ShelvesComponent } from './shelves/shelves.component';
+import { BookComponent } from './book/book.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
     ForgotPasswordComponent,
     ResultsComponent,
     MainHomePageComponent,
+    ShelvesComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
