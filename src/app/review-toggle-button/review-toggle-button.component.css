@@ -5,9 +5,12 @@
     margin-right: 15px;
     /* padding: 4px; */
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border:#435c5f5e solid 1px;
     /* flex-wrap: wrap; */
+}
+.center {
+    border-color: red solid 1px;
 }
 
 h2 {

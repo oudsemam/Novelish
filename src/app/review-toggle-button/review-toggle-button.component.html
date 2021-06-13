@@ -1,21 +1,51 @@
-  <div class="flexColumn">
-    <h2>Pros</h2>
-    <h2>Categories</h2>
-    <h2>Cons</h2>
-  
-  </div>
-<div *ngFor="let i of reviewCategories" class="flexColumn">
-    <button class="pro">
+<div class="flexColumn">
+  <h2>Pro</h2>
+  <h2>or</h2>
+  <h2>Con</h2>
+</div>
+<div class="center">
+  <div *ngFor="let category of reviewCategories; let i = index">
+    <!-- Positive -->
+    <div [hidden]="!isSelectedPossitive(category)">
+      <button
+        class="pro"
+        value="accuracyPro"
+        (click)="togglePossitive(category, i)"
+      >
         <fa-icon [icon]="faPlusCircle" size="lg" class="positive"></fa-icon>
-      {{ i.reviewCategory }}
-    </button>
-    <button class="neutral">
-      <fa-icon [icon]="faPlusCircle" size="lg" class="positive" ></fa-icon>
-      {{ i.reviewCategory }}
-      <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
-    </button>
-    <button class="con">
-      {{ i.reviewCategory }}
-      <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
-    </button>
+        {{ category.reviewCategory }}
+      </button>
+    </div>
+    <!-- Neutral -->
+    <div [hidden]="isSelectedPossitive(category)">
+      <div [hidden]="isSelectedNegative(category)">
+        <button class="neutral" value="accuracyNeutral">
+          <fa-icon
+            [icon]="faPlusCircle"
+            size="lg"
+            class="positive"
+            (click)="togglePossitive(category, i)"
+          ></fa-icon>
+          {{ category.reviewCategory }}
+          <fa-icon
+            [icon]="faMinusCircle"
+            size="lg"
+            class="negative"
+            (click)="toggleNegative(category, i)"
+          ></fa-icon>
+        </button>
+      </div>
+    </div>
+    <!-- Negative -->
+    <div [hidden]="!isSelectedNegative(category)">
+      <button
+        class="con"
+        value="accuracyCon"
+        (click)="toggleNegative(category, i)"
+      >
+        {{ category.reviewCategory }}
+        <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
+      </button>
+    </div>
+  </div>
 </div>
