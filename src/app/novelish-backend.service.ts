@@ -20,11 +20,11 @@ export class NovelishBackendService {
     return this.http.get(`http://localhost:3000/shelves`)
   }
 
-  getShelvesByUser(userId:number):Observable<any>{
+  getShelvesByUser(userId:number | null):Observable<any>{
     return this.http.get(`http://localhost:3000/shelves/${userId}`)
   }
 
-  getBooksFromShelf(shelf:string, userId:number):Observable<any>{
+  getBooksFromShelf(shelf:string, userId:number | null):Observable<any>{
     return this.http.get(`http://localhost:3000/shelves/${shelf}/${userId}`)
   }
 
