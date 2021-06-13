@@ -3,11 +3,10 @@
         <div class="novelish-logo">
             <img class="novelish-logo" src="assets/Novelish.png" alt="Novelish logo" routerLink="/home"/>
         </div>
-        <button class="shelf">Shelves</button>
     </div>
     <nav class="icon-nav"> 
         <!--to bookshelfs-->
-        <fa-icon [icon]="faBook" size="lg" class="nav-icon"></fa-icon>
+        <fa-icon [icon]="faBook" size="lg" class="nav-icon" routerLink="/shelves"></fa-icon>
         <!-- to user interface-->
         <fa-icon [icon]="faUserCircle" size="lg" class="nav-icon" routerLink="/dashboard"></fa-icon>
         <fa-icon [icon]="faBars"></fa-icon>

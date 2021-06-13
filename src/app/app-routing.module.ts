@@ -10,6 +10,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 
 //Pages
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
+import { ShelvesComponent } from './shelves/shelves.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'shelves', component: ShelvesComponent},
 ];
 
 @NgModule({
