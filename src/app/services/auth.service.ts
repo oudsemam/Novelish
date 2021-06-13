@@ -6,7 +6,6 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { NovelishBackendService } from 'src/app/novelish-backend.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +13,16 @@ import { NovelishBackendService } from 'src/app/novelish-backend.service';
 export class AuthService {
   userData: any; // Save logged in user data
 
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public NovelishBackendService: NovelishBackendService,
+    public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe((User: any) => {
+    this.afAuth.authState.subscribe((User:any) => {
       if (User) {
         this.userData = User;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -34,37 +33,13 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email: any, password: any) {
-    this.afAuth
-      .setPersistence('session')
-      .then(() => {
-        this.afAuth
-          .signInWithEmailAndPassword(email, password)
-          .then((result) => {
-            this.ngZone.run(() => {
-              this.router.navigate(['profile']);
-            });
-            this.SetUserData(result.user);
-            this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
-            console.log(result.user);
-          });
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
-  }
-
-  // Sign up with email/password
-  SignUp(email: string, password: string) {
-    // check against users table if email exists, if not alert "not authorized, please contact your admin"
+  SignIn(email:string, password:string) {
     return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
-        // when create a way to add approved emails/users then turn on these comments
-        this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
         this.ngZone.run(() => {
-          this.router.navigate(['sign-in']);
+          this.router.navigate(['dashboard']);
         });
       })
       .catch((error) => {
@@ -72,8 +47,26 @@ export class AuthService {
       });
   }
 
+  // Sign up with email/password
+  SignUp(email:string, password:string) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign 
+        up and returns promise */
+        // this.SendVerificationMail();
+        this.SetUserData(result.user);
+        this.ngZone.run(() => {
+          this.router.navigate(['sign-in'])
+        })
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail: any) {
+  ForgotPassword(passwordResetEmail:any) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -91,7 +84,7 @@ export class AuthService {
   }
 
   // Auth logic to run auth providers
-  AuthLogin(provider: any) {
+  AuthLogin(provider:any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
@@ -108,7 +101,7 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(User: any) {
+  SetUserData(User:any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${User.uid}`
     );

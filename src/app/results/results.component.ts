@@ -15,11 +15,11 @@ export class ResultsComponent implements OnInit {
   result:any 
   ngOnInit(): void {
     // this.resultList = this.OLService.getResults()
-    this.subscription = this.OLService.getSubject().subscribe((subject)=>{
-      if(subject){
-        this.resultList = subject;
-      } else { this.resultList = []}
-    })
+    // this.subscription = this.OLService.getSubject().subscribe((subject)=>{
+    //   if(subject){
+    //     this.resultList = subject;
+    //   } else { this.resultList = []}
+    // })
   }
   ngOnDestroy() {
     if (this.subscription) {

@@ -4,6 +4,65 @@ const pgp = require('pg-promise')();
 
 routes.use(express.json());
 
+//create a new user
+router.post("/users", async (req, res) => {
+  try {
+    await db.none(
+      "INSERT INTO users (firebase_uid, email, authorized) VALUES ($(firebase_uid), $(email), $(authorized))",
+      {
+        firebase_uid: req.body.firebase_uid,
+        email: req.body.email,
+        authorized: req.body.authorized,
+      }
+    );
+    const user = await db.one(
+      "SELECT email FROM users WHERE email = $(email)",
+      {
+        email: req.body.email,
+      }
+    );
+    res.status(201).json(user);
+  } catch (error) {
+    // if (error.constraint === 'users_pkey'){
+    //     return res.status(400).send('The state already exists');
+    // }
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
+// update a user record with the firebase UID when person signs up
+router.put("/users/:email", async (req, res) => {
+  try {
+    const user = await db.oneOrNone(
+      "SELECT email FROM users WHERE email = $(email)",
+      {
+        email: req.params.email,
+      }
+    );
+    if (!user) {
+      return res.status(404).send("User email does not exist.");
+    }
+    await db.oneOrNone(
+      "UPDATE users SET firebase_uid = $(firebase_uid) WHERE email = $(email)",
+      {
+        email: req.params.email,
+        firebase_uid: req.body.firebase_uid,
+      }
+    );
+    const updatedUser = await db.one(
+      "SELECT email, firebase_uid FROM users WHERE email = $(email)",
+      {
+        email: req.params.email,
+      }
+    );
+    res.status(201).json(updatedUser);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+});
+//end of new
+
 const db = pgp({
     database: 'Novelish',
     user: 'postgres',

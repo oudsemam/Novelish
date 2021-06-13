@@ -1,74 +1,97 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NovelishBackendService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getUsers():Observable<any>{
-    return this.http.get(`http://localhost:3000/users`)
+  addNewUser(user: any) {
+    return this.http.post('http://localhost:3000/users', user);
   }
 
-  getAllBooks():Observable<any>{
-    return this.http.get(`http://localhost:3000/books`)
+  updateUserUID(email: any, uid: any) {
+    let firebase_uid: Object = {
+      firebase_uid: uid,
+    };
+    return this.http.put(`http://localhost:3000/users/${email}`, firebase_uid);
   }
 
-  getAllShelves():Observable<any>{
-    return this.http.get(`http://localhost:3000/shelves`)
+  getUsers(): Observable<any> {
+    return this.http.get(`http://localhost:3000/users`);
   }
 
-  getShelvesByUser(userId:number | null):Observable<any>{
-    return this.http.get(`http://localhost:3000/shelves/${userId}`)
+  getAllBooks(): Observable<any> {
+    return this.http.get(`http://localhost:3000/books`);
   }
 
-  getBooksFromShelf(shelf:string, userId:number | null):Observable<any>{
-    return this.http.get(`http://localhost:3000/shelves/${shelf}/${userId}`)
+  getAllShelves(): Observable<any> {
+    return this.http.get(`http://localhost:3000/shelves`);
   }
 
-  getAllNotes(userId:number):Observable<any>{
-    return this.http.get(`http://localhost:3000/notes/${userId}`)
+  getShelvesByUser(userId: number | null): Observable<any> {
+    return this.http.get(`http://localhost:3000/shelves/${userId}`);
   }
 
-  getNotesByBook(userId:number, bookId:number):Observable<any>{
-    return this.http.get(`http://localhost:3000/notes/${userId}/${bookId}`)
+  getBooksFromShelf(shelf: string, userId: number | null): Observable<any> {
+    return this.http.get(`http://localhost:3000/shelves/${shelf}/${userId}`);
   }
 
-  addNote(userId:number, bookId:number, note:string):Observable<any>{
-     return this.http.post(`http://localhost:3000/notes/${userId}/${bookId}`, {note})
-}
-
-  changeNote(userId:number, bookId:number, note:string):Observable<any>{
-  return this.http.put(`http://localhost:3000/notes/${userId}/${bookId}`, {note})
-}
-
-  addShelf(userId:number, shelf:string):Observable<any>{
-    return this.http.post(`http://localhost:3000/shelves/${userId}`, {shelf})
+  getAllNotes(userId: number): Observable<any> {
+    return this.http.get(`http://localhost:3000/notes/${userId}`);
   }
 
-  addUser(email:string):Observable<any>{
-    return this.http.post(`http://localhost:3000/users`, {email})
+  getNotesByBook(userId: number, bookId: number): Observable<any> {
+    return this.http.get(`http://localhost:3000/notes/${userId}/${bookId}`);
   }
 
-  addBookToShelf(book: {}, userId:number, shelf:string):Observable<any>{
-    return this.http.post(`http://localhost:3000/books/${userId}/${shelf}`, book)
+  addNote(userId: number, bookId: number, note: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/notes/${userId}/${bookId}`, {
+      note,
+    });
   }
 
-  deleteNote(userId:number, bookId:number):Observable<any>{
-    return this.http.delete(`http://localhost:3000/notes/${userId}/${bookId}`)
+  changeNote(userId: number, bookId: number, note: string): Observable<any> {
+    return this.http.put(`http://localhost:3000/notes/${userId}/${bookId}`, {
+      note,
+    });
   }
 
-  deleteShelf(userId:number, shelf:string):Observable<any>{
-    return  this.http.delete(`http://localhost:3000/shelves/${shelf}/${userId}`)
+  addShelf(userId: number, shelf: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/shelves/${userId}`, { shelf });
   }
 
-  removeBookFromShelf(shelf:string, userId:number, bookId:number):Observable<any>{
-    return this.http.delete(`http://localhost:3000/books/${shelf}/${userId}/${bookId}`)
+  addUser(email: string): Observable<any> {
+    return this.http.post(`http://localhost:3000/users`, { email });
   }
 
-  removeUser(userId:number):Observable<any>{
-    return this.http.delete(`http://localhost:3000/users/${userId}`)
+  addBookToShelf(book: {}, userId: number, shelf: string): Observable<any> {
+    return this.http.post(
+      `http://localhost:3000/books/${userId}/${shelf}`,
+      book
+    );
+  }
+
+  deleteNote(userId: number, bookId: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/notes/${userId}/${bookId}`);
+  }
+
+  deleteShelf(userId: number, shelf: string): Observable<any> {
+    return this.http.delete(`http://localhost:3000/shelves/${shelf}/${userId}`);
+  }
+
+  removeBookFromShelf(
+    shelf: string,
+    userId: number,
+    bookId: number
+  ): Observable<any> {
+    return this.http.delete(
+      `http://localhost:3000/books/${shelf}/${userId}/${bookId}`
+    );
+  }
+
+  removeUser(userId: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/users/${userId}`);
   }
 }

@@ -20,9 +20,9 @@ export class BookViewComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.OLSubscription = this.activatedRoute.paramMap
-			.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
-			.subscribe((ibsn) => this.ibsn = ibsn);
+    // this.OLSubscription = this.activatedRoute.paramMap
+		// 	.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
+		// 	.subscribe((ibsn) => this.ibsn = ibsn);
 
     // this.NBSubscription = this.backend.get
   }
