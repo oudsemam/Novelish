@@ -17,6 +17,7 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
 import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
 import { ShelvesComponent } from './shelves/shelves.component';
 import { BookComponent } from './book/book.component';
+import { ReviewPageComponent } from './review-page/review-page.component';
 
 
 //font awesome use
@@ -56,6 +57,7 @@ import { AuthService } from "./shared/services/auth.service";
     ReviewToggleButtonComponent,
     ShelvesComponent,
     BookComponent,
+    ReviewPageComponent,
   ],
   imports: [
     BrowserModule,
