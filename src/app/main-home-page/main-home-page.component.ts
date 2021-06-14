@@ -19,7 +19,7 @@ export class MainHomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.NyTservice.getList("Hardcover Fiction").subscribe(list => this.bookList = list);
-    console.log(this.subscription)
+    console.log(this.bookList)
   };
 
   ngOnDestroy() {

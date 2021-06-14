@@ -47,8 +47,8 @@ export class NovelishBackendService {
     return this.http.get(`http://localhost:3000/shelves/user`, {headers: this.getHeaders()});
   }
 
-  getBooksFromShelf(shelf: string, userId: number | null): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/${shelf}/${userId}`);
+  getBooksFromShelf(shelf: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/shelves/user/${shelf}`,{headers: this.getHeaders()});
   }
 
   getAllNotes(userId: number): Observable<any> {
