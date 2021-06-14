@@ -1,10 +1,20 @@
-In Results
-<ul>
-  <li *ngFor="let result of resultList">
-    {{ result.title }} by {{ result.author_name }}
+
+<app-main-header></app-main-header>
+
+<app-search-bar></app-search-bar>
+
+<div class="results_container">
+  <div *ngFor="let result of resultList">
+    <a routerLink="/books/{{ result?.isbn[0] }}">
+
     <img
-      src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg"
+      src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg" onerror="this.onerror=null;this.src='/assets/book.jpg'"
+
       alt="{{ result?.title }}"
     />
-  </li>
-</ul>
+    </a>
+    <h1>{{ result.title }} by {{ result.author_name }}</h1>
+  </div>
+
+</div>
+

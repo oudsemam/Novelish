@@ -14,6 +14,7 @@ import { ShelvesComponent } from './shelves/shelves.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { ResultsComponent } from './results/results.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { BookViewComponent } from './book-view/book-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'review', component: ReviewPageComponent},
   { path: 'results', component: ResultsComponent},
   { path: 'side-menu', component: SideMenuComponent},
+  { path: 'books/:isbn', component: BookViewComponent}
 ];
 
 @NgModule({
