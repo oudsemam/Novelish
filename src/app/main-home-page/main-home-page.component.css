@@ -5,36 +5,37 @@ h1 {
 .container {
     /* height: 100%; */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
+    flex-direction: column;
   }
 
-  carousel {
+  /* carousel { */
     /* background: linear-gradient(#e66465, #9198e5); */
-    height: 500px;
+    /* height: 500px; */
     /* // Carousel height */
-    width: 630px;
+    /* width: 630px; */
     /* // Carousel Width */
-    min-width: 200;
+    /* min-width: 200; */
     /* // Cell width */
-    -ms-overflow-style: 3;
+    /* -ms-overflow-style: 3; */
     /* // The number of carousel cells that will be stored for in the DOM tree outside the scope. */
-    margin: 10;
+    /* margin: 10; */
     /* // Cell spacing */
-    -webkit-appearance: 50;
+    /* -webkit-appearance: 50; */
     /* // Minimum distance for swipe */
-    transition-duration: number=200;
+    /* transition-duration: number=200; */
     /* // Animation duration */
-    transition-timing-function: 'ease''ease-in''ease-out''ease-in-out''linear'='ease';
+    /* transition-timing-function: 'ease''ease-in''ease-out''ease-in-out''linear'='ease'; */
     /* transition-timing-function: 'ease'| 'ease-in'| 'ease-out'| 'ease-in-out'| 'linear'='ease'; */
     /* // Smooth animation function */
-    content: boolean=false;
+    /* content: boolean=false; */
     /* // Counter */
-    counter-increment: string=" / ";
+    /* counter-increment: string=" / "; */
     /* // Counter separator */
-    border-radius: 3em;
+    /* border-radius: 3em; */
     /* // Border radius for carousel cells */
-  }
+  /* } */
 
   .books {
     padding-left: 14px;
