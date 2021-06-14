@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-side-menu',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-menu.component.css']
 })
 export class SideMenuComponent implements OnInit {
+faTimes = faTimes
 
   constructor() { }
 
