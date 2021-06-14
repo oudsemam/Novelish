@@ -4,6 +4,8 @@ const pgp = require('pg-promise')();
 
 routes.use(express.json());
 
+
+
 //create a new user
 routes.post("/users", async (req, res) => {
   try {
