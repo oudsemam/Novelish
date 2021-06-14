@@ -17,6 +17,7 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
 import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
 import { ShelvesComponent } from './shelves/shelves.component';
 import { BookComponent } from './book/book.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ReviewPageComponent } from './review-page/review-page.component';
 
 
@@ -35,6 +36,9 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { NovelishBackendService } from './novelish-backend.service';
+import { NyTimesService } from './ny-times.service';
+import { OpenLibraryService } from './open-library.service';
 
 
 
@@ -67,6 +71,7 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
+    IvyCarouselModule
   ],
   providers: [
     AuthService,
@@ -86,6 +91,9 @@ import { AuthService } from "./shared/services/auth.service";
       deps: [Sentry.TraceService],
       multi: true,
     },
+    NovelishBackendService,
+    NyTimesService,
+    OpenLibraryService,
   ],
   bootstrap: [AppComponent],
 })

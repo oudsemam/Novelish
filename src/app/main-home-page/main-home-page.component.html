@@ -1,2 +1,14 @@
 <app-main-header></app-main-header>
 <app-search-bar></app-search-bar>
+
+
+<h1>Current NY Times Best Sellers</h1>
+
+
+<div class="container">
+    <h3 class="bestSellers">NY Times Current Best Sellers</h3>
+    <carousel class="books" *ngFor="let book of bookList.results.books">
+        <img src="http://covers.openlibrary.org/b/isbn/{{ book?.primary_isbn10 }}-S.jpg" alt="{{book.title}}">
+    </carousel>
+        
+</div>
