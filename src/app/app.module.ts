@@ -17,6 +17,7 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
 import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
 import { ShelvesComponent } from './shelves/shelves.component';
 import { BookComponent } from './book/book.component';
+import { ReviewPageComponent } from './review-page/review-page.component';
 
 
 //font awesome use
@@ -34,7 +35,6 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
-import { ReviewPageComponent } from './review-page/review-page.component';
 
 
 

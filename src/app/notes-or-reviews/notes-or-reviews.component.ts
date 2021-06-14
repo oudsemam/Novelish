@@ -7,23 +7,21 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./notes-or-reviews.component.css'],
 })
 export class NotesOrReviewsComponent implements OnInit {
+  @Input() note: string = '';
+  newNote!: string;
+  addedNotes: string[] = [];
   faTimes = faTimes;
 
-  @Input() note: string = '';
-  newNoteItem: string;
-  noteList: string[] = [];
-
-  addNewNote() {
-    if (this.newNoteItem !== null) {
-      this.noteList?.push(this.newNoteItem);
+  addNote() {
+    if (this.newNote !== null) {
+      this.addedNotes?.push(this.newNote);
     }
-    this.newListItem = '';
+    this.newNote = '';
   }
 
-  removeNoteItem() {
-    
-  };
-
+  removeNote(i: number) {
+    this.addedNotes.splice(i, 1);
+  }
   constructor() {}
 
   ngOnInit(): void {}
