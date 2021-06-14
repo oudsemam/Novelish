@@ -27,14 +27,10 @@ export class ShelfComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.user = localStorage.getItem('user')
-    this.emailsubscription = this.NBService.getUserId(this.user.email).subscribe((id) =>{
-      this.userId = id
-      this.subscription = this.NBService.getBooksFromShelf(this.shelf, this.userId ).subscribe(b => {
+      this.subscription = this.NBService.getBooksFromShelf(this.shelf).subscribe(b => {
         console.log(b);
         this.books = b
       })
-    })
   }
 
 }
