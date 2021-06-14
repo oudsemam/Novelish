@@ -42,7 +42,7 @@ export class AuthService {
           .signInWithEmailAndPassword(email, password)
           .then((result) => {
             this.ngZone.run(() => {
-              this.router.navigate(['profile']);
+              this.router.navigate(['dashboard']);
             });
             this.SetUserData(result.user);
             this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
