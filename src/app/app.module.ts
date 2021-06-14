@@ -34,6 +34,7 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { ReviewPageComponent } from './review-page/review-page.component';
 
 
 
@@ -56,6 +57,7 @@ import { AuthService } from "./shared/services/auth.service";
     ReviewToggleButtonComponent,
     ShelvesComponent,
     BookComponent,
+    ReviewPageComponent,
   ],
   imports: [
     BrowserModule,

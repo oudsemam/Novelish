@@ -1,19 +1,19 @@
 <div class="notes-container">
   <textarea
+    [(ngModel)]="newNoteItem"
     aria-label="Notes"
     type="text"
     id="notes"
     name="notes"
-    placeholder="Take a note or write a review..."
+    placeholder="Write your thoughts here..."
   ></textarea>
   <div class="notes-area">
-    <button class="add-note">Add</button>
+    <button (click)="addNoteItem()" class="add-note">Add</button>
   </div>
-  <div
-    class="newNote"
-  >
-    <!-- <p>{{ note }}</p> -->
-    <button class="remove-note">
+  <div class="newNote">
+    <div [item]="note" class="newListItem"></div>
+    <p>{{ note }}</p>
+    <button (click)="removeNoteItem(i)" class="remove-note">
       <fa-icon [icon]="faTimes"></fa-icon>
     </button>
   </div>

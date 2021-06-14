@@ -17,8 +17,8 @@
       </button>
     </div>
     <!-- Neutral -->
-    <div [hidden]="isSelectedPossitive(category)">
-      <div [hidden]="isSelectedNegative(category)">
+    <div >
+      <div [hidden]="isSelectedPossitive(category)" [hidden]="isSelectedNegative(category)">
         <button class="neutral" value="accuracyNeutral">
           <fa-icon
             [icon]="faPlusCircle"
