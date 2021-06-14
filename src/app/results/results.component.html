@@ -1,5 +1,22 @@
-In Results
-<ul>
+
+<app-main-header></app-main-header>
+
+<app-search-bar></app-search-bar>
+
+<div class="resultsContainer">
+  <div *ngFor="let result of resultList">
+    <img
+      src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg"
+      alt="{{ result?.title }}"
+    />
+    {{ result.title }} by {{ result.author_name }}
+  </div>
+
+</div>
+
+
+
+<!-- <ul>
   <li *ngFor="let result of resultList">
     {{ result.title }} by {{ result.author_name }}
     <img
@@ -7,4 +24,4 @@ In Results
       alt="{{ result?.title }}"
     />
   </li>
-</ul>
+</ul> -->
