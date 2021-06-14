@@ -22,6 +22,10 @@ export class NovelishBackendService {
     return this.http.get(`http://localhost:3000/users`);
   }
 
+  getUserId(email:string | null):Observable<any> {
+    return this.http.get(`http://localhost:3000/users/${email}`)
+  }
+
   getAllBooks(): Observable<any> {
     return this.http.get(`http://localhost:3000/books`);
   }
