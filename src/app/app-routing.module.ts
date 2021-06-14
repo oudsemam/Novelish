@@ -13,6 +13,7 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
 import { ShelvesComponent } from './shelves/shelves.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { ResultsComponent } from './results/results.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'shelves', component: ShelvesComponent},
   { path: 'review', component: ReviewPageComponent},
   { path: 'results', component: ResultsComponent},
+  { path: 'side-menu', component: SideMenuComponent},
   { path: 'books/:isbn', component: BookViewComponent}
 ];
 

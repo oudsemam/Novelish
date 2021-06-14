@@ -1,7 +1,15 @@
 * {
     font-size: 16px;
     position: relative;
+    background-color: #010101;
+    color: #F4FaF8;
+
 }
+
+main {
+    padding: 15px;
+}
+
 ul {
     list-style-type: none;
     margin-left: 0;

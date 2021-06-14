@@ -41,6 +41,7 @@
   justify-content: space-between;
   padding: 15px;
 }
+ 
 
 /* This is where the layout will break from mobile to Desktop */
 @media only screen and (min-width: 720px) {

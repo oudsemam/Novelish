@@ -1,16 +1,14 @@
-.row {
+/* .row {
     display: flex;
     flex-direction: row;
-}
+} */
 
-.flex-column {
+.col-md-2 {
     display: flex;
-    flex-direction: column;
-}
-
-ul {
-    list-style-type: none;
-    margin-left: 0;
+    flex-direction: row;
+    background-color: #435c5f;
+    color:white;
+    width: 100%;
 }
 
 li {
@@ -19,4 +17,22 @@ li {
 
 .inner-adjust {
     padding-left: 80px;
+}
+
+h2{
+    font-family: 'Long Cang', cursive;
+}
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+.container-fluid{
+    height: 100%;
+}
+    .row {
+    display: flex;
+    flex-direction: row;
+}
+.col-md-2 {
+    width: 25%;
+}
 }
