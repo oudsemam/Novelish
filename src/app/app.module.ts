@@ -9,7 +9,6 @@ import { MainHeaderComponent } from './main-header/main-header.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ResultsComponent } from './results/results.component';
@@ -45,7 +44,6 @@ import { AuthService } from "./shared/services/auth.service";
     SearchBarComponent,
     ShelfComponent,
     NotesOrReviewsComponent,
-    SideMenuComponent,
     BookViewComponent,
     ReviewsComponent,
     DashboardComponent,

@@ -9,7 +9,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class NotesOrReviewsComponent implements OnInit {
   @Input() note: string = '';
   newNote!: string;
-  addedNotes: string[] = [];
+  addedNotes: any[] = [];
   faTimes = faTimes;
 
   addNote() {

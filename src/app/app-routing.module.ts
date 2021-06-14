@@ -14,14 +14,14 @@ import { ShelvesComponent } from './shelves/shelves.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path:  '' , redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: MainHomePageComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'shelves', component: ShelvesComponent},
-  { path: 'review', component: ReviewPageComponent}
+  { path: 'shelves', component: ShelvesComponent, canActivate: [AuthGuard]},
+  { path: 'review', component: ReviewPageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

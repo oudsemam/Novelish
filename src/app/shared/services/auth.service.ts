@@ -7,6 +7,8 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { NovelishBackendService } from 'src/app/novelish-backend.service';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +17,11 @@ export class AuthService {
   userData: any; // Save logged in user data
 
   constructor(
-    public afs: AngularFirestore, // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router,
-    public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public NovelishBackendService: NovelishBackendService,
+    private afs: AngularFirestore, // Inject Firestore service
+    private afAuth: AngularFireAuth, // Inject Firebase auth service
+    private router: Router,
+    private ngZone: NgZone, // NgZone service to remove outside scope warning
+    private NovelishBackendService: NovelishBackendService,
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -132,4 +134,10 @@ export class AuthService {
       this.router.navigate(['sign-in']);
     });
   }
+
+  // private getHeaders(){
+  //   return {
+  //     headers: new HttpHeaders({'Authorization':'Bearer' ${this.token}})
+  //   };
+  // }
 }
