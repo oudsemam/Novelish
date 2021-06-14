@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class NovelishBackendService {
   constructor(private http: HttpClient) {}
-
+  getHeaders(){
+    const userString = localStorage.getItem('user')
+    if(!userString){
+      return new HttpHeaders()
+    }
+    const user = JSON.parse(userString)
+    console.log(user)
+    const header = new HttpHeaders().set('Authorization', `Bearer ${user.stsTokenManager.accessToken}`)
+    return header
+  }
   addNewUser(user: any) {
     return this.http.post('http://localhost:3000/users', user);
   }
@@ -34,8 +43,8 @@ export class NovelishBackendService {
     return this.http.get(`http://localhost:3000/shelves`);
   }
 
-  getShelvesByUser(userId: number | null): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/${userId}`);
+  getShelvesByUser(): Observable<any> {
+    return this.http.get(`http://localhost:3000/shelves/user`, {headers: this.getHeaders()});
   }
 
   getBooksFromShelf(shelf: string, userId: number | null): Observable<any> {

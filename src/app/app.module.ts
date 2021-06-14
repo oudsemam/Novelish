@@ -35,6 +35,7 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -67,6 +68,7 @@ import { AuthService } from "./shared/services/auth.service";
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthService,

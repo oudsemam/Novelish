@@ -17,17 +17,23 @@ export class ShelfComponent implements OnInit {
   book: Observable<any> | any | null = null;
 
   books: any[] = [];
+  user: any | null = null
   userId: number | null = null
   @Input() shelf: string = '';
-
+  emailsubscription: Subscription | null = null
   subscription: Subscription | null = null
   constructor(private NBService: NovelishBackendService) { }
   
 
   ngOnInit(): void {
-    this.subscription = this.NBService.getBooksFromShelf(this.shelf, this.userId ).subscribe(b => {
-      console.log(b);
-      this.books = b
+    
+    this.user = localStorage.getItem('user')
+    this.emailsubscription = this.NBService.getUserId(this.user.email).subscribe((id) =>{
+      this.userId = id
+      this.subscription = this.NBService.getBooksFromShelf(this.shelf, this.userId ).subscribe(b => {
+        console.log(b);
+        this.books = b
+      })
     })
   }
 

@@ -12,6 +12,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
 import { ShelvesComponent } from './shelves/shelves.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
+import { ResultsComponent } from './results/results.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'shelves', component: ShelvesComponent},
-  { path: 'review', component: ReviewPageComponent}
+  { path: 'review', component: ReviewPageComponent},
+  { path: 'results', component: ResultsComponent}
 ];
 
 @NgModule({

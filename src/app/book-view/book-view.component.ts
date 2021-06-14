@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class BookViewComponent implements OnInit {
   faDumpsterFire = faDumpsterFire;
-  ibsn: string = ''
+  book: object = {}
   OLSubscription: Subscription | null = null
   NBSubscription: Subscription | null = null
   constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
@@ -22,7 +22,7 @@ export class BookViewComponent implements OnInit {
    
     this.OLSubscription = this.activatedRoute.paramMap
 			.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
-			.subscribe((ibsn) => this.ibsn = ibsn);
+			.subscribe((book) => this.book = book);
 
     // this.NBSubscription = this.backend.get
   }
