@@ -13,6 +13,7 @@ import { MainHomePageComponent } from './main-home-page/main-home-page.component
 import { ShelvesComponent } from './shelves/shelves.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { ResultsComponent } from './results/results.component';
+import { BookViewComponent } from './book-view/book-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'shelves', component: ShelvesComponent},
   { path: 'review', component: ReviewPageComponent},
-  { path: 'results', component: ResultsComponent}
+  { path: 'results', component: ResultsComponent},
+  { path: 'books/:isbn', component: BookViewComponent}
 ];
 
 @NgModule({

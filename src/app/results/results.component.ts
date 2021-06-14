@@ -24,5 +24,4 @@ export class ResultsComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }}
-
 }
