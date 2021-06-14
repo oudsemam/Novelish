@@ -11,15 +11,14 @@ export class ResultsComponent implements OnInit {
   subscription: Subscription | null = null
   constructor(private OLService: OpenLibraryService) { }
 
-  resultList: any[]  = []
+  resultList: any  = null
   result:any 
   ngOnInit(): void {
-    // this.resultList = this.OLService.getResults()
-    // this.subscription = this.OLService.getSubject().subscribe((subject)=>{
-    //   if(subject){
-    //     this.resultList = subject;
-    //   } else { this.resultList = []}
-    // })
+    console.log('In Init')
+   this.subscription = this.OLService.subject.subscribe((s) =>{
+     console.log(s)
+    this.resultList = s
+   })
   }
   ngOnDestroy() {
     if (this.subscription) {

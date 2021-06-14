@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { OpenLibraryService } from '../open-library.service';
 import { Observable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,10 +13,10 @@ export class SearchBarComponent implements OnInit {
   faSearch = faSearch;
   searchTerm: string = '';
   subscription: Subscription | null = null;
-  book: boolean = false
+  book: boolean = true
   author: boolean = false
 
-  constructor(private OLService: OpenLibraryService) { }
+  constructor(private OLService: OpenLibraryService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,10 +28,13 @@ export class SearchBarComponent implements OnInit {
 
   search(){
     if(this.book)
-    {this.subscription = this.OLService.searchTitle(this.searchTerm)
-    .subscribe(()=>{})}
-    if(this.author)
-    {this.subscription = this.OLService.searchAuthor(this.searchTerm)
-      .subscribe(()=>{})}
+    {console.log("in title search")
+      this.subscription = this.OLService.searchTitle(this.searchTerm)
+    .subscribe(()=>{
+      this.router.navigate(['/results'])
+    })}
+    // if(this.author)
+    // {this.subscription = this.OLService.searchAuthor(this.searchTerm)
+    //   .subscribe(()=>{})}
   }
 }

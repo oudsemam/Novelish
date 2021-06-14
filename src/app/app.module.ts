@@ -36,9 +36,11 @@ import { ForgotPasswordComponent } from './FireBase/forgot-password/forgot-passw
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
+import { FormsModule } from '@angular/forms';
 import { NovelishBackendService } from './novelish-backend.service';
 import { NyTimesService } from './ny-times.service';
 import { OpenLibraryService } from './open-library.service';
+
 
 
 
@@ -71,7 +73,9 @@ import { OpenLibraryService } from './open-library.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
+    FormsModule
     IvyCarouselModule
+
   ],
   providers: [
     AuthService,

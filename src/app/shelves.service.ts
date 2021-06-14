@@ -6,14 +6,14 @@ import { Shelf } from './shelf';
 })
 export class ShelvesService {
 
-  shelves: Shelf[] = [
-    {shelfName: "Have Read"},
-    {shelfName: "Want to Read"},
-    {shelfName: "Burn It!"},
-    {shelfName: "Did Not Finish"},
-    {shelfName: "Currently Reading"}
-  ];
-  shelfName: any;
+  // shelves: Shelf[] = [
+  //   {shelfName: "Have Read"},
+  //   {shelfName: "Want to Read"},
+  //   {shelfName: "Burn It!"},
+  //   {shelfName: "Did Not Finish"},
+  //   {shelfName: "Currently Reading"}
+  // ];
+  // shelfName: any;
   
   constructor() { }
 }

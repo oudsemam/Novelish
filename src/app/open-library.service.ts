@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
 export class OpenLibraryService {
   resultList: [] = []
-  private subject = new Subject<any>();
+  subject = new BehaviorSubject<any>([]);
   constructor(private http: HttpClient) { }
 
   searchTitle(searchTerm:string): Observable<any>{
 
       let title = searchTerm.replace(/\s/g,'+')
-      return this.http.get(`http://openlibrary.org/search.json?title=${title}`).pipe(map((results) => this.subject.next(results) ))
+      return this.http.get(`http://openlibrary.org/search.json?title=${title}`).pipe(map((results: any) => this.subject.next(results.docs.filter((d: any) => d.isbn!== undefined) )))
   }
 
   searchAuthor(searchTerm:string): Observable<any>{

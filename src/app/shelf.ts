@@ -1,3 +1,3 @@
 export interface Shelf {
-    shelfName: string
+    shelf: string
 }
