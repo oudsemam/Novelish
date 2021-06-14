@@ -5,7 +5,7 @@ const pgp = require('pg-promise')();
 routes.use(express.json());
 
 //create a new user
-router.post("/users", async (req, res) => {
+routes.post("/users", async (req, res) => {
   try {
     await db.none(
       "INSERT INTO users (firebase_uid, email, authorized) VALUES ($(firebase_uid), $(email), $(authorized))",
@@ -31,7 +31,7 @@ router.post("/users", async (req, res) => {
   }
 });
 // update a user record with the firebase UID when person signs up
-router.put("/users/:email", async (req, res) => {
+routes.put("/users/:email", async (req, res) => {
   try {
     const user = await db.oneOrNone(
       "SELECT email FROM users WHERE email = $(email)",
