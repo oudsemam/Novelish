@@ -9,7 +9,7 @@ export class NyTimesService {
 
   constructor(private http: HttpClient) { }
 
-  getList(listname:string): Observable<any>{
+  getList(listname:string): Observable<any> {
     let list = listname.replace(/\s/g,'-')
     return this.http.get(`https://api.nytimes.com/svc/books/v3/lists/current/${list}?api-key=2HQ1GkrWdYaq6CzEMgktkGYjAlqWQ5HC`)
   }
