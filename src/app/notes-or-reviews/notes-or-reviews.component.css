@@ -17,7 +17,7 @@
   width: 100px;
   border-radius: 5px;
   color: white;
-  background-color: #3793cb;
+  background-color: #5abf73;
   border: none;
   padding: 5px;
 }
@@ -25,8 +25,8 @@
 .newNote {
   min-height: 50px;
   width: 100%;
-  border: 1px solid #98a09e;
-  background-color: #f4faf8;
+  border: 1px solid #5abf73;
+  background-color: #e9f9ec;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -38,6 +38,6 @@
 
 .remove-note {
   border: none;
-  background-color: #f4faf8;
+  background-color: #e9f9ec;
   padding: 0px 10px 0px 20px;
 }

@@ -7,34 +7,57 @@ routes.use(express.json());
 //create a new user
 routes.post("/users", async (req, res) => {
   try {
-    await db.none(
-      "INSERT INTO users (firebase_uid, email, authorized) VALUES ($(firebase_uid), $(email), $(authorized))",
+    const result = await db.oneOrNone(
+      `INSERT INTO users (email) VALUES ( $(email))`,
       {
-        firebase_uid: req.body.firebase_uid,
         email: req.body.email,
-        authorized: req.body.authorized,
       }
     );
     const user = await db.one(
-      "SELECT email FROM users WHERE email = $(email)",
+      `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
       {
         email: req.body.email,
       }
     );
-    res.status(201).json(user);
+    const newUser = await db.one(
+      `SELECT id, email FROM users WHERE id = $(id)`,
+      { id: result.id }
+    );
+    res.status(201).json(newUser);
   } catch (error) {
     // if (error.constraint === 'users_pkey'){
     //     return res.status(400).send('The state already exists');
     // }
     console.log(error);
-    res.status(500).send(error);
-  }
+     if (error.constraint === 'unique_email') {
+            return res.status(400).send("That email address is already registered.")
+        }
+}
 });
+
+routes.get("/users/:email", async (req, res)=> {
+    try {
+      const user = await db.oneOrNone(
+        `SELECT user_id FROM users WHERE email = $(email)`,
+        {
+          email: req.params.email,
+        }
+      );
+      if (!user) {
+        return res.status(404).send("User email does not exist.");
+      }
+      res.status(201).json(updatedUser);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    } 
+})
+
 // update a user record with the firebase UID when person signs up
 routes.put("/users/:email", async (req, res) => {
   try {
     const user = await db.oneOrNone(
-      "SELECT email FROM users WHERE email = $(email)",
+      `SELECT email FROM users WHERE email = $(email)`,
       {
         email: req.params.email,
       }
@@ -43,14 +66,14 @@ routes.put("/users/:email", async (req, res) => {
       return res.status(404).send("User email does not exist.");
     }
     await db.oneOrNone(
-      "UPDATE users SET firebase_uid = $(firebase_uid) WHERE email = $(email)",
+      `UPDATE users SET firebase_uid = $(firebase_uid) WHERE email = $(email)`,
       {
         email: req.params.email,
         firebase_uid: req.body.firebase_uid,
       }
     );
     const updatedUser = await db.one(
-      "SELECT email, firebase_uid FROM users WHERE email = $(email)",
+      `SELECT email, firebase_uid FROM users WHERE email = $(email)`,
       {
         email: req.params.email,
       }
@@ -106,25 +129,6 @@ routes.get('/shelves/:shelf/:user_id', async (req, res) => {
 
 });
 
-
-routes.post('/users', async (req, res) => {
-    try {
-        const result = await db.oneOrNone(`
-        INSERT INTO users (email) VALUES ($(email)) RETURNING id`,
-        {
-            email: req.body.email
-        });
-
-        const newUser = await db.one(`SELECT id, email FROM users WHERE id = $(id)`, { id: result.id });
-
-        return res.status(201).json(newUser);
-
-    } catch (error) {
-        if (error.constraint === 'unique_email') {
-            return res.status(400).send("That email address is already registered.")
-        }
-    };
-});
 
 routes.post('/books/:user_id/:shelf', async (req, res) => {
     try {

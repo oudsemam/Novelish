@@ -18,6 +18,7 @@ import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggl
 import { ShelvesComponent } from './shelves/shelves.component';
 import { BookComponent } from './book/book.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ReviewPageComponent } from './review-page/review-page.component';
 
 
 //font awesome use
@@ -60,6 +61,7 @@ import { OpenLibraryService } from './open-library.service';
     ReviewToggleButtonComponent,
     ShelvesComponent,
     BookComponent,
+    ReviewPageComponent,
   ],
   imports: [
     BrowserModule,

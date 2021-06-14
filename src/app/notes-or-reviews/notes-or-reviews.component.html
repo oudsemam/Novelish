@@ -1,19 +1,22 @@
 <div class="notes-container">
   <textarea
+    [(ngModel)]?="newNote"
     aria-label="Notes"
     type="text"
     id="notes"
     name="notes"
-    placeholder="Take a note or write a review..."
+    placeholder="Take a note..."
   ></textarea>
   <div class="notes-area">
-    <button class="add-note">Add</button>
+    <button class="add-note" (click)="addNote()">Add</button>
   </div>
   <div
+    *ngFor="let note of addedNotes; index as i"
+    [note]?="note"
     class="newNote"
   >
-    <!-- <p>{{ note }}</p> -->
-    <button class="remove-note">
+    <p>{{ note }}</p>
+    <button (click)="removeNote(i)" class="remove-note">
       <fa-icon [icon]="faTimes"></fa-icon>
     </button>
   </div>
