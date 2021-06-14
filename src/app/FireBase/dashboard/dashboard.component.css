@@ -1,11 +1,14 @@
-.row {
+/* .row {
     display: flex;
     flex-direction: row;
-}
+} */
 
-.flex-column {
+.col-md-2 {
     display: flex;
     flex-direction: column;
+    background-color: #435c5f;
+    color:white;
+    width: 100%;
 }
 
 ul {
@@ -19,4 +22,9 @@ li {
 
 .inner-adjust {
     padding-left: 80px;
+}
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+
 }

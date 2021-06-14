@@ -73,8 +73,8 @@ import { OpenLibraryService } from './open-library.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
-    FormsModule
-    IvyCarouselModule
+    FormsModule,
+    IvyCarouselModule,
 
   ],
   providers: [
