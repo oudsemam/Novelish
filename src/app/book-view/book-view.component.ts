@@ -35,7 +35,7 @@ export class BookViewComponent implements OnInit {
     this.OLSubscription = this.OLService.getBook(this.isbn)
     .subscribe((book) => {
       console.log(book)
-      this.book = book});
+      this.book = book[`ISBN:${this.isbn}`]});
   
     // this.NBSubscription = this.backend.get
   }
