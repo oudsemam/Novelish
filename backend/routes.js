@@ -133,7 +133,7 @@ routes.get("/shelves/user/:shelf/", async (req, res) => {
   );
 });
 
-routes.post("/books/:user_id/:shelf", async (req, res) => {
+routes.post("/books/user/:shelf", async (req, res) => {
   try {
     const result = await db.one(
       `
@@ -153,11 +153,16 @@ routes.post("/books/:user_id/:shelf", async (req, res) => {
       }
     );
 
+    const user = await db.one(
+      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+      { email: req.user.email }
+    );
+
     await db.oneOrNone(
       `INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`,
       {
         shelf: req.params.shelf,
-        user_id: +req.params.user_id,
+        user_id: user.id,
         book_id: result.id,
       }
     );
@@ -169,7 +174,7 @@ routes.post("/books/:user_id/:shelf", async (req, res) => {
         WHERE b.id = $(book_id) AND u.id = $(user_id)`,
       {
         book_id: result.id,
-        user_id: +req.params.user_id,
+        user_id: user.id,
       }
     );
 
@@ -185,23 +190,26 @@ routes.post("/books/:user_id/:shelf", async (req, res) => {
   }
 });
 
-routes.post("/shelves/:user_id", async (req, res) => {
+routes.post("/shelves", async (req, res) => {
   try {
-    const result = await db.oneOrNone(
-      `
+    const user = await db.one(
+      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+      { email: req.user.email }
+    );
+
+    `
         INSERT INTO shelves (shelf, user_id) VALUES ($(shelf), $(user_id))`,
       {
-        user_id: req.params.user_id,
+        user_id: user.id,
         shelf: req.body.shelf,
-      }
-    );
+      };
 
     console.log("got here");
 
     const newShelf = await db.manyOrNone(
       `SELECT DISTINCT shelf FROM shelves WHERE user_id = $(user_id)`,
       {
-        user_id: req.params.user_id,
+        user_id: user.id,
       }
     );
 
@@ -215,20 +223,24 @@ routes.post("/shelves/:user_id", async (req, res) => {
   }
 });
 
-routes.delete("/users/:user_id", async (req, res) => {
-  await db.none(`DELETE from users WHERE id = $(user_id)`, {
-    user_id: req.params.user_id,
+routes.delete("/users/", async (req, res) => {
+  await db.none(`DELETE from users WHERE email = $(email)`, {
+    email: req.user.email,
   });
 
   res.status(204).send();
 });
 
-routes.delete("/books/:shelf/:book_id/:user_id", async (req, res) => {
+routes.delete("/books/:shelf/:book_id", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.none(
     `DELETE from shelves WHERE book_id = $(book_id) AND shelf = $(shelf) AND user_id = $(user_id)`,
     {
       book_id: +req.params.book_id,
-      user_id: +req.params.user_id,
+      user_id: user.id,
       shelf: req.params.shelf,
     }
   );
@@ -236,34 +248,46 @@ routes.delete("/books/:shelf/:book_id/:user_id", async (req, res) => {
   res.status(204).send();
 });
 
-routes.delete("/shelves/:shelf/:user_id", async (req, res) => {
+routes.delete("/shelves/:shelf/", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.none(
     `DELETE from shelves WHERE shelf = $(shelf) AND user_id = $(user_id)`,
     {
       shelf: req.params.shelf,
-      user_id: +req.params.user_id,
+      user_id: user.id,
     }
   );
 
   res.status(204).send();
 });
 
-routes.get("/notes/:user_id", async (req, res) => {
+routes.get("/notes/", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   res.json(
     await db.manyOrNone(`SELECT * from notes WHERE user_id = $(user_id)`, {
-      user_id: req.params.user_id,
+      user_id: user.id,
     })
   );
 });
 
-routes.post("/notes/:user_id/:book_id", async (req, res) => {
+routes.post("/notes/:book_id", async (req, res) => {
   try {
+    const user = await db.one(
+      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+      { email: req.user.email }
+    );
     await db.none(
       `
         INSERT INTO notes (book_id, user_id, notes) VALUES ($(book_id), $(user_id), $(notes))`,
       {
         book_id: +req.params.book_id,
-        user_id: +req.params.user_id,
+        user_id: user.id,
         notes: req.body.notes,
       }
     );
@@ -284,12 +308,16 @@ routes.post("/notes/:user_id/:book_id", async (req, res) => {
   }
 });
 
-routes.put("/notes/:user_id/:book_id", async (req, res) => {
+routes.put("/notes/:book_id", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.oneOrNone(
     `UPDATE notes SET notes = $(notes) WHERE user_id = $(user_id) and book_id = $(book_id)`,
     {
       notes: req.body.notes,
-      user_id: +req.params.user_id,
+      user_id: user.id,
       book_id: +req.params.book_id,
     }
   );
@@ -300,7 +328,7 @@ routes.put("/notes/:user_id/:book_id", async (req, res) => {
     INNER JOIN users u ON u.id = notes.book_id
     WHERE user_id = $(user_id) AND book_id = $(book_id)`,
     {
-      user_id: +req.params.user_id,
+      user_id: user.id,
       book_id: +req.params.book_id,
     }
   );
@@ -308,60 +336,89 @@ routes.put("/notes/:user_id/:book_id", async (req, res) => {
   res.status(201).json(updatedNote);
 });
 
-routes.delete("/notes/:user_id/:book_id", async (req, res) => {
+routes.delete("/notes/:book_id", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.none(
     `DELETE from notes WHERE user_id = $(user_id) AND book_id = $(book_id)`,
     {
       book_id: +req.params.book_id,
-      user_id: +req.params.user_id,
+      user_id: user.id,
     }
   );
 
   res.status(204).send();
 });
 
-routes.get("/notes/:user_id/:book_id", async (req, res) => {
+routes.get("/notes/:book_id", async (req, res) => {
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   res.json(
     await db.oneOrNone(
       `SELECT * from notes WHERE user_id = $(user_id) and book_id = $(book_id)`,
       {
-        user_id: +req.params.user_id,
+        user_id: user.id,
         book_id: +req.params.book_id,
       }
     )
   );
 });
 
-routes.get("/reviews/:book_id", async (req, res) => {
+routes.get("/reviews/:isbn", async (req, res) => {
+  const book = await db.one(
+    `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
+    { isbn: req.params.isbn }
+  );
+
   res.json(
     await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id)`, {
-      book_id: +req.params.book_id,
+      book_id: book.id,
     })
   );
 });
 
-routes.get("/reviews/:user_id/:book_id", async (req, res) => {
+routes.get("/reviews/user/:book_id", async (req, res) => {
+  const book = await db.one(
+    `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
+    { isbn: req.params.isbn }
+  );
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   res.json(
     await db.manyOrNone(
       `SELECT * from reviews WHERE book_id = $(book_id) and user_id = $(user_id)`,
       {
-        book_id: +req.params.book_id,
-        user_id: +req.params.user_id,
+        book_id: book.id,
+        user_id: user.id,
       }
     )
   );
 });
 
-routes.post("/reviews/:user_id/:book_id", async (req, res) => {
+routes.post("/reviews/:isbn", async (req, res) => {
   try {
+    const book = await db.one(
+      `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
+      { isbn: req.params.isbn }
+    );
+    const user = await db.one(
+      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+      { email: req.user.email }
+    );
     await db.none(
       `
         INSERT INTO reviews (book_id, user_id, rating, review, plot, character, world, pacing, organization, informative, writing, readability,
             worth, editing, accuracy) VALUES ($(book_id), $(user_id), $(rating), $(review), $(plot), $(character), $(world), $(pacing), $(organization),
             $(informative), $(writing), $(readability), $(worth), $(editing), $(accuracy))`,
       {
-        book_id: +req.params.book_id,
-        user_id: +req.params.user_id,
+        book_id: book.id,
+        user_id: user.id,
         rating: req.body.rating,
         review: req.body.review,
         plot: req.body.plot,
@@ -394,15 +451,23 @@ routes.post("/reviews/:user_id/:book_id", async (req, res) => {
   }
 });
 
-routes.put("/reviews/:user_id/:book_id", async (req, res) => {
+routes.put("/reviews/:book_id", async (req, res) => {
+  const book = await db.one(
+    `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
+    { isbn: req.params.isbn }
+  );
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.oneOrNone(
     `UPDATE reviews SET rating = $(rating), review = $(review), plot = $(plot), character = $(character), world = $(world), 
     pacing = $(pacing), organization = $(organization), informative = $(informative), writing = $(writing), 
     readability = $(readability), worth = $(worth), editing = $(editing), accuracy = $(accuracy) 
     WHERE user_id = $(user_id) and book_id = $(book_id)`,
     {
-      book_id: +req.params.book_id,
-      user_id: +req.params.user_id,
+      book_id: book.id,
+      user_id: user.id,
       rating: req.body.rating,
       review: req.body.review,
       plot: req.body.plot,
@@ -434,11 +499,19 @@ routes.put("/reviews/:user_id/:book_id", async (req, res) => {
 });
 
 routes.delete("/reviews/:user_id/:book_id", async (req, res) => {
+  const book = await db.one(
+    `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
+    { isbn: req.params.isbn }
+  );
+  const user = await db.one(
+    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+    { email: req.user.email }
+  );
   await db.none(
     `DELETE from reviews WHERE user_id = $(user_id) AND book_id = $(book_id)`,
     {
-      book_id: +req.params.book_id,
-      user_id: +req.params.user_id,
+      book_id: book.id,
+      user_id: user.id,
     }
   );
 
