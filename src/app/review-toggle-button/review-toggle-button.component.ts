@@ -53,39 +53,42 @@ export class ReviewToggleButtonComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  togglePossitive(item: ReviewCat, i: number) {
+  togglePositive(item: ReviewCat, i: number) {
     if (
       this.proCategories.some(
-        (proCategories) => proCategories.reviewCategory === item.reviewCategory
+        (proCategories) => proCategories.reviewCategory === item.reviewCategory,
+        this.enableDisableRulePos(item, i)
       )
     ) {
       this.proCategories.splice(i, 1);
     } else {
       this.proCategories.push(item);
     }
+    
   }
 
   toggleNegative(item: ReviewCat, i: number) {
     if (
       this.conCategories.some(
-        (conCategories) => conCategories.reviewCategory === item.reviewCategory
+        (conCategories) => conCategories.reviewCategory === item.reviewCategory,
+        this.enableDisableRuleNeg(item, i)
       )
     ) {
-      this.conCategories.splice(i, 1);
+      this.conCategories.splice(i, 1);  
     } else {
       this.conCategories.push(item);
+      
     }
   }
+  toggle = true;
+  status = 'Enable';
 
-  isSelectedPossitive(item: ReviewCat) {
-    return this.proCategories.some(
-      (proCategories) => proCategories.reviewCategory === item.reviewCategory
-    );
+  enableDisableRulePos(item: ReviewCat, i:number) {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
   }
-
-  isSelectedNegative(item: ReviewCat) {
-    return this.conCategories.some(
-      (conCategories) => conCategories.reviewCategory === item.reviewCategory
-    );
+  enableDisableRuleNeg(item: ReviewCat, i:number) {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
   }
 }

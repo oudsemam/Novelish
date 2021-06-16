@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  faAlignRight,
-  faPlusSquare,
-  faMinusSquare,
-  faTimes,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +9,7 @@ import {
   styleUrls: ['./reviews.component.css']
 })
 export class ReviewsComponent implements OnInit {
+faStar=faStar;
 
   constructor() { }
 
