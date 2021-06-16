@@ -1,5 +1,14 @@
+* {
+  background-color: #3793CD;
+}
+
 .novelish-logo {
     width:180px;
+
+}
+
+.novelish-logo:hover {
+  transform: scale(1.05);
 }
 
 .shelf {
@@ -10,10 +19,13 @@
   background-color: white;
   border: 2px solid #435c5f;
   color: #98a09e;
+  
 }
+
 .shelf:hover {
   color: white;
   background-color: #435c5f;
+  
 }
 
 .icon-nav {
@@ -24,16 +36,18 @@
   align-items: center;
   justify-content: space-around;
   padding: 15px 0 10px 0;
-  background-color: white;
+  background-color: #3793CD;
   border-top: 1px solid #cecece;
+  
 }
 
 .nav-icon {
-  color: #4d434b;
+  color: whitesmoke;
 }
 
 .nav-icon:hover {
-  color: #3793CD;
+  color: lightgray;
+  transform: scale(1.10);
 }
 
 .top-container {
