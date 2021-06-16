@@ -1,13 +1,20 @@
 <app-main-header></app-main-header>
 <app-search-bar></app-search-bar>
 
-<h1>Current NY Times Best Sellers</h1>
+<div class="main">
+    <h1>Current NY Times Best Sellers</h1>
+    <div class="carousel_container">
+        <app-carousel [slides]="slides"></app-carousel>
+    </div>
+</div>
 
 <!-- <button (click)="slideLeft()"></button> -->
 
-<div class="container">
-  <!-- <h3 class="bestSellers">NY Times Current Best Sellers</h3> -->
-  <div class="books" *ngFor="let book of bookList?.results.books">
+
+<!-- <div class="container">
+  <h3 class="bestSellers">Combined Print and E-Book Fiction</h3>
+  <div class="books" *ngFor="let book of bookList1?.results.books">
+
     <a routerLink="/books/{{ book?.primary_isbn10 }}">
       <img
         src="http://covers.openlibrary.org/b/isbn/{{
@@ -18,5 +25,33 @@
     </a>
   </div>
 </div>
+
+<div class="container">
+    <h3 class="bestSellers">Combined Print and E-Book Nonfiction</h3>
+    <div class="books" *ngFor="let book of bookList2?.results.books">
+      <a routerLink="/books/{{ book?.primary_isbn10 }}">
+        <img
+          src="http://covers.openlibrary.org/b/isbn/{{
+            book?.primary_isbn10
+          }}-M.jpg"
+          alt="{{ book.title }}"
+        />
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3 class="bestSellers">Graphic Books and Manga</h3>
+    <div class="books" *ngFor="let book of bookList3?.results.books">
+      <a routerLink="/books/{{ book?.primary_isbn10 }}">
+        <img
+          src="http://covers.openlibrary.org/b/isbn/{{
+            book?.primary_isbn10
+          }}-M.jpg"
+          alt="{{ book.title }}"
+        />
+      </a>
+    </div>
+  </div> -->
 
 <!-- <button (click)="slideRight()"></button> -->
