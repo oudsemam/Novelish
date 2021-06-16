@@ -13,9 +13,8 @@
 <div>
   <div *ngFor="let category of reviewCategories; let i = index">
      <p>{{ category.reviewCategory }}
-    <button (click)="togglePositive(category, i)" 
-    [ngClass]="{'neutral' : toggle, 'pro': !toggle}"><fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon></button>
-    <button (click)="toggleNegative(category, i)"[ngClass]="{'neutral' : toggle, 'con': !toggle}"><fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon></button>
+    <button (click)="togglePositive(category, i)" [ngClass]="{'pro' : isPositive(category.reviewCategory)}"><fa-icon [icon]="faPlusCircle" aria-label="plus" ></fa-icon></button>
+    <button (click)="toggleNegative(category, i)" [ngClass]="{'con' : isNegative(category.reviewCategory)}"><fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon></button>
     </p>
   </div>
 </div>
