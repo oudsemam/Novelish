@@ -3,8 +3,10 @@
   margin: 0;
 }
 .background {
-  color: #fafaf8;
-  background-image: url("/assets/neutralBackground.jpg");
-  /* background-size: contain; */
-  background-size: cover;
+
+    color: #FAFAF8; 
+    background-image: url("/assets/neutralBackground.jpg");
+    /* background-size: contain; */
+    background-size: cover;
 }
+
