@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 :host {
     flex: 3;
   }
@@ -6,7 +11,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    
+    flex-direction: column;
 }
 .carousel {
     position: relative;
@@ -74,8 +79,8 @@
     display: block;
     border-left: 0.1em solid #3793CD;
     border-bottom: 0.1em solid #3793CD;
-    width: 0.5em;
-    height: 0.5em;
+    width: 0.3em;
+    height: 0.3em;
 
   }
   
@@ -89,8 +94,26 @@
 
 h1 {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 1em;
+    font-size: 0.3em;
     text-align: center;
     color: #314749;
     
+}
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+    .arrow {
+        width: 0.5em;
+        height: 0.5em;
+    }
+
+    .carousel {
+        width: 500px;
+    }
+
+    .container {
+        justify-content: center;
+        flex-direction: row;
+    }
+
 }

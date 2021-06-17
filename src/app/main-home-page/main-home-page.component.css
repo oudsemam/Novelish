@@ -1,12 +1,12 @@
 .main {
     display: flex;
     flex-direction: column;
-    /* position: relative; */
+    justify-content: center;
 }
 
 h1 {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: center;
     color: #314749;
 }
@@ -15,49 +15,12 @@ h1 {
     display: block;
     height: 300px;
     width: 100%;
-    padding: 2em;
     justify-content: center;
   }
 
-/* .container { */
-    /* height: 100%; */
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* flex-direction: column; */
-  /* } */
-
-  /* carousel { */
-    /* background: linear-gradient(#e66465, #9198e5); */
-    /* height: 500px; */
-    /* // Carousel height */
-    /* width: 630px; */
-    /* // Carousel Width */
-    /* min-width: 200; */
-    /* // Cell width */
-    /* -ms-overflow-style: 3; */
-    /* // The number of carousel cells that will be stored for in the DOM tree outside the scope. */
-    /* margin: 10; */
-    /* // Cell spacing */
-    /* -webkit-appearance: 50; */
-    /* // Minimum distance for swipe */
-    /* transition-duration: number=200; */
-    /* // Animation duration */
-    /* transition-timing-function: 'ease''ease-in''ease-out''ease-in-out''linear'='ease'; */
-    /* transition-timing-function: 'ease'| 'ease-in'| 'ease-out'| 'ease-in-out'| 'linear'='ease'; */
-    /* // Smooth animation function */
-    /* content: boolean=false; */
-    /* // Counter */
-    /* counter-increment: string=" / "; */
-    /* // Counter separator */
-    /* border-radius: 3em; */
-    /* // Border radius for carousel cells */
-  /* } */
-
-  .books {
-    padding-left: 14px;
-    padding-right: 50px;
-    width: 45%;
-    margin: 5px 0px;
-    height: 100%;
-  }
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+    h1 {
+        font-size: 1.5em;
+    }
+}
