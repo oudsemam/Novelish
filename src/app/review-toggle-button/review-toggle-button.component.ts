@@ -55,13 +55,9 @@ export class ReviewToggleButtonComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  enableDisable() {
-    this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Enable' : 'Disable';
-  }
+ 
 
   togglePositive(item: ReviewCat, i: number) {
-    this.enableDisable();
     if (
       this.proCategories.some(
         (proCategories) => proCategories.reviewCategory === item.reviewCategory
@@ -96,9 +92,5 @@ export class ReviewToggleButtonComponent implements OnInit {
       (item) => searchItem === item.reviewCategory
     );
     return findConCategory ? true : false;
-  }
-
-  isNeutral(searchItem: string) {
-    
   }
 }
