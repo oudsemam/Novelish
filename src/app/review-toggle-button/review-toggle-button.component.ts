@@ -58,26 +58,34 @@ export class ReviewToggleButtonComponent implements OnInit {
  
 
   togglePositive(item: ReviewCat, i: number) {
-    if (
-      this.proCategories.some(
-        (proCategories) => proCategories.reviewCategory === item.reviewCategory
-      )
-    ) {
-      this.proCategories.splice(i, 1);
+    const foundItem = this.proCategories.findIndex(
+      (thing) => thing.reviewCategory === item.reviewCategory
+    );
+    if (foundItem >= 0) {
+      this.proCategories.splice(foundItem, 1);
     } else {
       this.proCategories.push(item);
+      const foundThing = this.conCategories.findIndex(
+        (thing) => thing.reviewCategory === item.reviewCategory
+      );
+      if(foundThing >= 0){
+        this.conCategories.splice(foundThing, 1)
+      }
     }
   }
 
   toggleNegative(item: ReviewCat, i: number) {
-    if (
-      this.conCategories.some(
-        (conCategories) => conCategories.reviewCategory === item.reviewCategory
-      )
-    ) {
-      this.conCategories.splice(i, 1);
+    const foundItem = this.conCategories.findIndex(thing => thing.reviewCategory=== item.reviewCategory)
+    if (foundItem >= 0) {
+      this.conCategories.splice(foundItem, 1);
     } else {
       this.conCategories.push(item);
+      const foundThing = this.proCategories.findIndex(
+        (thing) => thing.reviewCategory === item.reviewCategory
+      );
+      if (foundThing >= 0) {
+        this.proCategories.splice(foundThing, 1);
+      }
     }
   }
 
@@ -87,6 +95,7 @@ export class ReviewToggleButtonComponent implements OnInit {
     );
     return findProCategory ? true : false;
   }
+
   isNegative(searchItem: string): boolean {
     const findConCategory = this.conCategories.find(
       (item) => searchItem === item.reviewCategory
