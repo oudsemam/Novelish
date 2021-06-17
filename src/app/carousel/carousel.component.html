@@ -1,20 +1,49 @@
-<!-- <p>carousel works!</p> -->
 
-<div class="carousel">
-    <ng-container *ngFor="let slide of slides; let i = index">
-        <a routerLink="/books/{{ slide.isbn }}">
-        <img
+
+<div class="container">
+    <div class="carousel">
+        <ng-container *ngFor="let slide of slides; let i = index">
+            <a routerLink="/books/{{ slide.isbn }}">
+            <img
             *ngIf="i === currentSlide"
             [src]="slide.url"
             class="slide"
-        />
-        </a>
-    </ng-container>
+            />
+            </a>
+        </ng-container>
 
-    <button class="control prev" (click)="onPreviousClick()">
-        <span class="arrow left"></span>
-    </button>
-    <button class="control next" (click)="onNextClick()">
-        <span class="arrow right"></span>
-    </button>
+        <button class="control prev" (click)="onPreviousClick()">
+            <span class="arrow left"></span>
+        </button>
+        <button class="control next" (click)="onNextClick()">
+            <span class="arrow right"></span>
+        </button>
+
+    </div>
+    <h1>Combined Print and E-Book Fiction</h1>
+    
+
+    <div class="carousel">
+        <ng-container *ngFor="let slide of slides; let i = index">
+            <a routerLink="/books/{{ slide.isbn }}">
+            <img
+            *ngIf="i === currentSlide"
+            [src]="slide.url"
+            class="slide"
+            />
+            </a>
+        </ng-container>
+
+        <button class="control prev" (click)="onPreviousClick()">
+            <span class="arrow left"></span>
+        </button>
+        <button class="control next" (click)="onNextClick()">
+            <span class="arrow right"></span>
+        </button>
+
+    </div>
+    <h1>Combined Print and E-Book Nonfiction</h1>
+
 </div>
+
+

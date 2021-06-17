@@ -14,7 +14,7 @@ h1 {
 .carousel_container {
     display: block;
     height: 300px;
-    width: 300px;
+    width: 100%;
     padding: 2em;
     justify-content: center;
   }
