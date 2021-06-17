@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ReviewCat } from '../review-cat';
 
 @Component({
@@ -10,6 +10,7 @@ import { ReviewCat } from '../review-cat';
 export class ReviewToggleButtonComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faMinusCircle = faMinusCircle;
+  faStar = faStar;
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
