@@ -11,7 +11,6 @@ import { ShelfComponent } from './shelf/shelf.component';
 import { NotesOrReviewsComponent } from './notes-or-reviews/notes-or-reviews.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
-import { ReviewsComponent } from './reviews/reviews.component';
 import { ResultsComponent } from './results/results.component';
 import { MainHomePageComponent } from './main-home-page/main-home-page.component';
 import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
@@ -54,7 +53,6 @@ import { CarouselComponent } from './carousel/carousel.component';
     NotesOrReviewsComponent,
     SideMenuComponent,
     BookViewComponent,
-    ReviewsComponent,
     DashboardComponent,
     SignInComponent,
     SignUpComponent,

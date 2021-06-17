@@ -18,25 +18,10 @@ h2 {
     font-size: 40px;
 }
 
-.positive {
-    color: #3793CB;
-}
-
-.pro .positive {
-    color: #F4FaF8;
-}
 
 .pro {
     color: #F4FaF8;
     background-color: #3793CB;
-}
-
-.negative {
-    color: #010101;
-}
-
-.con .negative {
-    color: #F4FaF8;
 }
 
 .con {
