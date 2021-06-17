@@ -10,7 +10,7 @@ import { NyTimesService } from '../ny-times.service';
 export class CarouselComponent implements OnInit {
 
   @Input() slides: any;
-  @Input() isbn: any;
+
 
   subscription: Subscription | null = null;
   @Input() bookList1: any;
