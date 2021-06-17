@@ -1,5 +1,8 @@
-<div>
-  <!-- image of book (this can be a placeholder) -->
+<app-main-header></app-main-header>
+<app-search-bar></app-search-bar>
+
+<div class="container">
+  <h2>{{ book?.title }}</h2>
   <img
     class="book"
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
@@ -15,7 +18,7 @@
     </button>
   </div>
   <!-- placeholders for the book data below -->
-  <h2>{{ book?.title }}</h2>
+
   <div>
     <h3>Details</h3>
     <h4>Pages</h4>
