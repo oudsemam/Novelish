@@ -11,6 +11,7 @@ export class CarouselComponent implements OnInit {
 
   @Input() slides: any;
 
+
   subscription: Subscription | null = null;
   @Input() bookList1: any;
   @Input() bookList2: any;

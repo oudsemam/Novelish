@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ReviewCat } from '../review-cat';
 
 @Component({
@@ -10,6 +10,7 @@ import { ReviewCat } from '../review-cat';
 export class ReviewToggleButtonComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faMinusCircle = faMinusCircle;
+  faStar = faStar;
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
@@ -17,75 +18,60 @@ export class ReviewToggleButtonComponent implements OnInit {
   reviewCategories: ReviewCat[] = [
     {
       reviewCategory: 'Accuracy',
+      value: null,
     },
     {
       reviewCategory: 'Character Development',
+      value: null,
     },
     {
       reviewCategory: 'Editing',
+      value: null,
     },
     {
       reviewCategory: 'Informative',
+      value: null,
     },
     {
       reviewCategory: 'Organization',
+      value: null,
     },
     {
       reviewCategory: 'Pacing',
+      value: null,
     },
     {
       reviewCategory: 'Plot Development',
+      value: null,
     },
     {
       reviewCategory: 'Readability',
+      value: null,
     },
     {
       reviewCategory: 'World-Building',
+      value: null,
     },
     {
       reviewCategory: 'Worth the Time/Cost',
+      value: null,
     },
     {
       reviewCategory: 'Writing Style',
+      value: null,
     },
   ];
 
   constructor() {}
 
   ngOnInit(): void {}
-  togglePossitive(item: ReviewCat, i: number) {
-    if (
-      this.proCategories.some(
-        (proCategories) => proCategories.reviewCategory === item.reviewCategory
-      )
-    ) {
-      this.proCategories.splice(i, 1);
+
+  toggle(value: boolean | null, i: number) {
+    if (this.reviewCategories[i].value !== value) {
+      this.reviewCategories[i].value = value;
     } else {
-      this.proCategories.push(item);
+      this.reviewCategories[i].value = null;
     }
   }
 
-  toggleNegative(item: ReviewCat, i: number) {
-    if (
-      this.conCategories.some(
-        (conCategories) => conCategories.reviewCategory === item.reviewCategory
-      )
-    ) {
-      this.conCategories.splice(i, 1);
-    } else {
-      this.conCategories.push(item);
-    }
-  }
-
-  isSelectedPossitive(item: ReviewCat) {
-    return this.proCategories.some(
-      (proCategories) => proCategories.reviewCategory === item.reviewCategory
-    );
-  }
-
-  isSelectedNegative(item: ReviewCat) {
-    return this.conCategories.some(
-      (conCategories) => conCategories.reviewCategory === item.reviewCategory
-    );
-  }
 }

@@ -1,5 +1,8 @@
-<div>
-  <!-- image of book (this can be a placeholder) -->
+<app-main-header></app-main-header>
+<app-search-bar></app-search-bar>
+
+<div class="container">
+  <h2>{{ book?.title }}</h2>
   <img
     class="book"
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
@@ -15,19 +18,19 @@
     </button>
   </div>
   <!-- placeholders for the book data below -->
-  <h2>{{ book?.title }}</h2>
+
   <div>
     <h3>Details</h3>
     <h4>Pages</h4>
     <p>{{ book?.number_of_pages }}</p>
     <!-- <h4>Languages</h4>
     <p>{{ book?.languages.key }}</p> -->
-    <!-- <h4>Publisher</h4>
-    <p>{{ book?.publishers }}</p> -->
+    <h4>Publisher</h4>
+    <p *ngFor="let publisher of book?.publishers">{{ publisher.name }}</p>
   </div>
   <div>
-    <!-- <h3>Author(s)</h3>
-    <h4>{{ book?.authors.name }}</h4> -->
-    <!-- <button>Add to bookshelf</button> -->
+    <h3>Author(s)</h3>
+    <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
+    <button>Add to bookshelf</button>
   </div>
 </div>
