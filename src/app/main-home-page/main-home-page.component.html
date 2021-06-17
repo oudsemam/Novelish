@@ -2,56 +2,23 @@
 <app-search-bar></app-search-bar>
 
 <div class="main">
-    <h1>Current NY Times Best Sellers</h1>
+    <h1>Current NY Times Fiction Best Sellers</h1>
     <div class="carousel_container">
         <app-carousel [slides]="slides"></app-carousel>
     </div>
 </div>
 
-<!-- <button (click)="slideLeft()"></button> -->
-
-
-<!-- <div class="container">
-  <h3 class="bestSellers">Combined Print and E-Book Fiction</h3>
-  <div class="books" *ngFor="let book of bookList1?.results.books">
-
-    <a routerLink="/books/{{ book?.primary_isbn10 }}">
-      <img
-        src="http://covers.openlibrary.org/b/isbn/{{
-          book?.primary_isbn10
-        }}-M.jpg"
-        alt="{{ book.title }}"
-      />
-    </a>
-  </div>
+<div class="main">
+    <h1>Current NY Times Nonfiction Best Sellers</h1>
+    <div class="carousel_container">
+        <app-carousel [slides]="slides2"></app-carousel>
+    </div>
 </div>
 
-<div class="container">
-    <h3 class="bestSellers">Combined Print and E-Book Nonfiction</h3>
-    <div class="books" *ngFor="let book of bookList2?.results.books">
-      <a routerLink="/books/{{ book?.primary_isbn10 }}">
-        <img
-          src="http://covers.openlibrary.org/b/isbn/{{
-            book?.primary_isbn10
-          }}-M.jpg"
-          alt="{{ book.title }}"
-        />
-      </a>
+<div class="main">
+    <h1>Current NY Times Graphic Novels & Manga Best Sellers</h1>
+    <div class="carousel_container">
+        <app-carousel [slides]="slides3"></app-carousel>
     </div>
-  </div>
+</div>
 
-  <div class="container">
-    <h3 class="bestSellers">Graphic Books and Manga</h3>
-    <div class="books" *ngFor="let book of bookList3?.results.books">
-      <a routerLink="/books/{{ book?.primary_isbn10 }}">
-        <img
-          src="http://covers.openlibrary.org/b/isbn/{{
-            book?.primary_isbn10
-          }}-M.jpg"
-          alt="{{ book.title }}"
-        />
-      </a>
-    </div>
-  </div> -->
-
-<!-- <button (click)="slideRight()"></button> -->
