@@ -2,13 +2,13 @@
 
 <div class="carousel">
     <ng-container *ngFor="let slide of slides; let i = index">
-        <!-- <a routerLink="/books/{{ book?.primary_isbn10 }}"> -->
+        <a routerLink="/books/{{ slide.isbn }}">
         <img
             *ngIf="i === currentSlide"
-            [src]="slide.src"
+            [src]="slide.url"
             class="slide"
         />
-        <!-- </a> -->
+        </a>
     </ng-container>
 
     <button class="control prev" (click)="onPreviousClick()">

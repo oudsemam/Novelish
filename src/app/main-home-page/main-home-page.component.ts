@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NyTimesService } from '../ny-times.service';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-main-home-page',
@@ -14,19 +15,24 @@ export class MainHomePageComponent implements OnInit {
   bookList1: any;
   bookList2: any;
   bookList3: any;
+  isbn: any;
   
-  public slides = [
-    { src: "../assets/byzantium.jpg"},
-    { src: "../assets/Patrick.jpg"},
-    { src: "../assets/thehobbit.jpg"},
-    { src: "../assets/LOTR.gif"},
-  ];
+  public slides = [];
 
 
   constructor(private NyTservice: NyTimesService) { }
 
   ngOnInit(): void {
-    this.subscription = this.NyTservice.getList("Combined Print and E-Book Fiction").subscribe(list => this.bookList1 = list);
+    this.subscription = this.NyTservice.getList("Combined Print and E-Book Fiction").subscribe(list => {
+      console.log(list);
+      this.slides = list.results.books.map((book: any) => {
+        const url = `http://covers.openlibrary.org/b/isbn/${book.primary_isbn10}-M.jpg`;
+        const isbn = book.primary_isbn10;
+      console.log(url);
+      return {url, isbn};
+      }) 
+      this.bookList1 = list});
+
     console.log(this.bookList1);
     // this.bookList1.some((bookList1)=>bookList1.isbn[0] === )
 
@@ -43,29 +49,5 @@ export class MainHomePageComponent implements OnInit {
     }
   };
 
-  // slideLeft() {
-  //   this.slideIndex += 
-
-  // }
-  // showDivs(slideIndex);
-
-  // plusDivs(n) {
-  //   showDivs(slideIndex += n);
   }
-// }
 
-
-
-
-
-
-// function showDivs(n) {
-//   var i;
-//   var x = document.getElementsByClassName("mySlides");
-//   if (n > x.length) {slideIndex = 1}
-//   if (n < 1) {slideIndex = x.length} ;
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "none";
-//   }
-//   x[slideIndex-1].style.display = "block";
-// }
