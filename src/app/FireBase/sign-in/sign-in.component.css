@@ -1,3 +1,7 @@
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .whole {
   display: flex;
   flex-direction: column-reverse;
@@ -8,20 +12,28 @@
   background-color: #F4FAF8;
 }
 #intro {
-  background-color: #435C5F;
+  background-color: #3793CD;
   color: #F4FAF8 ;
   text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #text {
   margin: 30px;
 }
 
+
 h3 {
+  color: #314749;
   font-size: 20px;
 }
 
 span {
+  color: #314749;
   font-size: 12px;
+}
+
+#forgot:hover {
+  transform: scale(1.05);
 }
 
 /*white side with sign in information*/
@@ -39,12 +51,16 @@ span {
   margin-bottom: 15px;
   border: 2px #e4e4e4 solid;
   color: #435C5F;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .formGroup {
   display: flex;
   justify-content: center;
 }
 
+.formControl:hover {
+  transform: scale(1.05);
+}
 
 /*label*/
 label {
@@ -57,26 +73,35 @@ label {
 
 /*buttons*/
 .login {
-  background-color: #3793CB;
+  background-color: #3793CD;
   color: #F4FAF8 ;
-  border: #3793CB;
+  border: #3793CD;
   border-radius: 25px;
   width: 130px;
   text-align: center;
   margin-right: 40px;
   padding: 8px;
   font-size: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login:hover {
+  transform: scale(1.05);
 }
 
 #sign {
   background-color: #F4FAF8;
-  color: #3793CB;
-  border: 1px solid #3793CB;
+  color: #3793CD;
+  border: 1px solid #3793CD;
   border-radius: 25px;
   text-align: center;
   width: 100px;
   padding: 8px;
   font-size: 12px;
+}
+
+#sign:hover {
+  transform: scale(1.05);
 }
 
 .circle {
@@ -85,6 +110,10 @@ label {
 
 img{
     max-width: 180px;
+}
+
+img:hover {
+  transform: scale(1.05);
 }
 
 .redirectToLogin{
@@ -116,7 +145,6 @@ img{
 
 /*created ~1/3 blue box on left with white text*/
 #intro {
-  background-color: #435C5F;
   color: #F4FAF8 ;
   position: absolute;
   left: 0;
@@ -196,12 +224,12 @@ label {
   position: fixed;
   height: 70px;
   background-color: #F4FAF8;
-  color: #435C5F;
   border-radius: 100px;
   padding: 10px;
   left: 283px;
   top: 50%;
   transform: translate(0, -50%);
+  color: #3793CD
 }
 
 img{
