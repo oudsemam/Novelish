@@ -40,6 +40,7 @@ import { FormsModule } from '@angular/forms';
 import { NovelishBackendService } from './novelish-backend.service';
 import { NyTimesService } from './ny-times.service';
 import { OpenLibraryService } from './open-library.service';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 
@@ -64,6 +65,7 @@ import { OpenLibraryService } from './open-library.service';
     ShelvesComponent,
     BookComponent,
     ReviewPageComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
