@@ -1,14 +1,31 @@
-h1 {
-    font-family: 'Long Cang', cursive;
+.main {
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
 }
 
-.container {
-    /* height: 100%; */
-    display: flex;
-    /* align-items: center; */
+h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    color: #314749;
+}
+
+.carousel_container {
+    display: block;
+    height: 300px;
+    width: 300px;
+    padding: 2em;
     justify-content: center;
-    flex-direction: column;
   }
+
+/* .container { */
+    /* height: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+  /* } */
 
   /* carousel { */
     /* background: linear-gradient(#e66465, #9198e5); */

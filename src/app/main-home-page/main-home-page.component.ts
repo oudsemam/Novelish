@@ -11,15 +11,30 @@ import { NyTimesService } from '../ny-times.service';
 export class MainHomePageComponent implements OnInit {
   
   subscription: Subscription | null = null;
-  bookList: any;
-  slideIndex = 1;
+  bookList1: any;
+  bookList2: any;
+  bookList3: any;
+  
+  public slides = [
+    { src: "../assets/byzantium.jpg"},
+    { src: "../assets/Patrick.jpg"},
+    { src: "../assets/thehobbit.jpg"},
+    { src: "../assets/LOTR.gif"},
+  ];
 
 
   constructor(private NyTservice: NyTimesService) { }
 
   ngOnInit(): void {
-    this.subscription = this.NyTservice.getList("Hardcover Fiction").subscribe(list => this.bookList = list);
-    console.log(this.bookList)
+    this.subscription = this.NyTservice.getList("Combined Print and E-Book Fiction").subscribe(list => this.bookList1 = list);
+    console.log(this.bookList1);
+    // this.bookList1.some((bookList1)=>bookList1.isbn[0] === )
+
+    this.subscription = this.NyTservice.getList("Combined Print and E-Book Nonfiction").subscribe(list => this.bookList2 = list);
+
+    this.subscription = this.NyTservice.getList("Graphic Books and Manga").subscribe(list => this.bookList3 = list);
+
+    
   };
 
   ngOnDestroy() {
