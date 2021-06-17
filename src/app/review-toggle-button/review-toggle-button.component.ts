@@ -10,8 +10,6 @@ import { ReviewCat } from '../review-cat';
 export class ReviewToggleButtonComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faMinusCircle = faMinusCircle;
-  toggle = true;
-  status = 'Enable';
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
@@ -19,87 +17,60 @@ export class ReviewToggleButtonComponent implements OnInit {
   reviewCategories: ReviewCat[] = [
     {
       reviewCategory: 'Accuracy',
+      value: null,
     },
     {
       reviewCategory: 'Character Development',
+      value: null,
     },
     {
       reviewCategory: 'Editing',
+      value: null,
     },
     {
       reviewCategory: 'Informative',
+      value: null,
     },
     {
       reviewCategory: 'Organization',
+      value: null,
     },
     {
       reviewCategory: 'Pacing',
+      value: null,
     },
     {
       reviewCategory: 'Plot Development',
+      value: null,
     },
     {
       reviewCategory: 'Readability',
+      value: null,
     },
     {
       reviewCategory: 'World-Building',
+      value: null,
     },
     {
       reviewCategory: 'Worth the Time/Cost',
+      value: null,
     },
     {
       reviewCategory: 'Writing Style',
+      value: null,
     },
   ];
 
   constructor() {}
 
   ngOnInit(): void {}
- 
 
-  togglePositive(item: ReviewCat, i: number) {
-    const foundItem = this.proCategories.findIndex(
-      (thing) => thing.reviewCategory === item.reviewCategory
-    );
-    if (foundItem >= 0) {
-      this.proCategories.splice(foundItem, 1);
+  toggle(value: boolean | null, i: number) {
+    if (this.reviewCategories[i].value !== value) {
+      this.reviewCategories[i].value = value;
     } else {
-      this.proCategories.push(item);
-      const foundThing = this.conCategories.findIndex(
-        (thing) => thing.reviewCategory === item.reviewCategory
-      );
-      if(foundThing >= 0){
-        this.conCategories.splice(foundThing, 1)
-      }
+      this.reviewCategories[i].value = null;
     }
   }
 
-  toggleNegative(item: ReviewCat, i: number) {
-    const foundItem = this.conCategories.findIndex(thing => thing.reviewCategory=== item.reviewCategory)
-    if (foundItem >= 0) {
-      this.conCategories.splice(foundItem, 1);
-    } else {
-      this.conCategories.push(item);
-      const foundThing = this.proCategories.findIndex(
-        (thing) => thing.reviewCategory === item.reviewCategory
-      );
-      if (foundThing >= 0) {
-        this.proCategories.splice(foundThing, 1);
-      }
-    }
-  }
-
-  isPositive(searchItem: string): boolean {
-    const findProCategory = this.proCategories.find(
-      (item) => searchItem === item.reviewCategory
-    );
-    return findProCategory ? true : false;
-  }
-
-  isNegative(searchItem: string): boolean {
-    const findConCategory = this.conCategories.find(
-      (item) => searchItem === item.reviewCategory
-    );
-    return findConCategory ? true : false;
-  }
 }
