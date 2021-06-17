@@ -27,6 +27,10 @@
   padding: 0 5px;
 }
 
+#search-button:hover {
+  transform: scale(1.05);
+}
+
 label {
   color: #9d9d9d;
   background-color: #f7f7f7;
