@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'shelves', component: ShelvesComponent},
-  { path: 'review', component: ReviewPageComponent},
+  { path: 'all-reviews', component: ReviewPageComponent},
   { path: 'results', component: ResultsComponent},
   { path: 'side-menu', component: SideMenuComponent},
   { path: 'books/:isbn', component: BookViewComponent}

@@ -97,10 +97,9 @@ h1 {
     font-size: 0.3em;
     text-align: center;
     color: #314749;
-    
 }
 
-/* This is where the layout will break from mobile to Desktop */
+/* This is where the layout will break from mobile to desktop */
 @media only screen and (min-width: 720px) {
     .arrow {
         width: 0.5em;

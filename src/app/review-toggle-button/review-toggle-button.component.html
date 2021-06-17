@@ -1,51 +1,32 @@
+<!-- subject toggles -->
 <div class="flexColumn">
   <h2>Pro</h2>
   <h2>or</h2>
   <h2>Con</h2>
 </div>
-<div class="center">
+<h3>How to make a review</h3>
+<p>
+  For each category below, click either <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> for a pro (or positive aspect of the book) or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or negative aspect of the book) if that category applies. Only vote for categories that you feel best apply (you do not have to vote in all categories) to the book you are currently reviewing below. 
+</p>
+<p>To unselect a category, just click on the same <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> to reset that category.</p>
+<p>If category voting isn't your thing? Don't worry we still have the star rating and open note type reviews below.</p>
+
+<div>
   <div *ngFor="let category of reviewCategories; let i = index">
-    <!-- Positive -->
-    <div [hidden]="!isSelectedPossitive(category)">
-      <button
-        class="pro"
-        value="accuracyPro"
-        (click)="togglePossitive(category, i)"
-      >
-        <fa-icon [icon]="faPlusCircle" size="lg" class="positive"></fa-icon>
-        {{ category.reviewCategory }}
-      </button>
-    </div>
-    <!-- Neutral -->
-    <div >
-      <div [hidden]="isSelectedPossitive(category)" [hidden]="isSelectedNegative(category)">
-        <button class="neutral" value="accuracyNeutral">
-          <fa-icon
-            [icon]="faPlusCircle"
-            size="lg"
-            class="positive"
-            (click)="togglePossitive(category, i)"
-          ></fa-icon>
-          {{ category.reviewCategory }}
-          <fa-icon
-            [icon]="faMinusCircle"
-            size="lg"
-            class="negative"
-            (click)="toggleNegative(category, i)"
-          ></fa-icon>
-        </button>
-      </div>
-    </div>
-    <!-- Negative -->
-    <div [hidden]="!isSelectedNegative(category)">
-      <button
-        class="con"
-        value="accuracyCon"
-        (click)="toggleNegative(category, i)"
-      >
-        {{ category.reviewCategory }}
-        <fa-icon [icon]="faMinusCircle" size="lg" class="negative"></fa-icon>
-      </button>
-    </div>
+     <p>{{ category.reviewCategory }}
+    <button (click)="toggle(true, i)" [ngClass]="{'pro' : category.value===true}"><fa-icon [icon]="faPlusCircle" aria-label="plus" ></fa-icon></button>
+    <button (click)="toggle(false, i)" [ngClass]="{'con' : category.value===false}"><fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon></button>
+    </p>
   </div>
+</div>
+
+
+<!-- Star Rating -->
+<h2>Star Rating</h2>
+<div class="star-rating">
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
+    <fa-icon [icon]="faStar"></fa-icon>
 </div>
