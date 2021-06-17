@@ -25,12 +25,12 @@
     <p>{{ book?.number_of_pages }}</p>
     <!-- <h4>Languages</h4>
     <p>{{ book?.languages.key }}</p> -->
-    <!-- <h4>Publisher</h4>
-    <p>{{ book?.publishers }}</p> -->
+    <h4>Publisher</h4>
+    <p *ngFor="let publisher of book?.publishers">{{ publisher.name }}</p>
   </div>
   <div>
-    <!-- <h3>Author(s)</h3>
-    <h4>{{ book?.authors.name }}</h4> -->
-    <!-- <button>Add to bookshelf</button> -->
+    <h3>Author(s)</h3>
+    <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
+    <button>Add to bookshelf</button>
   </div>
 </div>
