@@ -74,7 +74,7 @@ export class ReviewToggleButtonComponent implements OnInit {
   ];
 
 
-  rating = 0;
+starRating  = 0;
 
   constructor(private NBService: NovelishBackendService, private router: Router) {}
 
@@ -88,7 +88,6 @@ export class ReviewToggleButtonComponent implements OnInit {
       this.reviewCategories[i].value = null;
     }
   }
-}
 
   submit(){
     const review = {
