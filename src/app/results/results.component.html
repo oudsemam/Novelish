@@ -10,8 +10,8 @@
     <div class="book_container">
       <a routerLink="/books/{{ result?.isbn[0] }}">
         <img
-        src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg" 
-          onerror="this.onerror=empty;this.src='../src/app/assets/book.jpg'"
+        src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg?default=false" 
+        onerror="this.onerror=false;this.src='../assets/Novelish-blank-cover.png'"
 
           alt="{{ result?.title }}"
           />
