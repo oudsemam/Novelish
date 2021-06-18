@@ -7,23 +7,34 @@ routes.use(express.json());
 //create a new user
 routes.post("/users/:email", async (req, res) => {
   try {
-    const result = await db.oneOrNone(
-      `INSERT INTO users (email) VALUES ( $(email)) RETURNING  id`,
+    const user = await db.oneOrNone(
+      `SELECT * FROM users WHERE email = $(email)`,
       {
         email: req.params.email,
       }
     );
-    // const user = await db.one(
-    //   `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
-    //   {
-    //     email: req.body.email,
-    //   }
-    // );
-    const newUser = await db.one(
-      `SELECT id, email FROM users WHERE id = $(id)`,
-      { id: result.id }
-    );
-    res.status(201).json(newUser);
+
+    if (!user) {
+      const result = await db.oneOrNone(
+        `INSERT INTO users (email) VALUES ( $(email)) RETURNING  id`,
+        {
+          email: req.params.email,
+        }
+      );
+      // const user = await db.one(
+      //   `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
+      //   {
+      //     email: req.body.email,
+      //   }
+      // );
+      const newUser = await db.one(
+        `SELECT id, email FROM users WHERE id = $(id)`,
+        { id: result.id }
+      );
+      res.status(201).json(newUser);
+    } else {
+      res.status(201).json({});
+    }
   } catch (error) {
     // if (error.constraint === 'users_pkey'){
     //     return res.status(400).send('The state already exists');
