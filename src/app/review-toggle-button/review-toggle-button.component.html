@@ -1,6 +1,3 @@
-<app-main-header></app-main-header>
-<app-search-bar></app-search-bar>
-
 <!-- subject toggles -->
 <div class="flexColumn">
   <h2>Pro</h2>
@@ -26,8 +23,6 @@
 
 <!-- Star Rating -->
 <h3>Star Rating</h3>
-<ngb-rating [max]="5" [(starRating)]="starRating" [readonly]="false"></ngb-rating>
+<ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
 
 <p>Rating: {{ starRating }}</p>
-
-<app-notes-or-reviews></app-notes-or-reviews>
