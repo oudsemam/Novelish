@@ -162,7 +162,7 @@ routes.post("/books/user/:shelf", async (req, res) => {
       `INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`,
       {
         shelf: req.params.shelf,
-        user_id: user.id,
+        user_id: req.user.email,
         book_id: result.id,
       }
     );

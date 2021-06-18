@@ -14,4 +14,11 @@ faTimes = faTimes
   ngOnInit(): void {
   }
 
-}
+  search(){
+    // if(this.book)
+    // {console.log("in search")
+    //   this.subscription = this.OLService.searchTitle(this.searchTerm)
+    // .subscribe(()=>{
+    //   this.router.navigate(['/results'])
+    // })}
+  }}
