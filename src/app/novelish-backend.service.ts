@@ -16,15 +16,15 @@ export class NovelishBackendService {
     const header = new HttpHeaders().set('Authorization', `Bearer ${user.stsTokenManager.accessToken}`)
     return header
   }
-  addNewUser(user: any) {
-    return this.http.post('http://localhost:3000/users', user);
+  addNewUser() {
+    return this.http.post('http://localhost:3000/users', {});
   }
 
   updateUserUID(email: any, uid: any) {
     let firebase_uid: Object = {
       firebase_uid: uid,
     };
-    return this.http.put(`http://localhost:3000/users/${email}`, firebase_uid);
+    return this.http.post(`http://localhost:3000/users/${email}`, firebase_uid, {headers: this.getHeaders()});
   }
 
   getUsers(): Observable<any> {
