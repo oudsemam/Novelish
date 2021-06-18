@@ -22,19 +22,6 @@
 
 
 <!-- Star Rating -->
-<h2>Star Rating</h2>
+<ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
 
-<div class="form-group">
-  <ng-template [formControl]="ctrl"></ng-template>
-  <div class="form-text small">
-    <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
-    <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
-  </div>
-</div>
-
-<hr>
-<pre>Model: <b>{{ ctrl.value }}</b></pre>
-<button class="btn btn-sm btn-outline-{{ ctrl.disabled ? 'danger' : 'success'}} mr-2" (click)="toggleStars()">
-  {{ ctrl.disabled ? "control disabled" : " control enabled" }}
-</button>
-<button class="btn btn-sm btn-outline-primary mr-2" (click)="ctrl.setValue(null)">Clear</button>
+<p>Rating: {{ starRating }}</p>
