@@ -5,9 +5,14 @@
 }
 
 h1 {
+    margin-top: 10px;
     margin-left: 10px;
     font-size: small;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .results_container {
     display: flex;
@@ -23,13 +28,37 @@ img {
     max-width: 80px;
     /* padding: 10px; */
     margin: 5px 20px;
-    box-shadow: 0 10px 10px -5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 img:hover {
     transform: scale(1.05);
 }
 
-.books {
-    justify-content: space-around;
+
+@media only screen and (min-width: 720px) {
+    .results_container {
+        display: flex;
+        flex-direction: row;
+        flex-flow: wrap;
+        
+    }
+
+    .book_container {
+        align-content: center;
+        justify-content: center;
+        /* border: solid 1px #3793CD; */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 200px;
+        width: 200px;
+    }
+
+    img {
+        margin: 0px;
+    }
+
+    h1:hover {
+        white-space: wrap;
+        overflow: visible
+    }
 }
