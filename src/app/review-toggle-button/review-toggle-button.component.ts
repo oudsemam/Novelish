@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons';
 import { ReviewCat } from '../review-cat';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-review-toggle-button',
@@ -14,6 +16,8 @@ export class ReviewToggleButtonComponent implements OnInit {
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
+
+  ctrl = new FormControl(null, Validators.required);
 
   reviewCategories: ReviewCat[] = [
     {
@@ -74,4 +78,11 @@ export class ReviewToggleButtonComponent implements OnInit {
     }
   }
 
+    toggleStars() {
+    if (this.ctrl.disabled) {
+      this.ctrl.enable();
+    } else {
+      this.ctrl.disable();
+    }
+}
 }
