@@ -4,18 +4,25 @@
 <app-search-bar></app-search-bar>
 
 <div class="results_container">
-  <div *ngFor="let result of resultList">
-    <a routerLink="/books/{{ result?.isbn[0] }}">
+  
+  <div class="results" *ngFor="let result of resultList">
+    
+    <div class="book_container">
+      <a routerLink="/books/{{ result?.isbn[0] }}">
+        <img
+        src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg" 
+          onerror="this.onerror=empty;this.src='../src/app/assets/book.jpg'"
 
-    <img
-      src="http://covers.openlibrary.org/b/isbn/{{ result?.isbn[0] }}-M.jpg" 
-      onerror="this.onerror=null;this.src='../src/app/assets/book.jpg'"
+          alt="{{ result?.title }}"
+          />
+        
+      <h1>{{ result.title }} by {{ result.author_name }}</h1>
+      </a>
+    </div>
 
-      alt="{{ result?.title }}"
-    />
-    </a>
-    <h1>{{ result.title }} by {{ result.author_name }}</h1>
   </div>
 
 </div>
+
+
 

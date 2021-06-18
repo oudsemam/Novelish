@@ -12,53 +12,102 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./book-view.component.css']
 })
 export class BookViewComponent implements OnInit {
-  faStarHalfAlt=faStarHalfAlt;
+  faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
 
   book: any = null
   isbn: any = null
-  reviews: any 
+  reviews: any
   OLSubscription: Subscription | null = null
   NBSubscription: Subscription | null = null
   reviewSubscription: Subscription | null = null
   subscription1: Subscription | null = null;
+  UISubscription: Subscription | null = null;
+  user_id: any = null;
+  shelf: any = null;
+  result: any = null;
+  book_id: any = null;
 
   constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-   
+
     // this.OLSubscription = this.activatedRoute.paramMap
-		// 	.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
-		// 	.subscribe((book) => {
+    // 	.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
+    // 	.subscribe((book) => {
     //     console.log(book)
     //     this.book = book});
     // console.log(this.book)
 
     this.activatedRoute.paramMap.subscribe(params => {
       this.isbn = params.get('isbn')
+      this.user_id = params.get('uid')
     })
 
     this.OLSubscription = this.OLService.getBook(this.isbn)
-    .subscribe((book) => {
-      console.log(book)
-      this.book = book[`ISBN:${this.isbn}`]});
-  
-    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe((reviews)=>{
+      .subscribe((book) => {
+        console.log(book)
+        this.book = book[`ISBN:${this.isbn}`]
+      });
+
+    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe((reviews) => {
       this.reviews = reviews
     })
-  
+
+    // this.UISubscription = this.backend.
+
   }
   reviewIt() {
 
   }
 
-  addToShelf() {
-    // this.subscription1 = this.backend.addBookToShelf(this.isbn, this.shelf)
+  addToWantShelf() {
+    this.OLSubscription = this.OLService.getBook(this.isbn)
+    .subscribe((book) => {
+      console.log(book)
+      this.book = book[`ISBN:${this.isbn}`]
+    });
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.user_id = params.get('uid')
+    })
+
+    console.log("in the function")
+    const wantBook = {
+      shelf: "want",  
+      user_id: this.user_id, 
+      book_id: this.book,
+      isbn: this.isbn };
+      console.log(wantBook);
+      console.log("I am here")
+    this.subscription1 = this.backend.addBookToShelf(wantBook.book_id, wantBook.shelf).subscribe((book) => {
+      this.book = book
+      console.log(book)
+      // this.user_id = user_id
+      this.router.navigate([`/books/${this.user_id}/${this.shelf}`]);
+      console.log(wantBook);
+      console.log("now I am here")
+    })
+
+
   }
 
   addToBurnShelf() {
-    this.backend.addBookToShelf(this.isbn, "burn")
+    console.log("burned it");
+    // this.backend.addBookToShelf(this.isbn, "burn")
+  }
+
+  addToReadShelf() {
+    // this.backend.addBookToShelf(this.isbn, "read")
+  }
+
+  addToCurrentShelf() {
+    // this.backend.addBookToShelf(this.isbn, "current")
+  }
+
+  addToDNFShelf() {
+    // this.backend.addBookToShelf(this.isbn, "DNF")
   }
 
 }
