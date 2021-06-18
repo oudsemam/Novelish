@@ -65,7 +65,7 @@ export class ReviewToggleButtonComponent implements OnInit {
     },
   ];
 
-  starRating = 0;
+  rating = 0;
 
   constructor() {}
 
