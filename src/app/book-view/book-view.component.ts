@@ -18,6 +18,7 @@ export class BookViewComponent implements OnInit {
 
   book: any = null
   isbn: any = null
+  reviews: any 
   OLSubscription: Subscription | null = null
   NBSubscription: Subscription | null = null
   reviewSubscription: Subscription | null = null
@@ -43,7 +44,9 @@ export class BookViewComponent implements OnInit {
       console.log(book)
       this.book = book[`ISBN:${this.isbn}`]});
   
-    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe(()=>{})
+    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe((reviews)=>{
+      this.reviews = reviews
+    })
   
   }
   reviewIt() {

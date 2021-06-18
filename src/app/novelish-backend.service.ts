@@ -110,7 +110,7 @@ export class NovelishBackendService {
   }
 
   getReviewsByBook(isbn:string): Observable<any>{
-    return this.http.get(`http://localhost:3000/review/${isbn}`, {headers: this.getHeaders()})
+    return this.http.get(`http://localhost:3000/reviews/${isbn}`, {headers: this.getHeaders()})
   }
 
   getUserReview(isbn:string): Observable<any>{
