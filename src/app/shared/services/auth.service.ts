@@ -47,7 +47,7 @@ export class AuthService {
               this.router.navigate(['dashboard']);
             });
             this.SetUserData(result.user);
-            this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
+            // this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
             console.log(result.user);
           });
       })
