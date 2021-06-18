@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faDumpsterFire, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons"
+import { faDumpsterFire, faPlus, faPlusCircle, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons"
 import { NovelishBackendService } from '../novelish-backend.service';
 import { OpenLibraryService } from '../open-library.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,7 +13,9 @@ import { switchMap } from 'rxjs/operators';
 })
 export class BookViewComponent implements OnInit {
   faStarHalfAlt=faStarHalfAlt;
+  faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
+
   book: any = null
   isbn: any = null
   reviews: any 
@@ -21,6 +23,7 @@ export class BookViewComponent implements OnInit {
   NBSubscription: Subscription | null = null
   reviewSubscription: Subscription | null = null
   subscription1: Subscription | null = null;
+
   constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -55,7 +58,7 @@ export class BookViewComponent implements OnInit {
   }
 
   addToBurnShelf() {
-
+    this.backend.addBookToShelf(this.isbn, "burn")
   }
 
 }
