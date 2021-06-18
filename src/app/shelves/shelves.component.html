@@ -4,7 +4,7 @@
 
 <ul>
   <li *ngFor="let shelf of shelves">
-    <app-shelf [shelf]="shelf.shelf"></app-shelf>
     <h2>{{ shelf.shelf }}</h2>
+    <app-shelf [shelf]="shelf.shelf"></app-shelf>
   </li>
 </ul>

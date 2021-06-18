@@ -5,20 +5,20 @@ const pgp = require("pg-promise")();
 routes.use(express.json());
 
 //create a new user
-routes.post("/users", async (req, res) => {
+routes.post("/users/:email", async (req, res) => {
   try {
     const result = await db.oneOrNone(
-      `INSERT INTO users (email) VALUES ( $(email))`,
+      `INSERT INTO users (email) VALUES ( $(email)) RETURNING  id`,
       {
-        email: req.body.email,
+        email: req.params.email,
       }
     );
-    const user = await db.one(
-      `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
-      {
-        email: req.body.email,
-      }
-    );
+    // const user = await db.one(
+    //   `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
+    //   {
+    //     email: req.body.email,
+    //   }
+    // );
     const newUser = await db.one(
       `SELECT id, email FROM users WHERE id = $(id)`,
       { id: result.id }
@@ -369,19 +369,18 @@ routes.get("/notes/:book_id", async (req, res) => {
 });
 
 routes.get("/reviews/:isbn", async (req, res) => {
-  const book = await db.one(
-    `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
-    { isbn: req.params.isbn }
-  );
+  const book = await db.one(`SELECT id FROM books WHERE isbn = $(isbn)`, {
+    isbn: req.params.isbn,
+  });
 
   res.json(
-    await db.manyOrNone(`SELECT * from reviews WHERE book_id = $(book_id)`, {
+    await db.manyOrNone(`SELECT * from reviews  WHERE book_id = $(book_id)`, {
       book_id: book.id,
     })
   );
 });
 
-routes.get("/reviews/user/:book_id", async (req, res) => {
+routes.get("/reviews/user/:isbn", async (req, res) => {
   const book = await db.one(
     `SELECT id FROM books WHERE isbn = $(isbn) RETURNING id`,
     { isbn: req.params.isbn }

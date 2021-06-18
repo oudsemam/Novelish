@@ -8,6 +8,7 @@
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
   />
   <div class="buttons">
+
     
     <div class="button-row">
       <button routerLink="/reviews">
@@ -70,4 +71,13 @@
     <h3>Author(s)</h3>
     <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
   </div>
+
 </div>
+
+
+<!-- <div>
+  <h3>Reviews</h3>
+  <div *ngFor="let review of reviews">
+    <div>{{review.}}</div>
+  </div>
+</div> -->
