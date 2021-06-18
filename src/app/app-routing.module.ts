@@ -15,6 +15,7 @@ import { ReviewPageComponent } from './review-page/review-page.component';
 import { ResultsComponent } from './results/results.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
+import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'shelves', component: ShelvesComponent},
-  { path: 'all-reviews', component: ReviewPageComponent},
+  { path: 'reviews', component: ReviewToggleButtonComponent},
   { path: 'results', component: ResultsComponent},
   { path: 'side-menu', component: SideMenuComponent},
   { path: 'books/:isbn', component: BookViewComponent}

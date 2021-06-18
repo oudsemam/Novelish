@@ -8,15 +8,54 @@
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
   />
   <div class="buttons">
-    <!-- <fa-icon [icon]='faStarHalfAlt' size="lg" class="nav-icon" routerLink="/all-reviews"></fa-icon> -->
-    <button routerLink="/all-reviews">Review</button>
-    <button (click)="(addToShelf)">Add</button>
-    <button (click)="(addToBurnShelf)">
-      <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
-      Burn it!
-    </button>
+
+    
+    <div class="button-row">
+      <button routerLink="/reviews">
+        <fa-icon [icon]="faStarHalfAlt"></fa-icon> 
+      </button>
+      <span>Review It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Want to Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Have Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Did Not Finish It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Currently Reading It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToBurnShelf">
+        <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
+      </button>
+      <span>Burn It!</span>
+    </div>
+    
   </div>
 </div>
+
+
 
 <div class="details_container">
   <div>
@@ -32,7 +71,9 @@
     <h3>Author(s)</h3>
     <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
   </div>
+
 </div>
+
 
 <!-- <div>
   <h3>Reviews</h3>

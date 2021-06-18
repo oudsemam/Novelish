@@ -3,9 +3,5 @@
   margin: 0;
 }
 .background {
-  color: #000000;
-  background-image: url("/assets/neutralBackground.jpg");
-  /* background-size: contain; */
-  /* background-color: #1a7480a8; */
-  background-size: cover;
+    background-color: rgb(233, 233, 231); 
 }
