@@ -1,24 +1,63 @@
 <app-main-header></app-main-header>
 <app-search-bar></app-search-bar>
 
+<h2>{{ book?.title }}</h2>
 <div class="container">
-  <h2>{{ book?.title }}</h2>
   <img
     class="book"
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
   />
   <div class="buttons">
-    <button>On my bookshelf</button>
-    <button>... but I never finished</button>
-    <button>Wish list</button>
-    <button>Add to ... bookshelf</button>
-    <button>
-      <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
-      Burn it!
-    </button>
-  </div>
-  <!-- placeholders for the book data below -->
 
+    
+    <div class="button-row">
+      <button routerLink="/reviews">
+        <fa-icon [icon]="faStarHalfAlt"></fa-icon> 
+      </button>
+      <span>Review It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Want to Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Have Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Did Not Finish It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Currently Reading It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToBurnShelf">
+        <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
+      </button>
+      <span>Burn It!</span>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<div class="details_container">
   <div>
     <h3>Details</h3>
     <h4>Pages</h4>
@@ -31,6 +70,14 @@
   <div>
     <h3>Author(s)</h3>
     <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
-    <button>Add to bookshelf</button>
   </div>
+
 </div>
+
+
+<!-- <div>
+  <h3>Reviews</h3>
+  <div *ngFor="let review of reviews">
+    <div>{{review.}}</div>
+  </div>
+</div> -->

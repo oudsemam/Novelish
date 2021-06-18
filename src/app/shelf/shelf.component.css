@@ -1,39 +1,44 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 h1 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 h2 {
-    font-family: 'Long Cang', cursive;
-    padding-top: 10px;
+  font-family: "Long Cang", cursive;
+  padding-top: 10px;
 }
 
 .shelf_container {
-    display: flex;
-    margin: 10px;
-    padding: 8px;
-    border: 1px solid #3793cb;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  margin: 10px;
+  padding: 8px;
+  border: 1px solid #3793cb;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgba(219, 213, 204, 0.582);
+  justify-content: flex-start;
 }
 
-
 img {
-    max-width: 80px;
-    /* padding: 10px; */
-    margin: 5px 20px;
-    box-shadow: 0 10px 10px -5px;
+  max-width: 80px;
+  /* padding: 10px; */
+  margin: 5px 20px;
+  box-shadow: 0 10px 10px -5px;
 }
 
 img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .books {
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 5px;
+  justify-content: space-around;
 }

@@ -1,8 +1,5 @@
-<ul>
-    <li *ngFor="let book of books" class="books">
-        <app-book [book]="book">
-            
-        </app-book>
-    </li>
-
+<ul class="shelf_container">
+  <li *ngFor="let book of books" class="books">
+    <app-book [book]="book"> </app-book>
+  </li>
 </ul>

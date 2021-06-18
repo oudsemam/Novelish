@@ -7,5 +7,5 @@
     background-image: url("/assets/neutralbackground2.jpg");
     /* background-size: contain; */
     background-size: cover;
-
+    background-color: rgb(233, 233, 231); 
 }

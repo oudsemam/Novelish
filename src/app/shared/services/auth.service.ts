@@ -7,6 +7,7 @@ import {
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { NovelishBackendService } from 'src/app/novelish-backend.service';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ import { NovelishBackendService } from 'src/app/novelish-backend.service';
 export class AuthService {
   userData: any; // Save logged in user data
 
+  subscription: Subscription | null = null
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -62,10 +64,12 @@ export class AuthService {
       .then((result) => {
         this.SetUserData(result.user);
         // when create a way to add approved emails/users then turn on these comments
-        this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
-        this.ngZone.run(() => {
-          this.router.navigate(['sign-in']);
+        this.subscription = this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid).subscribe((s)=>{
+          this.ngZone.run(() => {
+            this.router.navigate(['sign-in']);
+          });
         });
+        
       })
       .catch((error) => {
         window.alert(error.message);
