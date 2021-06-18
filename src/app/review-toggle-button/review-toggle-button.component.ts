@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { NovelishBackendService } from '../novelish-backend.service';
 import { ReviewCat } from '../review-cat';
+import { NgModule } from '@angular/core';
+
 
 @Component({
   selector: 'app-review-toggle-button',
@@ -70,7 +73,11 @@ export class ReviewToggleButtonComponent implements OnInit {
     },
   ];
 
+
+  rating = 0;
+
   constructor(private NBService: NovelishBackendService, private router: Router) {}
+
 
   ngOnInit(): void {}
 
@@ -81,6 +88,7 @@ export class ReviewToggleButtonComponent implements OnInit {
       this.reviewCategories[i].value = null;
     }
   }
+}
 
   submit(){
     const review = {

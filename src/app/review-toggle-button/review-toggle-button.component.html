@@ -25,11 +25,9 @@
 
 
 <!-- Star Rating -->
-<h2>Star Rating</h2>
-<div class="star-rating">
-    <fa-icon [icon]="faStar"></fa-icon>
-    <fa-icon [icon]="faStar"></fa-icon>
-    <fa-icon [icon]="faStar"></fa-icon>
-    <fa-icon [icon]="faStar"></fa-icon>
-    <fa-icon [icon]="faStar"></fa-icon>
-</div>
+<h3>Star Rating</h3>
+<ngb-rating [max]="5" [(rate)]="rating" [readonly]="false"></ngb-rating>
+
+<p>Rating: {{ rating }}</p>
+
+<app-notes-or-reviews></app-notes-or-reviews>

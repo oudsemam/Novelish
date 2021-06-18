@@ -40,6 +40,7 @@ import { NovelishBackendService } from './novelish-backend.service';
 import { NyTimesService } from './ny-times.service';
 import { OpenLibraryService } from './open-library.service';
 import { CarouselComponent } from './carousel/carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -75,6 +76,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     HttpClientModule,
     FormsModule,
     IvyCarouselModule,
+    NgbModule,
 
   ],
   providers: [
