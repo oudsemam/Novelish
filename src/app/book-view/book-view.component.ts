@@ -14,12 +14,12 @@ import { switchMap } from 'rxjs/operators';
 export class BookViewComponent implements OnInit {
   faStarHalfAlt=faStarHalfAlt;
   faDumpsterFire = faDumpsterFire;
-  book: any = null;
-  isbn: any = null;
-  OLSubscription: Subscription | null = null;
-  NBSubscription: Subscription | null = null;
+  book: any = null
+  isbn: any = null
+  OLSubscription: Subscription | null = null
+  NBSubscription: Subscription | null = null
+  reviewSubscription: Subscription | null = null
   subscription1: Subscription | null = null;
-
   constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -40,9 +40,9 @@ export class BookViewComponent implements OnInit {
       console.log(book)
       this.book = book[`ISBN:${this.isbn}`]});
   
-    // this.NBSubscription = this.backend.get
+    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe(()=>{})
+  
   }
-
   reviewIt() {
 
   }

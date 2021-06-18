@@ -3,7 +3,6 @@
 
 <h2>{{ book?.title }}</h2>
 <div class="container">
-
   <img
     class="book"
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg"
@@ -11,14 +10,13 @@
   <div class="buttons">
     <!-- <fa-icon [icon]='faStarHalfAlt' size="lg" class="nav-icon" routerLink="/all-reviews"></fa-icon> -->
     <button routerLink="/all-reviews">Review</button>
-    <button (click)="addToShelf">Add</button>
-    <button (click)="addToBurnShelf">
+    <button (click)="(addToShelf)">Add</button>
+    <button (click)="(addToBurnShelf)">
       <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
       Burn it!
     </button>
   </div>
 </div>
-
 
 <div class="details_container">
   <div>
@@ -35,3 +33,10 @@
     <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
   </div>
 </div>
+
+<!-- <div>
+  <h3>Reviews</h3>
+  <div *ngFor="let review of reviews">
+    <div>{{review.}}</div>
+  </div>
+</div> -->
