@@ -43,11 +43,12 @@ export class AuthService {
         this.afAuth
           .signInWithEmailAndPassword(email, password)
           .then((result) => {
-            this.ngZone.run(() => {
-              this.router.navigate(['dashboard']);
-            });
             this.SetUserData(result.user);
-            this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid);
+            this.subscription = this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid).subscribe(()=>{
+              this.ngZone.run(() => {
+                this.router.navigate(['dashboard']);
+              });
+            });
             console.log(result.user);
           });
       })
