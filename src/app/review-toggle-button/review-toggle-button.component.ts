@@ -5,7 +5,7 @@ import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg
 import { Subscription } from 'rxjs';
 import { NovelishBackendService } from '../novelish-backend.service';
 import { ReviewCat } from '../review-cat';
-import { NgModule } from '@angular/core';
+
 
 
 @Component({

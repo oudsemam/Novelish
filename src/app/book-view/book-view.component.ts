@@ -9,12 +9,14 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
-  styleUrls: ['./book-view.component.css']
+  styleUrls: ['./book-view.component.css'],
 })
 export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
+  toggle:boolean = false;
+  // status;
 
   book: any = null
   isbn: any = null
@@ -29,7 +31,12 @@ export class BookViewComponent implements OnInit {
   result: any = null;
   book_id: any = null;
 
-  constructor(private backend: NovelishBackendService, private OLService: OpenLibraryService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private backend: NovelishBackendService,
+    private OLService: OpenLibraryService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
 
@@ -39,6 +46,7 @@ export class BookViewComponent implements OnInit {
     //     console.log(book)
     //     this.book = book});
     // console.log(this.book)
+
 
     this.activatedRoute.paramMap.subscribe(params => {
       this.isbn = params.get('isbn')
@@ -60,7 +68,14 @@ export class BookViewComponent implements OnInit {
   }
   reviewIt() {
 
+
+    this.reviewSubscription = this.backend
+      .getReviewsByBook(this.isbn)
+      .subscribe((reviews) => {
+        this.reviews = reviews;
+      });
   }
+  reviewIt() {}
 
   addToWantShelf() {
     this.OLSubscription = this.OLService.getBook(this.isbn)
@@ -94,6 +109,9 @@ export class BookViewComponent implements OnInit {
   }
 
   addToBurnShelf() {
+    this.backend.addBookToShelf(this.isbn, 'burn');
+    this.enableDisable();
+
     console.log("burned it");
     // this.backend.addBookToShelf(this.isbn, "burn")
   }
@@ -108,6 +126,11 @@ export class BookViewComponent implements OnInit {
 
   addToDNFShelf() {
     // this.backend.addBookToShelf(this.isbn, "DNF")
+
   }
 
+  enableDisable() {
+    this.toggle = !this.toggle;
+    this.toggle ? 'Enable' : 'Disable';
+  }
 }
