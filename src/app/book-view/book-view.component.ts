@@ -11,12 +11,12 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './book-view.component.html',
   styleUrls: ['./book-view.component.css'],
 })
+
 export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
-  toggle:boolean = false;
-  // status;
+  showFire:boolean = false;
 
   book: any = null
   isbn: any = null
@@ -102,7 +102,6 @@ export class BookViewComponent implements OnInit {
 
   addToBurnShelf() {
     // this.backend.addBookToShelf(this.isbn, 'burn');
-    this.enableDisable();
 
     console.log("burned it");
     // this.backend.addBookToShelf(this.isbn, "burn")
@@ -121,8 +120,5 @@ export class BookViewComponent implements OnInit {
 
   }
 
-  enableDisable() {
-    this.toggle = !this.toggle;
-    this.toggle ? 'Enable' : 'Disable';
-  }
+
 }
