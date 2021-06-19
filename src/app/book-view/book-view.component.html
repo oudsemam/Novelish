@@ -32,7 +32,7 @@
 
     
     <div class="button-row">
-      <button routerLink="/reviews">
+      <button (click)= "showReviewForm=!showReviewForm">
         <fa-icon [icon]="faStarHalfAlt"></fa-icon> 
       </button>
       <span>Review It</span>
@@ -79,28 +79,41 @@
 
 
 <div class="details_container">
+  
   <div>
-    <h3>Details</h3>
-    <h4>Pages</h4>
+    <span class="details">
+<h3>Details</h3>
+    <button (click)="expandDetails=!expandDetails"><fa-icon [icon]="faChevronDown"></fa-icon></button>
+    </span>
+    <div *ngIf="expandDetails">
+<h4>Pages</h4>
     <p>{{ book?.number_of_pages }}</p>
     <!-- <h4>Languages</h4>
     <p>{{ book?.languages.key }}</p> -->
     <h4>Publisher</h4>
     <p *ngFor="let publisher of book?.publishers">{{ publisher.name }}</p>
-  </div>
+  
   <div>
     <h3>Author(s)</h3>
     <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
   </div>
-
+</div>
+    </div>
+    
 </div>
 
 
-<div>
+<div class="details_container">
+   <span class="details">
   <h3>Reviews</h3>
-  <div *ngFor="let review of reviews">
-    <div>{{ review?.review }}</div>
+  <button (click)="expandReviews=!expandReviews"><fa-icon [icon]="faChevronDown"></fa-icon></button>
+  </span>
+  <div *ngFor="let review of reviews" >
+    <div *ngIf="expandReviews">{{ review?.review }}</div>
   </div>
 </div>
+
+
+<app-review-toggle-button *ngIf="showReviewForm"></app-review-toggle-button>
 
 
