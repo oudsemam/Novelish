@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faDumpsterFire, faPlus, faPlusCircle, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons"
+import { faChevronDown, faDumpsterFire, faPlus, faPlusCircle, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons"
 import { NovelishBackendService } from '../novelish-backend.service';
 import { OpenLibraryService } from '../open-library.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,19 +11,22 @@ import { Subscription } from 'rxjs';
   templateUrl: './book-view.component.html',
   styleUrls: ['./book-view.component.css'],
 })
-
 export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
-  showFire:boolean = false;
+  faChevronDown = faChevronDown;
+  showFire: boolean = false;
+  showReviewForm: boolean = false;
+  expandDetails: boolean = false;
+  expandReviews: boolean = false;
 
-  book: any = null
-  isbn: any = null
-  reviews: any
-  OLSubscription: Subscription | null = null
-  NBSubscription: Subscription | null = null
-  reviewSubscription: Subscription | null = null
+  book: any = null;
+  isbn: any = null;
+  reviews: any;
+  OLSubscription: Subscription | null = null;
+  NBSubscription: Subscription | null = null;
+  reviewSubscription: Subscription | null = null;
   subscription1: Subscription | null = null;
   UISubscription: Subscription | null = null;
   user_id: any = null;
@@ -40,7 +43,6 @@ export class BookViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     // this.OLSubscription = this.activatedRoute.paramMap
     // 	.pipe(switchMap(p => this.OLService.getBook(p.get('ibsn'))))
     // 	.subscribe((book) => {
@@ -48,26 +50,25 @@ export class BookViewComponent implements OnInit {
     //     this.book = book});
     // console.log(this.book)
 
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.isbn = params.get('isbn');
+      this.user_id = params.get('uid');
+    });
 
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.isbn = params.get('isbn')
-      this.user_id = params.get('uid')
-    })
+    this.OLSubscription = this.OLService.getBook(this.isbn).subscribe(
+      (book) => {
+        console.log(book);
+        this.book = book[`ISBN:${this.isbn}`];
+      }
+    );
 
-    this.OLSubscription = this.OLService.getBook(this.isbn)
-      .subscribe((book) => {
-        console.log(book)
-        this.book = book[`ISBN:${this.isbn}`]
+    this.reviewSubscription = this.backend
+      .getReviewsByBook(this.isbn)
+      .subscribe((reviews) => {
+        this.reviews = reviews;
       });
-
-    this.reviewSubscription = this.backend.getReviewsByBook(this.isbn).subscribe((reviews) => {
-      this.reviews = reviews
-    })
-
   }
   reviewIt() {
-
-
     this.reviewSubscription = this.backend
       .getReviewsByBook(this.isbn)
       .subscribe((reviews) => {
@@ -76,34 +77,36 @@ export class BookViewComponent implements OnInit {
   }
 
   addToWantShelf() {
-    this.OLSubscription = this.OLService.getBook(this.isbn)
-    .subscribe((book) => {
-      console.log(book)
-      this.book = book[`ISBN:${this.isbn}`]
-    });
+    this.OLSubscription = this.OLService.getBook(this.isbn).subscribe(
+      (book) => {
+        console.log(book);
+        this.book = book[`ISBN:${this.isbn}`];
+      }
+    );
 
-    console.log("in the function")
+    console.log('in the function');
     const wantBook = {
-      shelf: "want",   
+      shelf: 'want',
       book_id: this.book,
-      isbn: this.isbn };
-      console.log(wantBook);
-      console.log("I am here")
-    this.subscription1 = this.backend.addBookToShelf(wantBook.book_id, wantBook.shelf).subscribe((book) => {
-      this.book = book
-      console.log(book)
-      this.router.navigate([`/books/${this.shelf}`]);
-      console.log(wantBook);
-      console.log("now I am here")
-    })
-
-
+      isbn: this.isbn,
+    };
+    console.log(wantBook);
+    console.log('I am here');
+    this.subscription1 = this.backend
+      .addBookToShelf(wantBook.book_id, wantBook.shelf)
+      .subscribe((book) => {
+        this.book = book;
+        console.log(book);
+        this.router.navigate([`/books/${this.shelf}`]);
+        console.log(wantBook);
+        console.log('now I am here');
+      });
   }
 
   addToBurnShelf() {
     // this.backend.addBookToShelf(this.isbn, 'burn');
 
-    console.log("burned it");
+    console.log('burned it');
     // this.backend.addBookToShelf(this.isbn, "burn")
   }
 
@@ -117,8 +120,5 @@ export class BookViewComponent implements OnInit {
 
   addToDNFShelf() {
     // this.backend.addBookToShelf(this.isbn, "DNF")
-
   }
-
-
 }

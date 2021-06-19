@@ -29,6 +29,9 @@ button:hover {
   justify-content: space-around;
   margin-right: 60px;
 }
+.button-row {
+ padding: 5px;
+}
 
 .container {
   display: flex;
@@ -51,6 +54,11 @@ h2 {
 
 h3 {
   font-size: 1.5em;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
 }
 
 .details_container {
