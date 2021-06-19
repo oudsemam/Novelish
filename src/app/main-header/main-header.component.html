@@ -9,6 +9,25 @@
         <fa-icon [icon]="faBook" size="lg" class="nav-icon" routerLink="/shelves"></fa-icon>
         <!-- to user interface-->
         <fa-icon [icon]="faUserCircle" size="lg" class="nav-icon" routerLink="/dashboard"></fa-icon>
-        <fa-icon [icon]="faBars" class="nav-icon" routerLink="/side-menu"></fa-icon>
+        <!-- <fa-icon [icon]="faBars" class="nav-icon" routerLink="/side-menu"></fa-icon> -->
+        <div id="menuToggle">
+            <input type="checkbox" (click)="hideShowMenu()"/>
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu" *ngIf="menuToggle">
+                <li>
+                    <a routerLink='/home'>Home</a>
+                </li>
+                
+                <li>
+                    <a  id="hover" (click)="authService.SignOut()">Log out</a>
+                </li>
+        
+                <li>
+                    <a routerLink='/about'>About</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </header>
