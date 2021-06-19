@@ -16,7 +16,7 @@ export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
-  showFire:boolean = true;
+  showFire:boolean = false;
 
   book: any = null
   isbn: any = null
