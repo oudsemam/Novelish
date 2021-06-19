@@ -17,7 +17,7 @@
   width: 100px;
   border-radius: 5px;
   color: white;
-  background-color: #5abf73;
+  background-color: #3793cb;
   border: none;
   padding: 5px;
 }
@@ -25,8 +25,8 @@
 .newNote {
   min-height: 50px;
   width: 100%;
-  border: 1px solid #5abf73;
-  background-color: #e9f9ec;
+  border: 1px solid #3793cb;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

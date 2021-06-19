@@ -1,9 +1,13 @@
 * {
     font-size: 16px;
     position: relative;
-    background-color: #010101;
-    color: #F4FaF8;
+    background-color: #3793CD;
+    color: whitesmoke;
+    font-family: 'Josefin Sans', sans-serif;
+}
 
+h2 {
+    font-size: 1.2em;
 }
 
 main {
@@ -21,5 +25,5 @@ li {
 }
 
 li:hover {
-    color: #3793CD;
+    color: #314749;
 }
