@@ -7,9 +7,6 @@
     name="notes"
     placeholder="Take a note..."
   ></textarea>
-  <div class="notes-area">
-    <button class="add-note" (click)="addNote()">Add</button>
-  </div>
   <div
     *ngFor="let note of addedNotes; index as i"
     [note]?="note"
