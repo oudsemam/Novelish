@@ -41,6 +41,7 @@ import { NyTimesService } from './ny-times.service';
 import { OpenLibraryService } from './open-library.service';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -65,6 +66,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BookComponent,
     ReviewPageComponent,
     CarouselComponent,
+    AboutComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     IvyCarouselModule,
     NgbModule,
-
   ],
   providers: [
     AuthService,

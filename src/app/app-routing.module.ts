@@ -16,6 +16,7 @@ import { ResultsComponent } from './results/results.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { ReviewToggleButtonComponent } from './review-toggle-button/review-toggle-button.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewToggleButtonComponent},
   { path: 'results', component: ResultsComponent},
   { path: 'side-menu', component: SideMenuComponent},
-  { path: 'books/:isbn', component: BookViewComponent}
+  { path: 'books/:isbn', component: BookViewComponent},
+  { path: 'about', component: AboutComponent}
 ];
 
 @NgModule({
