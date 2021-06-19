@@ -64,7 +64,7 @@
     </div>
 
     <div class="button-row">
-      <button (click)="addToBurnShelf()">
+      <button (click)="addToBurnShelf()" [ngClass]="toggle ? 'Enable' : 'Disable'">
         <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
       </button>
       <span>Burn It!</span>

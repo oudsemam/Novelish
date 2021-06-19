@@ -101,7 +101,7 @@ export class BookViewComponent implements OnInit {
   }
 
   addToBurnShelf() {
-    this.backend.addBookToShelf(this.isbn, 'burn');
+    // this.backend.addBookToShelf(this.isbn, 'burn');
     this.enableDisable();
 
     console.log("burned it");
