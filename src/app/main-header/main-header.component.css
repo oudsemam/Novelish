@@ -1,10 +1,26 @@
 * {
   background-color: #3793CD;
+  font-family: 'Josefin Sans', sans-serif;
+  color: whitesmoke;
 }
 
 .novelish-logo {
     width:180px;
 
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  transform: scale(1.05);
+}
+
+#hover:hover {
+  color: black;
+  transform: scale(1.05);
 }
 
 .novelish-logo:hover {
@@ -36,9 +52,13 @@
   align-items: center;
   justify-content: space-around;
   padding: 15px 0 10px 0;
-  background-color: #3793CD;
+  /* background-color: #3793CD; */
   border-top: 1px solid #cecece;
-  
+  padding-right: 70px;
+}
+
+li {
+  /* margin-left: 5px; */
 }
 
 nav {
@@ -59,6 +79,108 @@ nav {
   justify-content: space-between;
   padding: 15px;
 }
+
+#menuToggle {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  padding-right: 25px;
+  z-index: 5;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+
+  -webkit-touch-callout: none;
+}
+
+#menuToggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: white;
+  color: whitesmoke;
+  border-radius: 3px;
+
+  z-index: 1;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #000000;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+  visibility: hidden;
+  position: absolute;
+  width: 275px;
+  margin: -100px 0 0 0;
+  padding: 20px;
+  padding-top: 125px;
+  right: -100px;
+  border-radius: 4px;
+  /* background: rgba(255, 255, 255, 0.75); */
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+#menu input {
+  pointer-events: none;
+}
+
+#menu li {
+  padding: 5px 0;
+  font-size: 22px;
+}
+
+#menuToggle input:checked ~ ul {
+  visibility: visible;
+  transform: none;
+  opacity: 1;
+}
+
  
 
 /* This is where the layout will break from mobile to Desktop */
@@ -84,3 +206,4 @@ nav {
 .icon-nav {
   border: none;
 }
+

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import {
   faBook,
   faUserCircle,
   faBars,
   faStarHalfAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-header',
@@ -18,8 +20,18 @@ export class MainHeaderComponent implements OnInit {
   menuState: string = 'in';
   faStarHalfAlt=faStarHalfAlt;
 
-  constructor() {}
+  menuToggle: boolean = false;
+
+  constructor(public authService: AuthService,
+    public router: Router,
+    public ngZone: NgZone) {}
 
   ngOnInit(): void {}
 
+  hideShowMenu = () => {
+    this.menuToggle = !this.menuToggle;
+  }
+
 }
+
+
