@@ -3,12 +3,13 @@
 
 <h2>{{ book?.title }}</h2>
 <div class="container">
-  <img
+  <div class="outer">
+<img
     class="book"
     src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg?default=false" 
     onerror="this.onerror=false;this.src='../assets/Novelish-blank-cover-L.png'"
   />
-  <div class="fire">
+  <div class="fire" *ngIf="showFire">
   <div class="fire-left">
     <div class="main-fire"></div>
     <div class="particle-fire"></div>
@@ -25,6 +26,8 @@
     <div class="main-fire"></div>
   </div>
 </div>
+  </div>
+  
   <div class="buttons">
 
     
@@ -64,7 +67,7 @@
     </div>
 
     <div class="button-row">
-      <button (click)="addToBurnShelf()" [ngClass]="toggle ? 'Enable' : 'Disable'">
+      <button (click)="addToBurnShelf(); showFire=!showFire" >
         <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
       </button>
       <span>Burn It!</span>
