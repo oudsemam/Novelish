@@ -31,35 +31,35 @@
   <div class="buttons">
     <div class="button-row">
       <button (click)="showReviewForm = !showReviewForm">
-        <fa-icon [icon]="faStarHalfAlt"></fa-icon>
+        <fa-icon [icon]="faStarHalfAlt" size="lg"></fa-icon>
       </button>
       <span>Review It</span>
     </div>
 
     <div class="button-row">
       <button (click)="addToWantShelf()">
-        <fa-icon [icon]="faPlus"></fa-icon>
+        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
       </button>
       <span>Want to Read It</span>
     </div>
 
     <div class="button-row">
       <button (click)="addToReadShelf()">
-        <fa-icon [icon]="faPlus"></fa-icon>
+        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
       </button>
       <span>Have Read It</span>
     </div>
 
     <div class="button-row">
       <button (click)="addToDNFShelf()">
-        <fa-icon [icon]="faPlus"></fa-icon>
+        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
       </button>
       <span>Did Not Finish It</span>
     </div>
 
     <div class="button-row">
       <button (click)="addToCurrentShelf()">
-        <fa-icon [icon]="faPlus"></fa-icon>
+        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
       </button>
       <span>Currently Reading It</span>
     </div>
@@ -78,7 +78,7 @@
     <span class="details">
       <h3>Details</h3>
       <button (click)="expandDetails = !expandDetails">
-        <fa-icon [icon]="faChevronDown"></fa-icon>
+        <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
       </button>
     </span>
     <div *ngIf="expandDetails">
@@ -101,14 +101,14 @@
   <span class="details">
     <h3>Reviews</h3>
     <button (click)="expandReviews = !expandReviews">
-      <fa-icon [icon]="faChevronDown"></fa-icon>
+      <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
     </button>
   </span>
   <span *ngIf="expandReviews"> 
     <div>
       <h2>Uh oh! No reviews were found.</h2>
       <p>Have you read this book? Feel free to write your own here <button (click)="showReviewForm = !showReviewForm; expandReviews = !expandReviews">
-        <fa-icon [icon]="faStarHalfAlt"></fa-icon>
+        <fa-icon [icon]="faStarHalfAlt" size="lg"></fa-icon>
       </button></p>
     </div>
 <div *ngFor="let review of reviews">

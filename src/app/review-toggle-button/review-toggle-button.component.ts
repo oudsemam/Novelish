@@ -26,6 +26,7 @@ export class ReviewToggleButtonComponent implements OnInit {
   faChevronDown = faChevronDown;
   faCheck = faCheck;
   expandInstructions: boolean = false;
+  expandRatingScale:boolean = false;
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
