@@ -30,6 +30,7 @@ export class BookViewComponent implements OnInit {
   shelf: any = null;
   result: any = null;
   book_id: any = null;
+  email: any = null;
 
   constructor(
     private backend: NovelishBackendService,
@@ -63,8 +64,6 @@ export class BookViewComponent implements OnInit {
       this.reviews = reviews
     })
 
-    // this.UISubscription = this.backend.
-
   }
   reviewIt() {
 
@@ -83,14 +82,9 @@ export class BookViewComponent implements OnInit {
       this.book = book[`ISBN:${this.isbn}`]
     });
 
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.user_id = params.get('uid')
-    })
-
     console.log("in the function")
     const wantBook = {
-      shelf: "want",  
-      user_id: this.user_id, 
+      shelf: "want",   
       book_id: this.book,
       isbn: this.isbn };
       console.log(wantBook);
@@ -98,8 +92,7 @@ export class BookViewComponent implements OnInit {
     this.subscription1 = this.backend.addBookToShelf(wantBook.book_id, wantBook.shelf).subscribe((book) => {
       this.book = book
       console.log(book)
-      // this.user_id = user_id
-      this.router.navigate([`/books/${this.user_id}/${this.shelf}`]);
+      this.router.navigate([`/books/${this.shelf}`]);
       console.log(wantBook);
       console.log("now I am here")
     })
