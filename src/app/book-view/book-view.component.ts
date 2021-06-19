@@ -75,7 +75,6 @@ export class BookViewComponent implements OnInit {
         this.reviews = reviews;
       });
   }
-  reviewIt() {}
 
   addToWantShelf() {
     this.OLSubscription = this.OLService.getBook(this.isbn)
