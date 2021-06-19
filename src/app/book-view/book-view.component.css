@@ -33,10 +33,11 @@ button:hover {
 .container {
     display: flex;
     margin: 10px;
-    padding: 8px;
+    padding: 20px;
+    height: 700px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around
 }
 
@@ -116,10 +117,19 @@ span {
   }
 }
 
+.outer {
+width: 150px; 
+height: 250px; 
+  border:solid red 1px;
+  position:relative;
+  vertical-align:middle;
+}
+
 .fire {
-  position: absolute;
-  top: 50%;
-  left: 15%;
+  position: relative;
+  display: block;
+  top:150px; 
+  right: 130px;
   width: 100px;
   height: 100px;
   background-color: transparent;
@@ -244,4 +254,13 @@ span {
   animation: glow 2s ease-out 0;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
+}
+
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+.container{
+  flex-direction: row;
+  height: 400px;
+}
 }

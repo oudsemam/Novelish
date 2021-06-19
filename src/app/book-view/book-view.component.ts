@@ -4,7 +4,7 @@ import { NovelishBackendService } from '../novelish-backend.service';
 import { OpenLibraryService } from '../open-library.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-book-view',
@@ -16,7 +16,7 @@ export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
-  showFire:boolean = false;
+  showFire:boolean = true;
 
   book: any = null
   isbn: any = null
