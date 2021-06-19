@@ -12,6 +12,7 @@ h2 {
 
 main {
     padding: 15px;
+    max-width: 100px;
 }
 
 ul {
@@ -26,4 +27,12 @@ li {
 
 li:hover {
     color: #314749;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #314749
 }

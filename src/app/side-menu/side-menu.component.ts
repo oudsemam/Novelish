@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-menu',
@@ -9,7 +11,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class SideMenuComponent implements OnInit {
 faTimes = faTimes
 
-  constructor() { }
+  constructor(public authService: AuthService,
+    public router: Router,
+    public ngZone: NgZone) { }
 
   ngOnInit(): void {
   }

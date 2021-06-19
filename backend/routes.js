@@ -129,10 +129,10 @@ routes.get("/shelves/user", async (req, res) => {
   );
 });
 
-routes.get("/shelves/user/:shelf/", async (req, res) => {
+routes.get("/shelves/user/:shelf", async (req, res) => {
   res.json(
     await db.manyOrNone(
-      `SELECT title, author, genre, rating, subject, setting, time_period, language, isbn from shelves s
+      `SELECT title, author, genre, subject, setting, time_period, language, isbn from shelves s
         INNER JOIN users u ON u.id = s.user_id
         INNER JOIN books b ON b.id = s.book_id
         WHERE shelf = $(shelf) AND email = $(email)`,
@@ -146,24 +146,59 @@ routes.get("/shelves/user/:shelf/", async (req, res) => {
 
 routes.post("/books/user/:shelf", async (req, res) => {
   try {
-      console.log(req.body);
-    const result = await db.one(
-      `
-        INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
-        VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
-        RETURNING id`,
+    const oldBook = await db.oneOrNone(
+      `SELECT exists(select 1 FROM books where book_id = $(book_id))`
+    )
+      console.log(oldbook);
+
+    if (!oldBook) {
+      const result = await db.one(
+        `
+          INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
+          VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
+          RETURNING id`,
+        {
+          title: req.body.title,
+          author: req.body.author,
+          genre: req.body.genre,
+          subject: req.body.subject,
+          setting: req.body.setting,
+          time_period: req.body.time_period,
+          language: req.body.language,
+          isbn: req.body.isbn,
+          progress: req.body.progress,
+        }
+      );
+    }
+
+    const user = await db.one(
+      `SELECT id FROM users WHERE email = $(email)`,
+      { email: req.user.email }
+    );
+        console.log(user)
+
+    await db.oneOrNone(
+      `INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`,
       {
-        title: req.body.title,
-        author: req.body.author,
-        genre: req.body.genre,
-        subject: req.body.subject,
-        setting: req.body.setting,
-        time_period: req.body.time_period,
-        language: req.body.language,
-        isbn: req.body.isbn,
-        progress: req.body.progress,
+        shelf: req.params.shelf,
+        user_id: user.id,
+        book_id: result.id,
       }
     );
+
+    const book = await db.oneOrNone(
+      `SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
+        INNER JOIN users u ON u.id = shelves.user_id
+        INNER JOIN books b ON b.id = shelves.book_id
+        WHERE b.id = $(book_id) AND u.id = $(user_id)`,
+      {
+        book_id: result.id,
+        user_id: user.id,
+      }
+    );
+
+      console.log(req.body);
+    
 
     const user = await db.one(
       `SELECT id FROM users WHERE email = $(email)`,
@@ -192,6 +227,7 @@ routes.post("/books/user/:shelf", async (req, res) => {
     );
 
     return res.status(201).json(book);
+    
   } catch (error) {
       console.log(error)
     if (error.constraint === "shelves_user_id_fkey") {

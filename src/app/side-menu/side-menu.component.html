@@ -1,39 +1,20 @@
+<app-main-header></app-main-header>
+<app-search-bar></app-search-bar>
+
 <div class="main">
-    <div>
-        <!-- <fa-icon [icon]=faTimes routerLink='/home'></fa-icon> -->
-        <h2>Search books by category</h2>
-        <ul>
-            <li>Arts & Music</li>
-            <li>Biographies</li>
-            <li>Business</li>
-            <li>Comics</li>
-            <li>Computers & Tech</li>
-            <li>Comics</li>
-            <li>Computers & Tech</li>
-            <li>Cooking</li>
-            <li>Education & References</li>
-            <li>Gay & Lesbian</li>
-            <li>Health & Fitness</li>
-            <li>History</li>
-            <li>Hobbies & Crafts</li>
-            <li>Home & Garden</li>
-            <li>Horror</li>
-            <li>Kids</li>
-            <li>Literature & Fiction</li>
-            <li>Medical</li>
-            <li>Mysteries</li>
-            <li>Parenting</li>
-            <li>Religion</li>
-            <li>Romance</li>
-            <li>Sci-fi & Fantsy</li>
-            <li>Science & Math</li>
-            <li>Self-Help</li>
-            <li>Social Sciences</li>
-            <li>Sports</li>
-            <li>Teen</li>
-            <li>Travel</li>
-            <li>True Crime</li>
-            <li>Westerns</li>
-        </ul>
-    </div>
+    <ul>
+        <li>
+            <a routerLink='/home'>Home</a>
+        </li>
+        
+        <li>
+            <a (click)="authService.SignOut()">Log out</a>
+        </li>
+
+        <li>
+            <a routerLink='/about'>About</a>
+        </li>
+
+    </ul>
+
 </div>
