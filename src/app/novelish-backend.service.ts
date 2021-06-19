@@ -31,9 +31,9 @@ export class NovelishBackendService {
     return this.http.get(`http://localhost:3000/users`, {headers: this.getHeaders()});
   }
 
-  // Not in
+  // Not in use
   // getUserId(email:string | null):Observable<any> {
-  //   return this.http.get(`http://localhost:3000/users/${email}`)
+  //   return this.http.get(`http://localhost:3000/users/${email}`, {headers: this.getHeaders()});
   // }
 
   getAllBooks(): Observable<any> {

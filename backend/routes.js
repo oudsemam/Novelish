@@ -146,6 +146,7 @@ routes.get("/shelves/user/:shelf/", async (req, res) => {
 
 routes.post("/books/user/:shelf", async (req, res) => {
   try {
+      console.log(req.body);
     const result = await db.one(
       `
         INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
@@ -165,15 +166,16 @@ routes.post("/books/user/:shelf", async (req, res) => {
     );
 
     const user = await db.one(
-      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+      `SELECT id FROM users WHERE email = $(email)`,
       { email: req.user.email }
     );
+        console.log(user)
 
     await db.oneOrNone(
       `INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`,
       {
         shelf: req.params.shelf,
-        user_id: req.user.email,
+        user_id: user.id,
         book_id: result.id,
       }
     );
@@ -191,6 +193,7 @@ routes.post("/books/user/:shelf", async (req, res) => {
 
     return res.status(201).json(book);
   } catch (error) {
+      console.log(error)
     if (error.constraint === "shelves_user_id_fkey") {
       return res.status(400).send("Please log in to continue.");
     }
