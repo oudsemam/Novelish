@@ -41,6 +41,10 @@
   
 }
 
+nav {
+  z-index: 9;
+}
+
 .nav-icon {
   color: whitesmoke;
 }
