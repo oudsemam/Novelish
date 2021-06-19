@@ -200,10 +200,10 @@ routes.post("/books/user/:shelf", async (req, res) => {
       console.log(req.body);
     
 
-    const user = await db.one(
-      `SELECT id FROM users WHERE email = $(email)`,
-      { email: req.user.email }
-    );
+    // const user = await db.one(
+    //   `SELECT id FROM users WHERE email = $(email)`,
+    //   { email: req.user.email }
+    // );
         console.log(user)
 
     await db.oneOrNone(
@@ -215,16 +215,16 @@ routes.post("/books/user/:shelf", async (req, res) => {
       }
     );
 
-    const book = await db.oneOrNone(
-      `SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
-        INNER JOIN users u ON u.id = shelves.user_id
-        INNER JOIN books b ON b.id = shelves.book_id
-        WHERE b.id = $(book_id) AND u.id = $(user_id)`,
-      {
-        book_id: result.id,
-        user_id: user.id,
-      }
-    );
+    // const book = await db.oneOrNone(
+    //   `SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
+    //     INNER JOIN users u ON u.id = shelves.user_id
+    //     INNER JOIN books b ON b.id = shelves.book_id
+    //     WHERE b.id = $(book_id) AND u.id = $(user_id)`,
+    //   {
+    //     book_id: result.id,
+    //     user_id: user.id,
+    //   }
+    // );
 
     return res.status(201).json(book);
     
