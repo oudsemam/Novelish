@@ -4,12 +4,21 @@
   <h2>or</h2>
   <h2>Con</h2>
 </div>
+<span>
 <h3>How to make a review</h3>
+<button class="submit" (click)="expandInstructions = !expandInstructions">
+      <fa-icon [icon]="faChevronDown"></fa-icon>
+    </button>
+    <div *ngIf = "expandInstructions">
+</span>
+
 <p>
-  For each category below, click either <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> for a pro (or positive aspect of the book) or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or negative aspect of the book) if that category applies. Only vote for categories that you feel best apply (you do not have to vote in all categories) to the book you are currently reviewing below. 
+  For each category below, click either <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> for a pro (or positive aspect of the book) or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or negative aspect of the book) if that category applies to this book. Only vote for categories that you feel best apply (you do not have to vote in all categories) to the book you are currently reviewing below. 
 </p>
 <p>To unselect a category, just click on the same <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> to reset that category.</p>
 <p>If category voting isn't your thing? Don't worry we still have the star rating and open note type reviews below.</p>
+    </div>
+
 
 <div>
   <div *ngFor="let category of reviewCategories; let i = index">
@@ -25,8 +34,8 @@
 <h3>Star Rating</h3>
 <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
 
-<p>Rating: {{ starRating }}</p>
+<p>Your rating: {{ starRating }}</p>
 
 <app-notes-or-reviews></app-notes-or-reviews>
 
-<button (click)=submit()>Submit</button>
+<button class="submit" (click)=submit()><fa-icon [icon]="faCheck"></fa-icon></button>
