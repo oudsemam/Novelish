@@ -1,126 +1,54 @@
 const express = require("express");
+const { receiveMessageOnPort } = require("worker_threads");
 const routes = express.Router();
-const pgp = require("pg-promise")();
+const db = require("./database");
 
 routes.use(express.json());
 
 //create a new user
-routes.post("/users/:email", async (req, res) => {
+routes.post("/users", async (req, res) => {
   try {
     const user = await db.oneOrNone(
       `SELECT * FROM users WHERE email = $(email)`,
       {
-        email: req.params.email,
+        email: req.user.email,
       }
     );
 
-    if (!user) {
-      const result = await db.oneOrNone(
-        `INSERT INTO users (email) VALUES ( $(email)) RETURNING  id`,
-        {
-          email: req.params.email,
-        }
-      );
-      // const user = await db.one(
-      //   `SELECT id, email FROM users WHERE id = $(id), {id: result.id}`,
-      //   {
-      //     email: req.body.email,
-      //   }
-      // );
-      const newUser = await db.one(
-        `SELECT id, email FROM users WHERE id = $(id)`,
-        { id: result.id }
-      );
-      res.status(201).json(newUser);
-    } else {
-      res.status(201).json({});
+    if (user) {
+      // return res.status(400).send("user already exsists");
+      return res.status(200).send();
     }
+    const result = await db.oneOrNone(
+      `INSERT INTO users (email) VALUES ( $(email)) RETURNING  id`,
+      {
+        email: req.user.email,
+      }
+    );
+    const newUser = await db.one(
+      `SELECT id, email FROM users WHERE id = $(id)`,
+      { id: result.id }
+    );
+    res.status(201).json(newUser);
   } catch (error) {
-    // if (error.constraint === 'users_pkey'){
-    //     return res.status(400).send('The state already exists');
-    // }
     console.log(error);
     if (error.constraint === "unique_email") {
       return res.status(400).send("That email address is already registered.");
     }
+    return res.status(500).send("things are broken");
   }
-});
-
-routes.get("/users/:email", async (req, res) => {
-  try {
-    const user = await db.oneOrNone(
-      `SELECT user_id FROM users WHERE email = $(email)`,
-      {
-        email: req.params.email,
-      }
-    );
-    if (!user) {
-      return res.status(404).send("User email does not exist.");
-    }
-    res.status(201).json(updatedUser);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-
-// update a user record with the firebase UID when person signs up
-routes.put("/users/:email", async (req, res) => {
-  try {
-    const user = await db.oneOrNone(
-      `SELECT email FROM users WHERE email = $(email)`,
-      {
-        email: req.params.email,
-      }
-    );
-    if (!user) {
-      return res.status(404).send("User email does not exist.");
-    }
-    await db.oneOrNone(
-      `UPDATE users SET firebase_uid = $(firebase_uid) WHERE email = $(email)`,
-      {
-        email: req.params.email,
-        firebase_uid: req.body.firebase_uid,
-      }
-    );
-    const updatedUser = await db.one(
-      `SELECT email, firebase_uid FROM users WHERE email = $(email)`,
-      {
-        email: req.params.email,
-      }
-    );
-    res.status(201).json(updatedUser);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-//end of new
-
-const db = pgp({
-  database: "Novelish",
-  user: "postgres",
-});
-
-routes.get("/users", async (req, res) => {
-  console.log(req.user);
-  res.json(await db.many("SELECT * from users"));
 });
 
 routes.get("/books", async (req, res) => {
   res.json(await db.many("SELECT * from books"));
 });
 
+//getting all the users shevles
 routes.get("/shelves", async (req, res) => {
-  res.json(await db.many("SELECT * from shelves"));
-});
-
-routes.get("/shelves/user", async (req, res) => {
   res.json(
     await db.manyOrNone(
-      `SELECT DISTINCT shelf from shelves s
+      `SELECT shelf from shelves s
         INNER JOIN users u ON u.id = s.user_id
-        INNER JOIN books b ON b.id = s.book_id
         WHERE email = $(email)`,
       {
         email: req.user.email,
@@ -129,10 +57,13 @@ routes.get("/shelves/user", async (req, res) => {
   );
 });
 
-routes.get("/shelves/user/:shelf", async (req, res) => {
+//getting all the books on a particluar shelf
+routes.get("/shelves/:shelf", async (req, res) => {
   res.json(
     await db.manyOrNone(
-      `SELECT title, author, genre, subject, setting, time_period, language, isbn from shelves s
+      `SELECT title, author, genre, subject, setting, time_period, language, isbn 
+      FROM shelves_books sb
+        INNER JOIN shelves s ON s.id = sb.shelf_id
         INNER JOIN users u ON u.id = s.user_id
         INNER JOIN books b ON b.id = s.book_id
         WHERE shelf = $(shelf) AND email = $(email)`,
@@ -144,19 +75,21 @@ routes.get("/shelves/user/:shelf", async (req, res) => {
   );
 });
 
-routes.post("/books/user/:shelf", async (req, res) => {
+//adding a book to a particular shelf
+routes.post("/shelves/:shelf/books", async (req, res) => {
   try {
-    const oldBook = await db.oneOrNone(
-      `SELECT exists(select 1 FROM books where book_id = $(book_id))`
-    )
-      console.log(oldbook);
+    const book = await db.oneOrNone(
+      `SELECT id FROM books WHERE isbn = $(isbn)`,
+      { isbn: req.body.isbn }
+    );
+    console.log(book);
 
-    if (!oldBook) {
-      const result = await db.one(
+    if (!book) {
+      book = await db.one(
         `
           INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
           VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
-          RETURNING id`,
+          RETURNING id, title, author, genre, subject, setting, time_period, language, isbn, progress`,
         {
           title: req.body.title,
           author: req.body.author,
@@ -170,89 +103,50 @@ routes.post("/books/user/:shelf", async (req, res) => {
         }
       );
     }
-    
 
-    // const user = await db.one(
-    //   `SELECT id FROM users WHERE email = $(email)`,
-    //   { email: req.user.email }
-    // );
-        console.log(user)
-
-    await db.oneOrNone(
-      `INSERT INTO shelves (book_id, user_id, shelf) VALUES ($(book_id), $(user_id), $(shelf))`,
+    const shelf = await db.one(
+      `SELECT id FROM shelves s INNER JOIN users u ON u.id = s.user_id
+      WHERE email = $(email) AND shelf = $(shelf)`,
       {
+        email: req.user.email,
         shelf: req.params.shelf,
-        user_id: user.id,
-        book_id: result.id,
       }
     );
 
-    // const book = await db.oneOrNone(
-    //   `SELECT shelf, user_id, title, author, genre, subject, setting, time_period, language, isbn, progress from shelves
-    //     INNER JOIN users u ON u.id = shelves.user_id
-    //     INNER JOIN books b ON b.id = shelves.book_id
-    //     WHERE b.id = $(book_id) AND u.id = $(user_id)`,
-    //   {
-    //     book_id: result.id,
-    //     user_id: user.id,
-    //   }
-    // );
-
-    return res.status(201).json(book);
-    
-  } catch (error) {
-      console.log(error)
-    if (error.constraint === "shelves_user_id_fkey") {
-      return res.status(400).send("Please log in to continue.");
+    if(!shelf) {
+      shelf = await db.one (
+        `INSERT INTO shelves (user_id, shelf)
+        VALUES ($(user_id), $(shelf))
+        RETURNING id, user_id, shelf
+        `,
+        {
+          user_id: req.user.id,
+          shelf: req.params.shelf,
+        }
+      );
     }
 
+    await db.oneOrNone(
+      `INSERT INTO shelves_books (shelf_id, book_id) VALUES ($(self_id), $(book_id))`,
+      {
+        shelf_id: shelf.id,
+        book_id: book.id,
+      }
+    );
+
+    return res.status(201).json(book);
+  } catch (error) {
+    console.log(error);
+    
     if (error.constraint === "books_isbn_key") {
       return res.status(400).send("That book already exists on that shelf. ");
     }
+    return res.status(500).send("We are broken!");
   }
 });
 
-routes.post("/shelves", async (req, res) => {
-  try {
-    const user = await db.one(
-      `SELECT id FROM users WHERE email = $(email) RETURNING id`,
-      { email: req.user.email }
-    );
 
-    `
-        INSERT INTO shelves (shelf, user_id) VALUES ($(shelf), $(user_id))`,
-      {
-        user_id: user.id,
-        shelf: req.body.shelf,
-      };
-
-    console.log("got here");
-
-    const newShelf = await db.manyOrNone(
-      `SELECT DISTINCT shelf FROM shelves WHERE user_id = $(user_id)`,
-      {
-        user_id: user.id,
-      }
-    );
-
-    console.log(newShelf);
-
-    return res.status(201).json(newShelf);
-  } catch (error) {
-    if (error.constraint === "shelves_user_id_fkey") {
-      return res.status(400).send("Please log in to continue.");
-    }
-  }
-});
-
-routes.delete("/users/", async (req, res) => {
-  await db.none(`DELETE from users WHERE email = $(email)`, {
-    email: req.user.email,
-  });
-
-  res.status(204).send();
-});
-
+//removing a book from a shelf
 routes.delete("/books/:shelf/:book_id", async (req, res) => {
   const user = await db.one(
     `SELECT id FROM users WHERE email = $(email) RETURNING id`,

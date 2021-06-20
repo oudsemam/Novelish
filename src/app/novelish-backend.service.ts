@@ -17,14 +17,14 @@ export class NovelishBackendService {
     return header
   }
   addNewUser() {
-    return this.http.post('http://localhost:3000/users', {});
+    return this.http.post('http://localhost:3000/users',{}, {headers: this.getHeaders()});
   }
 
   updateUserUID(email: any, uid: any) {
     let firebase_uid: Object = {
       firebase_uid: uid,
     };
-    return this.http.post(`http://localhost:3000/users/${email}`, firebase_uid, {headers: this.getHeaders()});
+    return this.http.post(`http://localhost:3000/users`, firebase_uid, {headers: this.getHeaders()});
   }
 
   getUsers(): Observable<any> {

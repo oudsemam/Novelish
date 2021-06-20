@@ -36,20 +36,20 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  async SignIn(email: any, password: any) {
+   SignIn(email: any, password: any) {
     this.afAuth
       .setPersistence('session')
       .then(() => {
         this.afAuth
           .signInWithEmailAndPassword(email, password)
-          .then(async (result) => {
+          .then( (result) => {
             console.log ("starting")
-            await this.SetUserData(result.user);
-            this.subscription = this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid).subscribe(()=>{
+            this.SetUserData(result.user);
+            // this.subscription = this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid).subscribe(()=>{
               this.ngZone.run(() => {
-                this.router.navigate(['dashboard']);
+                this.router.navigate(['home']);
               });
-            });
+            // });
             console.log(result.user);
           });
       })
@@ -114,7 +114,7 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(User: any) {
+  async SetUserData(User: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${User.uid}`
     );
@@ -127,9 +127,11 @@ export class AuthService {
     };
     console.log ("before local storage set item");
     localStorage.setItem('User', JSON.stringify(this.userData));
-    return userRef.set(this.userData, {
+    console.log ("after local storage in setUserData")
+    await userRef.set(this.userData, {
       merge: true,
     });
+    console.log("end of setuserdata")
   }
 
   // Sign out

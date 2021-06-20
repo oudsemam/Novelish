@@ -3,6 +3,7 @@ const app = admin.initializeApp({
   credential: admin.credential.applicationDefault(),
   //   databaseURL: "https://novelish-reviews-default-rtdb.firebaseio.com/",
 });
+const db = require("./database")
 
 const jwtDecode = require("jwt-decode");
 
@@ -47,8 +48,9 @@ module.exports = (req, res, next) => {
   const token = parts[1];
 
   const user = jwtDecode(token);
-  console.log(user);
+  const exsiting = db.oneOrNone(`SELECT id FROM users WHERE email = $(email)`, {email: user.email});
   req.user = user;
+  req.user.id = exsiting.id;
   next();
   //   app
   //     .auth()

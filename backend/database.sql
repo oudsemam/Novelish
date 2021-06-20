@@ -18,9 +18,14 @@ CREATE TABLE books (
 
 CREATE TABLE shelves (
 	id SERIAL PRIMARY KEY,
-	book_id integer REFERENCES books(id) ON DELETE CASCADE NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
 	shelf text NOT NULL
+);
+
+CREATE TABLE shelves_books (
+	shelf_id integer REFERENCES shelves(id) ON DELETE CASCADE NOT NULL,
+	book_id integer REFERENCES books(id) ON DELETE CASCADE NOT NULL,
+	PRIMARY KEY (shelf_id, book_id)
 );
 
 CREATE TABLE notes (
