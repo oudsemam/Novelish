@@ -4,36 +4,26 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
-h1 {
-  margin-left: 10px;
-}
-
-h2 {
-  font-family: "Long Cang", cursive;
-  padding-top: 10px;
-}
 
 .shelf_container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 10px;
   padding: 8px;
   border: 1px solid #3793cb;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgba(219, 213, 204, 0.582);
-  justify-content: flex-start;
+  background-color: whitesmoke;
 }
 
 img {
   max-width: 80px;
   /* padding: 10px; */
   margin: 5px 20px;
-  box-shadow: 0 10px 10px -5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-img:hover {
-  transform: scale(1.05);
-}
 
 .books {
   display: flex;
@@ -41,4 +31,16 @@ img:hover {
   justify-items: center;
   padding: 5px;
   justify-content: space-around;
+  width: 300px;
+}
+
+.books:hover {
+  transform: scale(1.05);
+}
+
+@media only screen and (min-width: 720px) {
+  .shelf_container {
+    flex-direction: row;
+    overflow: scroll
+  }
 }

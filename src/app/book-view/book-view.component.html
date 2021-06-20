@@ -39,7 +39,7 @@
 
     <div class="button-row">
 
-      <button (click)="addToShelf('want')">
+      <button (click)="addToShelf('Want to Read It')">
         <fa-icon [icon]="faPlus"></fa-icon>
 
       </button>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="button-row">
-      <button (click)="addToShelf('read')">
+      <button (click)="addToShelf('Have Read It')">
         <fa-icon [icon]="faPlus"></fa-icon>
 
       </button>
@@ -55,21 +55,21 @@
     </div>
 
     <div class="button-row">
-      <button (click)="addToShelf('dnf')">
+      <button (click)="addToShelf('Did Not Finish It')">
         <fa-icon [icon]="faPlus"></fa-icon>
       </button>
       <span>Did Not Finish It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToShelf('current')">
+      <button (click)="addToShelf('Currently Reading It')">
         <fa-icon [icon]="faPlus"></fa-icon>
       </button>
       <span>Currently Reading It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToShelf('burn'); showFire = !showFire">
+      <button (click)="addToShelf('Burn It!'); showFire = !showFire">
         <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
       </button>
       <span>Burn It!</span>
