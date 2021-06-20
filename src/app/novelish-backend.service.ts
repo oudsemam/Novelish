@@ -17,40 +17,28 @@ export class NovelishBackendService {
     return header
   }
   addNewUser() {
-    return this.http.post('http://localhost:3000/users',{}, {headers: this.getHeaders()});
+    return this.http.post('http://localhost:3000/users', {});
   }
 
   updateUserUID(email: any, uid: any) {
     let firebase_uid: Object = {
       firebase_uid: uid,
     };
+    console.log(this.getHeaders())
     return this.http.post(`http://localhost:3000/users`, firebase_uid, {headers: this.getHeaders()});
   }
-
-  getUsers(): Observable<any> {
-    return this.http.get(`http://localhost:3000/users`, {headers: this.getHeaders()});
-  }
-
-  // Not in use
-  // getUserId(email:string | null):Observable<any> {
-  //   return this.http.get(`http://localhost:3000/users/${email}`, {headers: this.getHeaders()});
-  // }
 
   getAllBooks(): Observable<any> {
     return this.http.get(`http://localhost:3000/books`, {headers: this.getHeaders()});
   }
 
-  // Not in use
-  // getAllShelves(): Observable<any> {
-  //   return this.http.get(`http://localhost:3000/shelves`, {headers: this.getHeaders()});
-  // }
 
   getShelvesByUser(): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/user`, {headers: this.getHeaders()});
+    return this.http.get(`http://localhost:3000/shelves`, {headers: this.getHeaders()});
   }
 
   getBooksFromShelf(shelf: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/user/${shelf}`,{headers: this.getHeaders()});
+    return this.http.get(`http://localhost:3000/shelves/${shelf}`,{headers: this.getHeaders()});
   }
 
   getAllNotes(): Observable<any> {
@@ -73,17 +61,13 @@ export class NovelishBackendService {
     }, {headers: this.getHeaders()});
   }
 
-  addShelf(shelf: string): Observable<any> {
-    return this.http.post(`http://localhost:3000/shelves`, { shelf }, {headers: this.getHeaders()});
-  }
-
   addUser(email: string): Observable<any> {
     return this.http.post(`http://localhost:3000/users`, { email }, {headers: this.getHeaders()});
   }
 
   addBookToShelf(book: {}, shelf: string): Observable<any> {
     return this.http.post(
-      `http://localhost:3000/books/user/${shelf}`,
+      `http://localhost:3000/shelves/${shelf}/books`,
       book, {headers: this.getHeaders()}
     );
   }
