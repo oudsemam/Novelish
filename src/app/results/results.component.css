@@ -67,6 +67,7 @@ a {
         margin: 15px;
         border-radius: 5px;
         flex-flow: wrap;
+        background-color: whitesmoke;
     }
 
     a {
