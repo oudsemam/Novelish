@@ -83,6 +83,7 @@ export class BookViewComponent implements OnInit {
       author: this.book.authors,
       isbn: this.isbn,
       // progress: req.body.progress,
+      language: 'english'
     };
     this.backend.addBookToShelf(book, shelf).subscribe(() => {})
   }  

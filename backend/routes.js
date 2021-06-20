@@ -59,13 +59,14 @@ routes.get("/shelves", async (req, res) => {
 
 //getting all the books on a particluar shelf
 routes.get("/shelves/:shelf", async (req, res) => {
+  console.log(req.params.shelf, req.user.email);
   res.json(
     await db.manyOrNone(
       `SELECT title, author, genre, subject, setting, time_period, language, isbn 
       FROM shelves_books sb
         INNER JOIN shelves s ON s.id = sb.shelf_id
         INNER JOIN users u ON u.id = s.user_id
-        INNER JOIN books b ON b.id = s.book_id
+        INNER JOIN books b ON b.id = sb.book_id
         WHERE shelf = $(shelf) AND email = $(email)`,
       {
         shelf: req.params.shelf,
@@ -78,13 +79,10 @@ routes.get("/shelves/:shelf", async (req, res) => {
 //adding a book to a particular shelf
 routes.post("/shelves/:shelf/books", async (req, res) => {
   try {
-
-    const book = await db.oneOrNone(
-      `SELECT id FROM books WHERE isbn = $(isbn)`,
-      { isbn: req.body.isbn }
-    );
+    let book = await db.oneOrNone(`SELECT id FROM books WHERE isbn = $(isbn)`, {
+      isbn: req.body.isbn,
+    });
     console.log(book);
-
 
     if (!book) {
       book = await db.one(
@@ -106,18 +104,18 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
       );
     }
 
-
     const shelf = await db.one(
-      `SELECT id FROM shelves s INNER JOIN users u ON u.id = s.user_id
+      `SELECT s.id FROM shelves s INNER JOIN users u ON u.id = s.user_id
       WHERE email = $(email) AND shelf = $(shelf)`,
       {
         email: req.user.email,
         shelf: req.params.shelf,
       }
     );
+    console.log(shelf);
 
-    if(!shelf) {
-      shelf = await db.one (
+    if (!shelf) {
+      shelf = await db.one(
         `INSERT INTO shelves (user_id, shelf)
         VALUES ($(user_id), $(shelf))
         RETURNING id, user_id, shelf
@@ -129,11 +127,9 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
       );
     }
 
-
     await db.oneOrNone(
-      `INSERT INTO shelves_books (shelf_id, book_id) VALUES ($(self_id), $(book_id))`,
+      `INSERT INTO shelves_books (shelf_id, book_id) VALUES ($(shelf_id), $(book_id))`,
       {
-
         shelf_id: shelf.id,
         book_id: book.id,
       }
@@ -142,7 +138,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
     return res.status(201).json(book);
   } catch (error) {
     console.log(error);
-   
+
     if (error.constraint === "books_isbn_key") {
       return res.status(400).send("That book already exists on that shelf. ");
     }
