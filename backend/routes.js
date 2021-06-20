@@ -145,6 +145,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
   }
 });
 
+// STOP HERE NEED TO FIX BELOW THIS LINE
 
 //removing a book from a shelf
 routes.delete("/books/:shelf/:book_id", async (req, res) => {
