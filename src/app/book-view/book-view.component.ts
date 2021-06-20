@@ -24,7 +24,6 @@ export class BookViewComponent implements OnInit {
   OLSubscription: Subscription | null = null
   NBSubscription: Subscription | null = null
   reviewSubscription: Subscription | null = null
-  subscription1: Subscription | null = null;
   UISubscription: Subscription | null = null;
   user_id: any = null;
   shelf: any = null;
@@ -75,50 +74,14 @@ export class BookViewComponent implements OnInit {
       });
   }
 
-  addToWantShelf() {
-    this.OLSubscription = this.OLService.getBook(this.isbn)
-    .subscribe((book) => {
-      console.log(book)
-      this.book = book[`ISBN:${this.isbn}`]
-    });
-
-    console.log("in the function")
-    const wantBook = {
-      shelf: "want",   
-      book_id: this.book,
-      isbn: this.isbn };
-      console.log(wantBook);
-      console.log("I am here")
-    this.subscription1 = this.backend.addBookToShelf(wantBook.book_id, wantBook.shelf).subscribe((book) => {
-      this.book = book
-      console.log(book)
-      this.router.navigate([`/books/${this.shelf}`]);
-      console.log(wantBook);
-      console.log("now I am here")
-    })
-
-
-  }
-
-  addToBurnShelf() {
-    // this.backend.addBookToShelf(this.isbn, 'burn');
-    this.enableDisable();
-
-    console.log("burned it");
-    // this.backend.addBookToShelf(this.isbn, "burn")
-  }
-
-  addToReadShelf() {
-    // this.backend.addBookToShelf(this.isbn, "read")
-  }
-
-  addToCurrentShelf() {
-    // this.backend.addBookToShelf(this.isbn, "current")
-  }
-
-  addToDNFShelf() {
-    // this.backend.addBookToShelf(this.isbn, "DNF")
-
+  addToShelf(shelf:string) {
+    const book = {   
+      title: this.book.title,
+      author: this.book.authors,
+      isbn: this.isbn,
+      // progress: req.body.progress,
+    };
+    this.backend.addBookToShelf(book, shelf).subscribe(() => {})
   }
 
   enableDisable() {

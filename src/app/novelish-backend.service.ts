@@ -24,6 +24,7 @@ export class NovelishBackendService {
     let firebase_uid: Object = {
       firebase_uid: uid,
     };
+    console.log(this.getHeaders())
     return this.http.post(`http://localhost:3000/users/${email}`, firebase_uid, {headers: this.getHeaders()});
   }
 
