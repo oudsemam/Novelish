@@ -12,7 +12,7 @@ CREATE TABLE books (
 	subject text NULL,
 	setting text NULL,
 	time_period text NULL,
-	language text NOT NULL,
+	language text NULL,
 	progress decimal(5,2) NULL
 );
 
