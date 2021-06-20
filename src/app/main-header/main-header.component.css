@@ -150,8 +150,8 @@ nav {
   position: absolute;
   width: 275px;
   margin: -100px 0 0 0;
-  padding: 20px;
-  padding-top: 125px;
+  padding: 10px;
+  padding-bottom: 200px;
   right: -100px;
   border-radius: 4px;
   /* background: rgba(255, 255, 255, 0.75); */
@@ -168,7 +168,7 @@ nav {
 
 #menu li {
   padding: 5px 0;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 #menuToggle input:checked ~ ul {
@@ -192,7 +192,7 @@ nav {
     position: relative;
     width: 30vw;
   }
-}
+
 .top-container {
   display: flex;
   justify-content: space-between;
@@ -203,3 +203,21 @@ nav {
   border: none;
 }
 
+#menu {
+  transform: none;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  padding: 10px;
+  position: absolute;
+  width: 275px;
+  margin: -100px 0 0 0;
+  padding-top: 80px;
+
+}
+
+#menu li {
+  font-size: 22px;
+}
+
+
+}
