@@ -3,6 +3,7 @@
 
 <h2>{{ book?.title }}</h2>
 <div class="container">
+
   <div class="outer">
     <img
       class="book"
@@ -37,35 +38,38 @@
     </div>
 
     <div class="button-row">
-      <button (click)="addToWantShelf()">
-        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+
+      <button (click)="addToShelf('want')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+
       </button>
       <span>Want to Read It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToReadShelf()">
-        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+      <button (click)="addToShelf('read')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+
       </button>
       <span>Have Read It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToDNFShelf()">
-        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+      <button (click)="addToShelf('dnf')">
+        <fa-icon [icon]="faPlus"></fa-icon>
       </button>
       <span>Did Not Finish It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToCurrentShelf()">
-        <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+      <button (click)="addToShelf('current')">
+        <fa-icon [icon]="faPlus"></fa-icon>
       </button>
       <span>Currently Reading It</span>
     </div>
 
     <div class="button-row">
-      <button (click)="addToBurnShelf(); showFire = !showFire">
+      <button (click)="addToShelf('burn'); showFire = !showFire">
         <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
       </button>
       <span>Burn It!</span>
@@ -86,6 +90,7 @@
       <p>{{ book?.number_of_pages }}</p>
       <!-- <h4>Languages</h4>
     <p>{{ book?.languages.key }}</p> -->
+
       <h4>Publisher</h4>
       <p *ngFor="let publisher of book?.publishers">{{ publisher.name }}</p>
 
@@ -119,5 +124,5 @@
   </span>
   
 </div>
-
 <app-review-toggle-button *ngIf="showReviewForm"></app-review-toggle-button>
+

@@ -15,12 +15,12 @@ export class BookViewComponent implements OnInit {
   faStarHalfAlt = faStarHalfAlt;
   faPlus = faPlus;
   faDumpsterFire = faDumpsterFire;
+
   faChevronDown = faChevronDown;
   showFire: boolean = false;
   showReviewForm: boolean = false;
   expandDetails: boolean = false;
   expandReviews: boolean = false;
-
   book: any = null;
   isbn: any = null;
   reviews: any;
@@ -76,49 +76,18 @@ export class BookViewComponent implements OnInit {
       });
   }
 
-  addToWantShelf() {
-    this.OLSubscription = this.OLService.getBook(this.isbn).subscribe(
-      (book) => {
-        console.log(book);
-        this.book = book[`ISBN:${this.isbn}`];
-      }
-    );
 
-    console.log('in the function');
-    const wantBook = {
-      shelf: 'want',
-      book_id: this.book,
+  addToShelf(shelf:string) {
+    const book = {   
+      title: this.book.title,
+      author: this.book.authors,
       isbn: this.isbn,
+      // progress: req.body.progress,
     };
-    console.log(wantBook);
-    console.log('I am here');
-    this.subscription1 = this.backend
-      .addBookToShelf(wantBook.book_id, wantBook.shelf)
-      .subscribe((book) => {
-        this.book = book;
-        console.log(book);
-        this.router.navigate([`/books/${this.shelf}`]);
-        console.log(wantBook);
-        console.log('now I am here');
-      });
+    this.backend.addBookToShelf(book, shelf).subscribe(() => {})
   }
 
-  addToBurnShelf() {
-    // this.backend.addBookToShelf(this.isbn, 'burn');
+  
 
-    console.log('burned it');
-    // this.backend.addBookToShelf(this.isbn, "burn")
-  }
-
-  addToReadShelf() {
-    // this.backend.addBookToShelf(this.isbn, "read")
-  }
-
-  addToCurrentShelf() {
-    // this.backend.addBookToShelf(this.isbn, "current")
-  }
-
-  addToDNFShelf() {
-    // this.backend.addBookToShelf(this.isbn, "DNF")
   }
 }

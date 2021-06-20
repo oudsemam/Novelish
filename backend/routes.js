@@ -78,11 +78,13 @@ routes.get("/shelves/:shelf", async (req, res) => {
 //adding a book to a particular shelf
 routes.post("/shelves/:shelf/books", async (req, res) => {
   try {
+
     const book = await db.oneOrNone(
       `SELECT id FROM books WHERE isbn = $(isbn)`,
       { isbn: req.body.isbn }
     );
     console.log(book);
+
 
     if (!book) {
       book = await db.one(
@@ -103,6 +105,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
         }
       );
     }
+
 
     const shelf = await db.one(
       `SELECT id FROM shelves s INNER JOIN users u ON u.id = s.user_id
@@ -126,9 +129,11 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
       );
     }
 
+
     await db.oneOrNone(
       `INSERT INTO shelves_books (shelf_id, book_id) VALUES ($(self_id), $(book_id))`,
       {
+
         shelf_id: shelf.id,
         book_id: book.id,
       }
@@ -137,7 +142,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
     return res.status(201).json(book);
   } catch (error) {
     console.log(error);
-    
+   
     if (error.constraint === "books_isbn_key") {
       return res.status(400).send("That book already exists on that shelf. ");
     }
