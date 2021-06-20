@@ -13,8 +13,8 @@
     positive aspect of the book) or
     <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or
     negative aspect of the book) if that category applies to this book. Only
-    vote for categories that you feel best apply (you do not have to vote in all
-    categories) to the book you are currently reviewing below.
+    vote for categories that you feel best apply to the book you are currently reviewing
+    (you do not have to vote in all categories) .
   </p>
   <p>
     To unselect a category, just click on the same
@@ -23,7 +23,7 @@
     category.
   </p>
   <p>
-    If category voting isn't your thing? Don't worry we still have the star
+    Category voting not your thing? Don't worry, we still have the star
     rating and open note type reviews below.
   </p>
   
@@ -32,9 +32,9 @@
 <div class="flexRow">
   <h3>Pro or Con Categories</h3>
 </div>
-<div>
-  <div *ngFor="let category of reviewCategories; let i = index">
-    <p>
+<div >
+  <div  *ngFor="let category of reviewCategories; let i = index">
+    <p class="leftMargin">
       {{ category.reviewCategory }}
       <button
         (click)="toggle(true, i)"
@@ -53,8 +53,8 @@
 </div>
 
 <!-- Star Rating -->
-<h3>Star Rating</h3>
-<ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+<h3 class="leftMargin">Star Rating</h3>
+<ngb-rating class="leftMargin" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
 <span class="flexRow">
 <p>Rating Scale:</p>
 <button class="expand" (click)="expandRatingScale = !expandRatingScale">
@@ -64,13 +64,13 @@
 
 <ul *ngIf ="expandRatingScale">
   <ol>1 = Burn it!</ol>
-  <ol>2 = meh!</ol>
-  <ol>3 = Its okay</ol>
+  <ol>2 = meh</ol>
+  <ol>3 = It's okay</ol>
   <ol>4 = It was good</ol>
   <ol>5 = Awesome-Sauce! 100% would read it again!</ol>
 </ul>
 
-<p>Your rating: {{ starRating }}</p>
+<p class="leftMargin">Your rating: {{ starRating }}</p>
 
 <app-notes-or-reviews></app-notes-or-reviews>
 

@@ -21,6 +21,10 @@
   width: 100%;
 }
 
+.leftMargin {
+  margin-left: 15px;
+}
+
 .center {
   border-color: red solid 1px;
 }
