@@ -18,7 +18,9 @@ As avid readers ourselves, we found the existing apps for tracking and finding n
 
 ## Collaborators
 
-Kate Mora Woods
-Maggie Oudsema
-Mechial Harrison
+[Kate Mora Woods](https://github.com/bailandocubita)
+
+[Maggie Oudsema](https://github.com/oudsemam)
+
+[Mechial Harrison](https://github.com/mechialh)
 
