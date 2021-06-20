@@ -1,25 +1,26 @@
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
-	email text NOT NULL
+	email text NOT NULL UNIQUE
 );
 
 CREATE TABLE books (
 	id SERIAL PRIMARY KEY,
+	ISBN char(13) NULL UNIQUE,
 	title text NOT NULL,
 	author text NOT NULL,
 	genre text NULL,
-	rating smallint NULL,
 	subject text NULL,
 	setting text NULL,
 	time_period text NULL,
-	language text NOT NULL
+	language text NOT NULL,
+	progress decimal(5,2) NULL
 );
 
 CREATE TABLE shelves (
+	id SERIAL PRIMARY KEY,
 	book_id integer REFERENCES books(id) ON DELETE CASCADE NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-	shelf text NOT NULL CHECK (shelf in ('read', 'want', 'current', 'dnf', 'burn')),
-	Primary key (book_id, user_id)
+	shelf text NOT NULL
 );
 
 CREATE TABLE notes (
@@ -29,45 +30,25 @@ CREATE TABLE notes (
 	PRIMARY KEY (book_id, user_id)
 );
 
-ALTER TABLE books
-DROP COLUMN rating;
 
 CREATE TABLE reviews (
 	book_id integer REFERENCES books(id) ON DELETE CASCADE NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
 	rating smallint NULL,
-	review text null,
-	plot boolean null,
-	character boolean null,
-	world boolean null,
-	pacing boolean null,
-	organization boolean null,
-	informative boolean null,
-	writing boolean null,
-	readability boolean null,
-	worth boolean null,
-	editing boolean null,
-	accuracy boolean null,
+	review text NULL,
+	plot boolean NULL,
+	character boolean NULL,
+	world boolean NULL,
+	pacing boolean NULL,
+	organization boolean NULL,
+	informative boolean NULL,
+	writing boolean NULL,
+	readability boolean NULL,
+	worth boolean NULL,
+	editing boolean NULL,
+	accuracy boolean NULL,
 	PRIMARY KEY (book_id, user_id)
 );
-
-ALTER TABLE books
-ADD COLUMN progress decimal(5,2) null
-
-ALTER TABLE users
-ADD CONSTRAINT unique_email UNIQUE (email);
-
-ALTER TABLE shelves
-DROP CONSTRAINT shelf_check;
-
-ALTER TABLE books
-ADD ISBN char(13) NULL UNIQUE;
-
-ALTER TABLE shelves
-DROP CONSTRAINT shelves_pkey;
-
-ALTER TABLE shelves
-ADD CONSTRAINT shelves_pkey PRIMARY KEY (user_id);
 
 
 -- dummy data

@@ -36,14 +36,15 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email: any, password: any) {
+  async SignIn(email: any, password: any) {
     this.afAuth
       .setPersistence('session')
       .then(() => {
         this.afAuth
           .signInWithEmailAndPassword(email, password)
-          .then((result) => {
-            this.SetUserData(result.user);
+          .then(async (result) => {
+            console.log ("starting")
+            await this.SetUserData(result.user);
             this.subscription = this.NovelishBackendService.updateUserUID(result.user?.email, result.user?.uid).subscribe(()=>{
               this.ngZone.run(() => {
                 this.router.navigate(['dashboard']);
@@ -124,6 +125,7 @@ export class AuthService {
       photoURL: User.photoURL,
       emailVerified: User.emailVerified,
     };
+    console.log ("before local storage set item");
     localStorage.setItem('User', JSON.stringify(this.userData));
     return userRef.set(this.userData, {
       merge: true,
