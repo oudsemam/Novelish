@@ -26,8 +26,9 @@ export class ShelfComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
+    console.log(this.shelf)
       this.subscription = this.NBService.getBooksFromShelf(this.shelf).subscribe(b => {
+        console.log('in get books')
         console.log(b);
         this.books = b
       })
