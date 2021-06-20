@@ -17,7 +17,7 @@ export class NovelishBackendService {
     return header
   }
   addNewUser() {
-    return this.http.post('http://localhost:3000/users', {});
+    return this.http.post('http://localhost:3000/users', {}, {headers: this.getHeaders()});
   }
 
   updateUserUID(email: any, uid: any) {
