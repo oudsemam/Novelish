@@ -1,27 +1,24 @@
 # Novelish
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+Novelish is the product of 3 book loving full stack graduates of Grand Circus, based in West Michigan. Be sure to check back for new features currently in development, like creating your own shelves, advanced searching, tracking progress in your books, and adding notes.
 
-## Development server
+## Motivation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+As avid readers ourselves, we found the existing apps for tracking and finding new books to be lacking in several areas. We wanted to create a user experience that was simple and easy to use, and allowed us to save and organize our book lists, first and foremost. Future development includes enhanced features for searching based on user reviews around specific categories, sharing what you're currently reading, and customized shelves for organization. 
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
+- Open Library API
+- NY Times Best Sellers API
+- Backend database created in pgAdmin and Insomnia using the Express framework
+- FireBase user authentication
+- Sentry.io error tracking
+- Angular CLI version 12.0.3 with HTML, CSS and JavaScript (ES6)
 
-## Build
+## Collaborators
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Kate Mora Woods
+Maggie Oudsema
+Mechial Harrison
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
