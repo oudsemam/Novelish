@@ -1,34 +1,79 @@
-<app-main-header></app-main-header>
-<app-search-bar></app-search-bar>
 <!-- subject toggles -->
-<div class="flexColumn">
-  <h2>Pro</h2>
-  <h2>or</h2>
-  <h2>Con</h2>
-</div>
-<h3>How to make a review</h3>
-<p>
-  For each category below, click either <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> for a pro (or positive aspect of the book) or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or negative aspect of the book) if that category applies. Only vote for categories that you feel best apply (you do not have to vote in all categories) to the book you are currently reviewing below. 
-</p>
-<p>To unselect a category, just click on the same <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> or <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> to reset that category.</p>
-<p>If category voting isn't your thing? Don't worry we still have the star rating and open note type reviews below.</p>
 
-<div>
-  <div *ngFor="let category of reviewCategories; let i = index">
-     <p>{{ category.reviewCategory }}
-    <button (click)="toggle(true, i)" [ngClass]="{'pro' : category.value===true}"><fa-icon [icon]="faPlusCircle" aria-label="plus" ></fa-icon></button>
-    <button (click)="toggle(false, i)" [ngClass]="{'con' : category.value===false}"><fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon></button>
+<span class="flexRow">
+  <h2>How to make a review</h2>
+  <button class="expand" (click)="expandInstructions = !expandInstructions">
+    <fa-icon [icon]="faChevronDown"></fa-icon>
+  </button>
+</span>
+<div *ngIf="expandInstructions" class="flexColumn">
+  <p>
+    For each category below, click either
+    <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> for a pro (or
+    positive aspect of the book) or
+    <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> for a con (or
+    negative aspect of the book) if that category applies to this book. Only
+    vote for categories that you feel best apply to the book you are currently reviewing
+    (you do not have to vote in all categories) .
+  </p>
+  <p>
+    To unselect a category, just click on the same
+    <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon> or
+    <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon> to reset that
+    category.
+  </p>
+  <p>
+    Category voting not your thing? Don't worry, we still have the star
+    rating and open note type reviews below.
+  </p>
+  
+</div>
+
+<div class="flexRow">
+  <h3>Pro or Con Categories</h3>
+</div>
+<div >
+  <div  *ngFor="let category of reviewCategories; let i = index">
+    <p class="leftMargin">
+      {{ category.reviewCategory }}
+      <button
+        (click)="toggle(true, i)"
+        [ngClass]="{ pro: category.value === true }"
+      >
+        <fa-icon [icon]="faPlusCircle" aria-label="plus"></fa-icon>
+      </button>
+      <button
+        (click)="toggle(false, i)"
+        [ngClass]="{ con: category.value === false }"
+      >
+        <fa-icon [icon]="faMinusCircle" aria-label="minus"></fa-icon>
+      </button>
     </p>
   </div>
 </div>
 
-
 <!-- Star Rating -->
-<h3>Star Rating</h3>
-<ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+<h3 class="leftMargin">Star Rating</h3>
+<ngb-rating class="leftMargin" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+<span class="flexRow">
+<p>Rating Scale:</p>
+<button class="expand" (click)="expandRatingScale = !expandRatingScale">
+    <fa-icon [icon]="faChevronDown"></fa-icon>
+  </button>
+</span>
 
-<p>Rating: {{ starRating }}</p>
+<ul *ngIf ="expandRatingScale">
+  <ol>1 = Burn it!</ol>
+  <ol>2 = meh</ol>
+  <ol>3 = It's okay</ol>
+  <ol>4 = It was good</ol>
+  <ol>5 = Awesome-Sauce! 100% would read it again!</ol>
+</ul>
+
+<p class="leftMargin">Your rating: {{ starRating }}</p>
 
 <app-notes-or-reviews></app-notes-or-reviews>
 
-<button (click)=submit()>Submit</button>
+<button class="submit" (click)="submit()">Submit
+  <fa-icon [icon]="faCheck"></fa-icon>
+</button>

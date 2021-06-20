@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faMinusCircle, faPlusCircle, faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMinusCircle,
+  faPlusCircle,
+  faStar,
+  faChevronDown,
+  faCheck,
+} from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { NovelishBackendService } from '../novelish-backend.service';
 import { ReviewCat } from '../review-cat';
@@ -17,6 +23,10 @@ export class ReviewToggleButtonComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faMinusCircle = faMinusCircle;
   faStar = faStar;
+  faChevronDown = faChevronDown;
+  faCheck = faCheck;
+  expandInstructions: boolean = false;
+  expandRatingScale:boolean = false;
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];

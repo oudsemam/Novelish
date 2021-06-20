@@ -1,6 +1,6 @@
 * {
-    font-family: 'Josefin Sans', sans-serif;
-  }
+  font-family: "Josefin Sans", sans-serif;
+}
 
 .book {
   width: 200px;
@@ -13,53 +13,61 @@ button {
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  background-color: #3793CD;
-  border: 2px solid #3793CD;
+  background-color: #3793cd;
+  border: 2px solid #3793cd;
   color: whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-right: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 60px;
+}
+.button-row {
+ padding: 5px;
 }
 
 .container {
-    display: flex;
-    margin: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    flex-direction: row;
-    justify-content: space-around
+  display: flex;
+  margin: 10px;
+  padding: 20px;
+  height: 700px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 img {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 h2 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 h3 {
-    font-size: 1.5em;
+  font-size: 1.5em;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
 }
 
 .details_container {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 span {
-    margin-left: 10px;
+  margin-left: 10px;
 }
-
 
 /* for fire/burn it button below */
 @keyframes scaleUpDown {
@@ -116,15 +124,23 @@ span {
   }
 }
 
+.outer {
+  width: 150px;
+  height: 250px;
+  position: relative;
+  vertical-align: middle;
+}
+
 .fire {
-  position: absolute;
-  top: 50%;
-  left: 15%;
+  position: relative;
+  display: block;
+  left: 20px;
+  top: -150px;
   width: 100px;
   height: 100px;
   background-color: transparent;
-  /* margin-left: auto;
-  margin-right: auto; */
+  margin-left: auto;
+  margin-right: auto;
   /* z-index: 2000; */
 }
 
@@ -141,7 +157,11 @@ span {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(farthest-corner at 10px 0, #d43300 0%, #ef5a00 95%);
+  background-image: radial-gradient(
+    farthest-corner at 10px 0,
+    #d43300 0%,
+    #ef5a00 95%
+  );
   transform: scaleX(0.8) rotate(45deg);
   border-radius: 0 40% 60% 40%;
   filter: drop-shadow(0 0 10px #d43322);
@@ -244,4 +264,12 @@ span {
   animation: glow 2s ease-out 0;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
+}
+
+/* This is where the layout will break from mobile to Desktop */
+@media only screen and (min-width: 720px) {
+  .container {
+    flex-direction: row;
+    height: 400px;
+  }
 }
