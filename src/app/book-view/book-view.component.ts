@@ -85,9 +85,5 @@ export class BookViewComponent implements OnInit {
       // progress: req.body.progress,
     };
     this.backend.addBookToShelf(book, shelf).subscribe(() => {})
+  }  
   }
-
-  
-
-  }
-}
