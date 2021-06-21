@@ -111,8 +111,8 @@
   </span>
   <span *ngIf="expandReviews"> 
     
-<div *ngFor="let review of reviews">
-    <p>{{ review?.review }}</p>
+<div *ngFor="let review of reviews; let i = index">
+    <p>Reviewer# {{i}}: "{{ review?.review }}"</p>
    
   </div>
   </span>
