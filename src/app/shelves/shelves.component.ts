@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { NovelishBackendService } from '../novelish-backend.service';
 import { OpenLibraryService } from '../open-library.service';
@@ -15,6 +16,7 @@ import { Shelf } from '../shelf';
 })
 export class ShelvesComponent implements OnInit {
 
+  faChevronDown = faChevronDown;
   shelves: any[] = [];
   subscription: Subscription | null = null
   // emailsubscription: Subscription | null = null
@@ -39,5 +41,13 @@ export class ShelvesComponent implements OnInit {
     //   })
     // })
     
+    // toggle(value: boolean | null, i: number) {
+    //   if(this.shelves[i].value !== value) {
+    //     this.shelves[i].value = value;
+    //   } else {
+    //     this.shelves[i].value = null;
+    //   }
+    // } 
+
 
 }

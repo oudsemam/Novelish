@@ -7,6 +7,18 @@ Novelish is the product of 3 book loving full stack graduates of Grand Circus, b
 As avid readers ourselves, we found the existing apps for tracking and finding new books to be lacking in several areas. We wanted to create a user experience that was simple and easy to use, and allowed us to save and organize our book lists, first and foremost. Future development includes enhanced features for searching based on user reviews around specific categories, sharing what you're currently reading, and customized shelves for organization. 
 
 ## Screenshots
+![sign-in-mobile](https://i.postimg.cc/pybNxMcR/Novelish-sign-in-mobile.jpg)
+
+![homepage-widescreen](https://i.postimg.cc/Sx4s7BSB/Novelish-home-wide.jpg)
+
+![bookview-widescreen](https://i.postimg.cc/5NLyz4V5/Novelish-bookview-wide.jpg)
+
+![search-mobile](https://i.postimg.cc/tRL771LC/Novelish-search-mobile.jpg)
+
+![search-widescreen](https://i.postimg.cc/QdqM6fVH/Novelish-search-wide.jpg)
+
+
+
 
 ## Technologies Used
 - Open Library API
