@@ -32,10 +32,13 @@ export class ReviewToggleButtonComponent implements OnInit {
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
-
+  newReview!: string;
+  addedReviews: string[] = [];
   rating: number | null = null;
-  review: string = '';
+  reviewText: string = '';
   submitSubscribe: Subscription | null = null;
+  reviewSubscribe: Subscription | null = null;
+
   @Input()isbn: string = '';
 
   reviewCategories: ReviewCat[] = [
@@ -105,27 +108,32 @@ export class ReviewToggleButtonComponent implements OnInit {
   }
 
   submit() {
-    const review = {
-      rating: this.rating,
-      review: this.review,
-      plot: this.reviewCategories[6].value,
-      character: this.reviewCategories[1].value,
-      world: this.reviewCategories[8].value,
-      pacing: this.reviewCategories[5].value,
-      writing: this.reviewCategories[10].value,
-      readability: this.reviewCategories[7].value,
-      worth: this.reviewCategories[9].value,
-      editing: this.reviewCategories[2].value,
-      accuracy: this.reviewCategories[0].value,
-      informative: this.reviewCategories[3].value,
-      organization: this.reviewCategories[4].value,
-    };
+    // const review = {
+    //   rating: this.rating,
+    //   reviewText: this.reviewText,
+    //   plot: this.reviewCategories[6].value,
+    //   character: this.reviewCategories[1].value,
+    //   world: this.reviewCategories[8].value,
+    //   pacing: this.reviewCategories[5].value,
+    //   writing: this.reviewCategories[10].value,
+    //   readability: this.reviewCategories[7].value,
+    //   worth: this.reviewCategories[9].value,
+    //   editing: this.reviewCategories[2].value,
+    //   accuracy: this.reviewCategories[0].value,
+    //   informative: this.reviewCategories[3].value,
+    //   organization: this.reviewCategories[4].value,
+    // };
+    // console.log(this.reviewText);
+
+    const newReview = this.newReview;
+   
 
     this.submitSubscribe = this.NBService.addReview(
-      review,
-      this.isbn
-    ).subscribe(() => {
-      this.router.navigate([`/books/${this.isbn}`]);
+      newReview, this.isbn).subscribe(() => {
+      this.router.navigate([`/shelves`]);
     });
-  }
+
+    console.log(newReview);
+  };
+
 }

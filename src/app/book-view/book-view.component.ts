@@ -85,6 +85,8 @@ export class BookViewComponent implements OnInit {
       // progress: req.body.progress,
       language: 'english'
     };
-    this.backend.addBookToShelf(book, shelf).subscribe(() => {})
+    this.backend.addBookToShelf(book, shelf).subscribe(() => {
+      this.router.navigate([`/shelves`]);
+    })
   }  
   }
