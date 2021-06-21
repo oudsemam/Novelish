@@ -8,9 +8,23 @@
 
   <div class="container">
     <div id="shelf" *ngFor="let shelf of shelves">
+      <!-- <button class="hidden" (click)="showShelf = !showShelf">
+        <fa-icon [icon]="faChevronDown" size="lg"></fa-icon> -->
       <h2>{{ shelf.shelf }}</h2>
       <app-shelf [shelf]="shelf.shelf"></app-shelf>
+      <!-- </button> -->
     </div>
   </div>
 
 </div>
+
+<!-- 
+<div class="mobile">
+  <div id="shelf" *ngFor="let shelf of shelves">
+    <button (click)="showShelf = !showShelf">
+      <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
+      <h2>{{ shelf.shelf }}</h2>
+      <app-shelf [shelf]="shelf.shelf"></app-shelf>
+    </button>
+  </div>
+</div> -->
