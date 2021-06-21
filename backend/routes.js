@@ -82,15 +82,14 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
     let book = await db.oneOrNone(`SELECT id FROM books WHERE isbn = $(isbn)`, {
       isbn: req.body.isbn,
     });
-    console.log(book);
 
     if (!book) {
       console.log("in the if")
       book = await db.one(
         `
-          INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
-          VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
-          RETURNING id, title, author, genre, subject, setting, time_period, language, isbn, progress`,
+            INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
+            VALUES ($(title), $(author), $(genre), $(subject), $(setting), $(time_period), $(language), $(isbn), $(progress))
+            RETURNING id, title, author, genre, subject, setting, time_period, language, isbn, progress`,
         {
           title: req.body.title,
           author: req.body.author,
@@ -105,24 +104,25 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
       );
     }
     const shelf = await db.oneOrNone(
-
       `SELECT s.id FROM shelves s INNER JOIN users u ON u.id = s.user_id
-      WHERE email = $(email) AND shelf = $(shelf)`,
+        WHERE email = $(email) AND shelf = $(shelf)`,
       {
         email: req.user.email,
         shelf: req.params.shelf,
       }
     );
-    console.log(shelf);
+    const user = await db.one(`SELECT id FROM users WHERE email = $(email)`, {
+      email: req.user.email,
+    });
 
     if (!shelf) {
       shelf = await db.one(
         `INSERT INTO shelves (user_id, shelf)
-        VALUES ($(user_id), $(shelf))
-        RETURNING id, user_id, shelf
-        `,
+          VALUES ($(user_id), $(shelf))
+          RETURNING id, user_id, shelf
+          `,
         {
-          user_id: req.user.id,
+          user_id: user.id,
           shelf: req.params.shelf,
         }
       );
