@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -27,6 +27,8 @@ export class ReviewToggleButtonComponent implements OnInit {
   faCheck = faCheck;
   expandInstructions: boolean = false;
   expandRatingScale:boolean = false;
+  @Input()book: any = null;
+
 
   proCategories: ReviewCat[] = [];
   conCategories: ReviewCat[] = [];
@@ -34,7 +36,7 @@ export class ReviewToggleButtonComponent implements OnInit {
   rating: number | null = null;
   review: string = '';
   submitSubscribe: Subscription | null = null;
-  isbn: string = '';
+  @Input()isbn: string = '';
 
   reviewCategories: ReviewCat[] = [
     {
@@ -90,7 +92,9 @@ export class ReviewToggleButtonComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.book);
+  }
 
   toggle(value: boolean | null, i: number) {
     if (this.reviewCategories[i].value !== value) {
