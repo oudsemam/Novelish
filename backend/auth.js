@@ -7,7 +7,7 @@ const db = require("./database")
 
 const jwtDecode = require("jwt-decode");
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const header = req.headers.authorization;
   if (!header) {
     res.status(401).send({
@@ -48,7 +48,7 @@ module.exports = (req, res, next) => {
   const token = parts[1];
 
   const user = jwtDecode(token);
-  const exsiting = db.oneOrNone(`SELECT id FROM users WHERE email = $(email)`, {email: user.email});
+  const exsiting = await db.oneOrNone(`SELECT id FROM users WHERE email = $(email)`, {email: user.email});
   req.user = user;
   req.user.id = exsiting.id;
   next();
