@@ -12,5 +12,4 @@ export const environment = {
     appId: "1:153734898826:web:812837a286cb826e4bf973",
     measurementId: "G-QMSDK2S8W3"
   },
-  
 };
