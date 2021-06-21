@@ -58,12 +58,21 @@ h3 {
   flex-direction: row;
 }
 
+.details h3 {
+  padding-right: 10px;
+}
+
 .details_container {
   margin-left: 10px;
 }
 
 span {
   margin-left: 10px;
+}
+
+.chevron {
+  width: 30px;
+  height: 30px;
 }
 
 /* for fire/burn it button below */

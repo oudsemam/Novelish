@@ -72,7 +72,15 @@
 
 <p class="leftMargin">Your rating: {{ starRating }}</p>
 
-<app-notes-or-reviews></app-notes-or-reviews>
+<div class="review-container">
+  <textarea
+    [(ngModel)]="newReview"
+    aria-label="Review"
+    type="text"
+    id="review"
+    name="review"
+    placeholder="Write your thoughts here..."
+  ></textarea>
 
 <button class="submit" (click)="submit()">Submit
   <fa-icon [icon]="faCheck"></fa-icon>

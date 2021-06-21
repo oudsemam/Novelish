@@ -81,7 +81,7 @@
   <div>
     <span class="details">
       <h3>Details</h3>
-      <button (click)="expandDetails = !expandDetails">
+      <button class="chevron" (click)="expandDetails = !expandDetails">
         <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
       </button>
     </span>
@@ -105,7 +105,7 @@
 <div class="details_container">
   <span class="details">
     <h3>Reviews</h3>
-    <button (click)="expandReviews = !expandReviews">
+    <button class="chevron" (click)="expandReviews = !expandReviews">
       <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
     </button>
   </span>
