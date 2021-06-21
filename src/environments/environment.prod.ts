@@ -4,12 +4,12 @@ export const environment = {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebase: {
-    apiKey: "AIzaSyCsqWCSMD1HNYroUw73jiqro21GyaFeqZc",
-    authDomain: "novelish-reviews.firebaseapp.com",
-    projectId: "novelish-reviews",
-    storageBucket: "novelish-reviews.appspot.com",
-    messagingSenderId: "616796905005",
-    appId: "1:616796905005:web:5d7f23a4391914522d22a4",
-    measurementId: "G-WZTSLDF0E9"
-  }
+    apiKey: "AIzaSyASFRSJgq2MZm12I4Nxn7c8kXFtyc5zN9o",
+    authDomain: "novel-ish-app.firebaseapp.com",
+    projectId: "novel-ish-app",
+    storageBucket: "novel-ish-app.appspot.com",
+    messagingSenderId: "153734898826",
+    appId: "1:153734898826:web:812837a286cb826e4bf973",
+    measurementId: "G-QMSDK2S8W3"
+  },
 };
