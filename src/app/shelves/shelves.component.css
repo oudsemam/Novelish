@@ -17,6 +17,18 @@ h2 {
   color: #314749;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
 @media only screen and (min-width: 720px) {
-  
+  /* .hidden {
+    visibility: hidden;
+  } */
+
+
 }
