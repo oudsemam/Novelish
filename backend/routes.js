@@ -103,7 +103,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
         }
       );
     }
-    const shelf = await db.oneOrNone(
+    let shelf = await db.oneOrNone(
       `SELECT s.id FROM shelves s INNER JOIN users u ON u.id = s.user_id
         WHERE email = $(email) AND shelf = $(shelf)`,
       {
@@ -365,7 +365,7 @@ routes.post("/reviews/:isbn", async (req, res) => {
         book_id: book.id,
       }
     );
-    
+
     return res.status(201).json(newReview);
   } catch (error) {
     console.log(error);
