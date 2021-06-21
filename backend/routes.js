@@ -104,8 +104,8 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
         }
       );
     }
-    console.log("got here")
-    const shelf = await db.one(
+    const shelf = await db.oneOrNone(
+
       `SELECT s.id FROM shelves s INNER JOIN users u ON u.id = s.user_id
       WHERE email = $(email) AND shelf = $(shelf)`,
       {
