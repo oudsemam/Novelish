@@ -85,6 +85,7 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
     console.log(book);
 
     if (!book) {
+      console.log("in the if")
       book = await db.one(
         `
           INSERT INTO books (title, author, genre, subject, setting, time_period, language, isbn, progress) 
@@ -103,8 +104,8 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
         }
       );
     }
-
     const shelf = await db.oneOrNone(
+
       `SELECT s.id FROM shelves s INNER JOIN users u ON u.id = s.user_id
       WHERE email = $(email) AND shelf = $(shelf)`,
       {

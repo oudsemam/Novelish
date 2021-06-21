@@ -1,10 +1,16 @@
 <app-main-header></app-main-header>
 <app-search-bar></app-search-bar>
-<h1>Welcome to your library</h1>
 
-<ul>
-  <li *ngFor="let shelf of shelves">
-    <h2>{{ shelf.shelf }}</h2>
-    <app-shelf [shelf]="shelf.shelf"></app-shelf>
-  </li>
-</ul>
+<div id="main">
+
+  <h1>Welcome to your library</h1>
+
+
+  <div class="container">
+    <div id="shelf" *ngFor="let shelf of shelves">
+      <h2>{{ shelf.shelf }}</h2>
+      <app-shelf [shelf]="shelf.shelf"></app-shelf>
+    </div>
+  </div>
+
+</div>
