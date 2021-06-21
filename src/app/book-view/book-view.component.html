@@ -113,14 +113,7 @@
     
 <div *ngFor="let review of reviews">
     <p>{{ review?.review }}</p>
-    
-    <div class="no-results" *ngIf="reviews !== reviews">
-      <h2>Uh oh! No reviews were found.</h2>
-      <p>Have you read this book? Feel free to write your own here <button (click)="showReviewForm = !showReviewForm; expandReviews = !expandReviews">
-        <fa-icon [icon]="faStarHalfAlt" size="lg"></fa-icon>
-      </button></p>
-    </div>
-    
+   
   </div>
   </span>
   
