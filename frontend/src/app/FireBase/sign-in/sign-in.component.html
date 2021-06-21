@@ -1,0 +1,68 @@
+<div class="whole">
+  <section class="sign">
+    <div class="welcome">
+      <div class="displayTableCell">
+        <div class="authBlock">
+          <h3>Sign In</h3>
+          <div class="formGroup">
+            <input
+              type="text"
+              class="formControl"
+              placeholder="Username"
+              #userName
+              required
+            />
+          </div>
+
+          <div class="formGroup">
+            <input
+              type="password"
+              class="formControl"
+              placeholder="Password"
+              #userPassword
+              required
+            />
+          </div>
+
+          <!-- Calling SignIn Api from AuthService -->
+          <div class="forgotPassword">
+            
+          </div>
+          <div class="formGroup">
+            <input
+              type="button"
+              class="login"
+              value="Log In"
+              (click)="authService.SignIn(userName.value, userPassword.value)"
+            />
+            <span id="forgot" routerLink="/forgot-password">Forgot Password?</span>
+          </div>
+
+          
+        </div>
+
+        <div class="redirectToLogin">
+          <span
+            >Don't have an account? <span
+              class="redirect"
+              routerLink="/register-user"
+            >
+              <button id="sign">Sign up</button></span
+            ></span
+          >
+        </div>
+      </div>
+
+        
+    </div>
+  </section>
+
+  <section id="intro">
+    <div id="text">
+      <img src="../../../assets/Novelish blue cropped.png" alt="Novelish logo" routerLink="/home">
+      <p>A book review site that is powered by you, the user!</p>
+    </div>
+  </section>
+</div>
+
+<div class="displayTable"></div>

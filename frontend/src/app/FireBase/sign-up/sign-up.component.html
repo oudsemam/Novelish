@@ -1,0 +1,57 @@
+<div class="whole">
+  <section class="sign">
+    <div class="welcome">
+      <div class="displayTable">
+        <div class="displayTableCell">
+          <div class="authBlock">
+            <h3>Sign Up</h3>
+
+            
+
+            <div class="formGroup">
+              <input
+                type="email"
+                class="formControl"
+                placeholder="Email Address"
+                #userEmail
+                required
+              />
+            </div>
+
+            <div class="formGroup">
+              <input
+                type="password"
+                class="formControl"
+                placeholder="Password"
+                #userPwd
+                required
+              />
+            </div>
+
+            <div class="formGroup">
+              <input
+                type="button"
+                class="login"
+                value="Sign Up"
+                (click)="authService.SignUp(userEmail.value, userPwd.value)"
+              />
+            </div>
+
+            <div class="redirectToLogin">
+              <span
+                >Already have an account?
+                <span class="redirect" routerLink="/sign-in"><button id="sign">Log In</button></span></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="intro">
+    <div id="text">
+      <img src="../../../assets/Novelish blue cropped.png" alt="Novelish logo" routerLink="/home">
+      <p>A book review site that is powered by you, the user!</p>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,122 @@
+<app-main-header></app-main-header>
+<app-search-bar></app-search-bar>
+
+<h2>{{ book?.title }}</h2>
+<div class="container">
+
+  <div class="outer">
+    <img
+      class="book"
+      src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg?default=false"
+      onerror="this.onerror=false;this.src='../assets/Novelish-blank-cover-L.png'"
+    />
+    <div class="fire" *ngIf="showFire">
+      <div class="fire-left">
+        <div class="main-fire"></div>
+        <div class="particle-fire"></div>
+      </div>
+      <div class="fire-main">
+        <div class="main-fire"></div>
+        <div class="particle-fire"></div>
+      </div>
+      <div class="fire-right">
+        <div class="main-fire"></div>
+        <div class="particle-fire"></div>
+      </div>
+      <div class="fire-bottom">
+        <div class="main-fire"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <div class="button-row">
+      <button (click)="showReviewForm = !showReviewForm">
+        <fa-icon [icon]="faStarHalfAlt" size="lg"></fa-icon>
+      </button>
+      <span>Review It</span>
+    </div>
+
+    <div class="button-row">
+
+      <button (click)="addToShelf('Want to Read It')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+
+      </button>
+      <span>Want to Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf('Have Read It')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+
+      </button>
+      <span>Have Read It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf('Did Not Finish It')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Did Not Finish It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf('Currently Reading It')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+      <span>Currently Reading It</span>
+    </div>
+
+    <div class="button-row">
+      <button (click)="addToShelf('Burn It!'); showFire = !showFire">
+        <fa-icon [icon]="faDumpsterFire" size="lg" class="nav-icon"></fa-icon>
+      </button>
+      <span>Burn It!</span>
+    </div>
+  </div>
+</div>
+
+<div class="details_container">
+  <div>
+    <span class="details">
+      <h3>Details</h3>
+      <button class="chevron" (click)="expandDetails = !expandDetails">
+        <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
+      </button>
+    </span>
+    <div *ngIf="expandDetails">
+      <h4>Pages</h4>
+      <p>{{ book?.number_of_pages }}</p>
+      <!-- <h4>Languages</h4>
+    <p>{{ book?.languages.key }}</p> -->
+
+      <h4>Publisher</h4>
+      <p *ngFor="let publisher of book?.publishers">{{ publisher.name }}</p>
+
+      <div>
+        <h3>Author(s)</h3>
+        <h4 *ngFor="let author of book?.authors">{{ author.name }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="details_container">
+  <span class="details">
+    <h3>Reviews</h3>
+    <button class="chevron" (click)="expandReviews = !expandReviews">
+      <fa-icon [icon]="faChevronDown" size="lg"></fa-icon>
+    </button>
+  </span>
+  <span *ngIf="expandReviews"> 
+    
+<div *ngFor="let review of reviews; let i = index">
+    <p>Reviewer# {{i}}: "{{ review?.review }}"</p>
+   
+  </div>
+  </span>
+  
+</div>
+<app-review-toggle-button *ngIf="showReviewForm" [book]="book" [isbn]="isbn"></app-review-toggle-button>
+

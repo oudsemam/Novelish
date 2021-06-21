@@ -1,0 +1,22 @@
+<div class="search-filter-component">
+  <div class="search-bar-container">
+    <div class="search-bar-with-icon">
+      <fa-icon [icon]="faSearch" class="faSearch"></fa-icon>
+      <input
+        type="text"
+        name="book search"
+        [(ngModel)]="searchTerm"
+        placeholder="Search for a book..."
+        id="search-input"
+      />
+      <div class="search-dropdown">
+        <label>by: </label>
+        <select>
+          <option>title</option>
+          <option>author</option>
+        </select>
+      </div>
+    </div>
+    <button id="search-button" (click)="search()">Search</button>
+  </div>
+</div>
