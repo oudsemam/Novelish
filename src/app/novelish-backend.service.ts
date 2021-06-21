@@ -20,26 +20,26 @@ export class NovelishBackendService {
     return this.http.post('http://localhost:3000/users', {}, {headers: this.getHeaders()});
   }
 
-  updateUserUID(email: any, uid: any) {
-    let firebase_uid: Object = {
-      firebase_uid: uid,
-    };
-    console.log(this.getHeaders())
-    return this.http.post(`http://localhost:3000/users`, firebase_uid, {headers: this.getHeaders()});
-  }
+  // updateUserUID(email: any, uid: any) {
+  //   let firebase_uid: Object = {
+  //     firebase_uid: uid,
+  //   };
+  //   console.log(this.getHeaders())
+  //   return this.http.post(`http://localhost:3000/users`, firebase_uid, {headers: this.getHeaders()});
+  // }
 
   getAllBooks(): Observable<any> {
     return this.http.get(`http://localhost:3000/books`, {headers: this.getHeaders()});
   }
 
 
-  getShelvesByUser(): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves`, {headers: this.getHeaders()});
-  }
+  // getShelvesByUser(): Observable<any> {
+  //   return this.http.get(`http://localhost:3000/shelves`, {headers: this.getHeaders()});
+  // }
 
-  getBooksFromShelf(shelf: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/${shelf}`,{headers: this.getHeaders()});
-  }
+  // getBooksFromShelf(shelf: string): Observable<any> {
+  //   return this.http.get(`http://localhost:3000/shelves/${shelf}`,{headers: this.getHeaders()});
+  // }
 
   getAllNotes(): Observable<any> {
     return this.http.get(`http://localhost:3000/notes`, {headers: this.getHeaders()});

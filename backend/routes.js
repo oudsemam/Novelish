@@ -151,15 +151,16 @@ routes.post("/shelves/:shelf/books", async (req, res) => {
 
 //removing a book from a shelf
 routes.delete("/books/:shelf/:book_id", async (req, res) => {
-  const user = await db.one(
-    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
-    { email: req.user.email }
-  );
+  const book = await db.oneOrNone(`SELECT id FROM books WHERE isbn = $(isbn)`, {
+    isbn: req.body.isbn,
+  });
+  console.log(book);
+
   await db.none(
-    `DELETE from shelves WHERE book_id = $(book_id) AND shelf = $(shelf) AND user_id = $(user_id)`,
+    `DELETE from shelves_books WHERE book_id = $(book_id) AND shelf_id = $(shelf_id)`,
     {
       book_id: +req.params.book_id,
-      user_id: user.id,
+      email: req.user.email,
       shelf: req.params.shelf,
     }
   );
@@ -167,21 +168,20 @@ routes.delete("/books/:shelf/:book_id", async (req, res) => {
   res.status(204).send();
 });
 
-routes.delete("/shelves/:shelf/", async (req, res) => {
-  const user = await db.one(
-    `SELECT id FROM users WHERE email = $(email) RETURNING id`,
-    { email: req.user.email }
-  );
-  await db.none(
-    `DELETE from shelves WHERE shelf = $(shelf) AND user_id = $(user_id)`,
-    {
-      shelf: req.params.shelf,
-      user_id: user.id,
-    }
-  );
-
-  res.status(204).send();
-});
+// routes.delete("/shelves/:shelf/", async (req, res) => {
+//   const user = await db.one(
+//     `SELECT id FROM users WHERE email = $(email) RETURNING id`,
+//     { email: req.user.email }
+//   );
+//   await db.none(
+//     `DELETE from shelves WHERE shelf = $(shelf) AND user_id = $(user_id)`,
+//     {
+//       shelf: req.params.shelf,
+//       user_id: user.id,
+//     }
+//   );
+//   res.status(204).send();
+// });
 
 routes.get("/notes/", async (req, res) => {
   const user = await db.one(
