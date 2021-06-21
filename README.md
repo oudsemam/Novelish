@@ -8,6 +8,12 @@ As avid readers ourselves, we found the existing apps for tracking and finding n
 
 ## Screenshots
 
+![homepage-widescreen](src\assets\Novelish-home-wide.jpg?raw=true "homepage-widescreen")
+![homepage-mobile](src\assets\Novelish-home-mobile.jpg?raw=true "homepage-mobile)
+![bookview-widescreen](src\assets\Novelish-bookview-wide.jpg?raw=true "bookview-widescreen)
+![search-widescreen](src\assets\Novelish-search-wide.jpg?raw=true "search-widescreen)
+
+
 ## Technologies Used
 - Open Library API
 - NY Times Best Sellers API
