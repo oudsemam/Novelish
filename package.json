@@ -1,0 +1,21 @@
+{
+  "name": "Novelish",
+  "version": "1.0.0",
+  "description": "Novelish is the product of 3 book loving full stack graduates of Grand Circus, based in West Michigan. Be sure to check back for new features currently in development, like creating your own shelves, advanced searching, tracking progress in your books, and adding notes.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd backend && npm install",
+    "start": "cd backend && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oudsemam/Novelish.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oudsemam/Novelish/issues"
+  },
+  "homepage": "https://github.com/oudsemam/Novelish#readme"
+}
