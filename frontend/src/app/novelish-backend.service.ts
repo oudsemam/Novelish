@@ -17,7 +17,7 @@ export class NovelishBackendService {
     return header
   }
   addNewUser() {
-    return this.http.post('http://localhost:3000/users', {}, {headers: this.getHeaders()});
+    return this.http.post('https://novel-ish.herokuapp.com/users', {}, {headers: this.getHeaders()});
   }
 
   updateUserUID(email: any, uid: any) {
@@ -25,59 +25,63 @@ export class NovelishBackendService {
       firebase_uid: uid,
     };
     console.log(this.getHeaders())
-    return this.http.post(`http://localhost:3000/users`, firebase_uid, {headers: this.getHeaders()});
+    return this.http.post(
+      `https://novel-ish.herokuapp.com/users`,
+      firebase_uid,
+      { headers: this.getHeaders() }
+    );
   }
 
   getAllBooks(): Observable<any> {
-    return this.http.get(`http://localhost:3000/books`, {headers: this.getHeaders()});
+    return this.http.get(`https://novel-ish.herokuapp.com/books`, {headers: this.getHeaders()});
   }
 
 
   getShelvesByUser(): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves`, {headers: this.getHeaders()});
+    return this.http.get(`https://novel-ish.herokuapp.com/shelves`, {headers: this.getHeaders()});
   }
 
   getBooksFromShelf(shelf: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/shelves/${shelf}`,{headers: this.getHeaders()});
+    return this.http.get(`https://novel-ish.herokuapp.com/shelves/${shelf}`,{headers: this.getHeaders()});
   }
 
   getAllNotes(): Observable<any> {
-    return this.http.get(`http://localhost:3000/notes`, {headers: this.getHeaders()});
+    return this.http.get(`https://novel-ish.herokuapp.com/notes`, {headers: this.getHeaders()});
   }
 
   getNotesByBook(bookId: number): Observable<any> {
-    return this.http.get(`http://localhost:3000/notes/${bookId}`, {headers: this.getHeaders()});
+    return this.http.get(`https://novel-ish.herokuapp.com/notes/${bookId}`, {headers: this.getHeaders()});
   }
 
   addNote( bookId: number, note: string): Observable<any> {
-    return this.http.post(`http://localhost:3000/notes/${bookId}`, {
+    return this.http.post(`https://novel-ish.herokuapp.com/notes/${bookId}`, {
       note,
     }, {headers: this.getHeaders()});
   }
 
   changeNote(userId: number, bookId: number, note: string): Observable<any> {
-    return this.http.put(`http://localhost:3000/notes/${userId}/${bookId}`, {
+    return this.http.put(`https://novel-ish.herokuapp.com/notes/${userId}/${bookId}`, {
       note,
     }, {headers: this.getHeaders()});
   }
 
   addUser(email: string): Observable<any> {
-    return this.http.post(`http://localhost:3000/users`, { email }, {headers: this.getHeaders()});
+    return this.http.post(`https://novel-ish.herokuapp.com/users`, { email }, {headers: this.getHeaders()});
   }
 
   addBookToShelf(book: {}, shelf: string): Observable<any> {
     return this.http.post(
-      `http://localhost:3000/shelves/${shelf}/books`,
+      `https://novel-ish.herokuapp.com/shelves/${shelf}/books`,
       book, {headers: this.getHeaders()}
     );
   }
 
   deleteNote( bookId: number): Observable<any> {
-    return this.http.delete(`http://localhost:3000/notes/${bookId}`, {headers: this.getHeaders()});
+    return this.http.delete(`https://novel-ish.herokuapp.com/notes/${bookId}`, {headers: this.getHeaders()});
   }
 
   deleteShelf( shelf: string): Observable<any> {
-    return this.http.delete(`http://localhost:3000/shelves/${shelf}`, {headers: this.getHeaders()});
+    return this.http.delete(`https://novel-ish.herokuapp.com/shelves/${shelf}`, {headers: this.getHeaders()});
   }
 
   removeBookFromShelf(
@@ -85,35 +89,35 @@ export class NovelishBackendService {
     bookId: number
   ): Observable<any> {
     return this.http.delete(
-      `http://localhost:3000/books/${shelf}/${bookId}`, {headers: this.getHeaders()}
+      `https://novel-ish.herokuapp.com/books/${shelf}/${bookId}`, {headers: this.getHeaders()}
     );
   }
 
   removeUser(): Observable<any> {
-    return this.http.delete(`http://localhost:3000/users`, {headers: this.getHeaders()});
+    return this.http.delete(`https://novel-ish.herokuapp.com/users`, {headers: this.getHeaders()});
   }
 
   getReviewsByBook(isbn:string): Observable<any>{
-    return this.http.get(`http://localhost:3000/reviews/${isbn}`, {headers: this.getHeaders()})
+    return this.http.get(`https://novel-ish.herokuapp.com/reviews/${isbn}`, {headers: this.getHeaders()})
   }
 
   getUserReview(isbn:string): Observable<any>{
-    return this.http.get(`http://localhost:3000/reviews/user/${isbn}`, {headers: this.getHeaders()})
+    return this.http.get(`https://novel-ish.herokuapp.com/reviews/user/${isbn}`, {headers: this.getHeaders()})
   }
 
   addReview(review:any, isbn:string): Observable<any>{
-    return this.http.post(`http://localhost:3000/reviews/${isbn}`, {
+    return this.http.post(`https://novel-ish.herokuapp.com/reviews/${isbn}`, {
       review,
     }, {headers: this.getHeaders()})
   }
 
   updateReview(review:any, isbn:string): Observable<any>{
-    return this.http.put(`http://lovalhost:3000/${isbn}`, {
+    return this.http.put(`https://lovalhost:3000/${isbn}`, {
       review,
     }, {headers: this.getHeaders()})
   }
 
   removeReview(isbn:string):Observable<any>{
-    return this.http.put(`http://lovalhost:3000/${isbn}`, {headers: this.getHeaders()})}
+    return this.http.put(`https://lovalhost:3000/${isbn}`, {headers: this.getHeaders()})}
   
 }
