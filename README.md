@@ -23,7 +23,7 @@ As avid readers ourselves, we found the existing apps for tracking and finding n
 ## Technologies Used
 - Open Library API
 - NY Times Best Sellers API
-- Backend database created in pgAdmin and Insomnia using the Express framework
+- Backend database created in PostgresSQL and Insomnia using the Express framework
 - FireBase user authentication
 - Sentry.io error tracking
 - Angular CLI version 12.0.3 with HTML, CSS and JavaScript (ES6)
