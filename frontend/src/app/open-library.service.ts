@@ -13,16 +13,16 @@ export class OpenLibraryService {
   searchTitle(searchTerm:string): Observable<any>{
 
       let title = searchTerm.replace(/\s/g,'+')
-      return this.http.get(`http://openlibrary.org/search.json?title=${title}`).pipe(map((results: any) => this.subject.next(results.docs.filter((d: any) => d.isbn!== undefined) )))
+      return this.http.get(`https://openlibrary.org/search.json?title=${title}`).pipe(map((results: any) => this.subject.next(results.docs.filter((d: any) => d.isbn!== undefined) )))
   }
 
   searchAuthor(searchTerm:string): Observable<any>{
     let author = searchTerm.replace(/\s/g,'+')
-    return this.http.get(`http://openlibrary.org/search.json?author=${author}`).pipe(map((results) => this.subject.next(results) ))
+    return this.http.get(`https://openlibrary.org/search.json?author=${author}`).pipe(map((results) => this.subject.next(results) ))
   }
 
   getCover(isbn:string): Observable<any>{
-    return this.http.get(`http://covers.openlibrary.org/b/isbn/${isbn}-m.jpg`)
+    return this.http.get(`https://covers.openlibrary.org/b/isbn/${isbn}-m.jpg`)
   }
 
   getBook(isbn:string | null): Observable<any>{

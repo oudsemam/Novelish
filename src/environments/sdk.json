@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "novelish-reviews",
+    "private_key_id": "680a539ede7cb64a501ee7d0a94b146f3a9cd1bb",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDckZP0wH7dVxIV\nMwuG6YU6jvsqHJL6EeB2Uq0j1XpQ66LrgL2jJAeq6Ih1K2ixrqliwqhcYrirdCAc\nTDxKmOcGXP/ifIYFZwy+e2SOWjG1mlZzXkWlEScLmZ26Y64ufA83Bx6OzUWctVsS\n0PGeUq/p1+kC6D55YjCLKx+FKY7Tgrc3B1Tk9AzAJSEoBt72ZEMUgU5te4W4A0v0\nqev3LuNiUdht6Fip0Pm2HjQy9EkKmRizsTDjZ9lqeuMYcwfTnp/sDBQYV6zWIpoW\nlEOmu8VKaVugphweIifBld0+xbeNe+J5KXvs7LSmdAUiuwXCERtNgsug09wpebP7\nOwTIo//nAgMBAAECggEAEeSbaJT/FaydEmwwKLMj9DKqLGniAHhXybF+SzRjtlHP\nRySL/cKL/rDbdQne9d8R7amV59y4V2xVuIX0tCaAQ1NjDLgGVUTdU0yGRUgK1U0e\na0CADNp93OKK2ZaBiFLXFyM0NuhvF73clAOwPiQ+Eg3KYMp/WvB8uKV4aqCK7hx7\nb3HnIUQejZXFFOc1xvbNN0BIqeJDWc1g7JAMuAcL+a2ws7738IOJsK/lBhtXQYJz\ndv0DZ4R0vGxTSY2AqY011iCpdO3uAA8P99ukE+o4M8Tlcqucq5D1C0PH10FngzpH\nfRSFZVYKLeigLdzqQpgXRxTCQ1go6C/JMFrwLKykxQKBgQD5vwstz62S+smruxqJ\nTfKo43+5t1fcS+8k4WNMwkLCL4xJhtRHjN3NHD5cblHc7j9wnmKtBaoroNePFg4U\nFllhsCBNnqjiHL2hwpegkdrZt5b1SCwEwts9dKLJAl07i1wnXrjScb0KPFF5PDAh\necw6XlvhYGMcziLY2+oWUsfA1QKBgQDiF38GsVkSL6lJ0Ma+SKppuVMO45kqWJDt\ndtr9GXBa2XdE0usnHpBnmbnREy1GcGO4uQAa0jcbH16hFRyLlYDJ1Z9IJOqsGZ+F\ng3WfOgmgh3oy8K60d8bfsks3VkcspcEgOq1oK39tvt4kclK9l3x57ccl9IhUcVXf\n9G5BLhk7ywKBgQDi//J5QTrTTX/gx7/m7SKSv7VoaG1DnwFO1E4dhrSHLBCnBBYO\nsssnk3RbLyrZVPP0uQGXon56CUfklndVarrzP9Mcuglm/Big3u5S1D/HhEeByoe4\nDCSaR1luuudjJ9grML1tClR46Tpkp4BX7QzkQL/iqmlr1TF3SuwKPlOxwQKBgFuI\n0be+82XGgA5PhTciqkO1cSgVAzy+sKZDOXPA6dkONBhcIDItUJ9xAGbiEbFz7Rur\nYpx5QTAs6h3jMzRb6dFNOHh34b6dfRUL3QIC+ETStKmNAd40pAKK56LWvmgYD3Fh\n8DS9b5DZ9ovg8RirDQ08NCVstAkj/XV3O3AOHs8zAoGAbpG6aPfrT8WLFISMs1iv\n0HjO6VPoRlQJBp5N3Fdri5nOGJmPqTcH6QrsKPTfeJ1oeqDDBCrW1KHu3y2O0452\nEeqZQFTyqkbd+kGESX+DaWNDX5RH7n7tPhWGNdI7gUBajAX2+rqdGl8Ej4FPDbjO\nLSXhxyt3TwN3EZcEhwZnHOQ=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-6e6xe@novelish-reviews.iam.gserviceaccount.com",
+    "client_id": "100501530026293557954",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-6e6xe%40novelish-reviews.iam.gserviceaccount.com"
+  }
