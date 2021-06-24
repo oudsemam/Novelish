@@ -48,13 +48,13 @@ module.exports = async (req, res, next) => {
   const token = parts[1];
 
   const user = jwtDecode(token);
-  const exsiting = await db.oneOrNone(
+  const existing = await db.oneOrNone(
     `SELECT id FROM users WHERE email = $(email)`,
     { email: user.email }
   );
   req.user = user;
   if (existing && existing.id) {
-    req.user.id = exsiting.id;
+    req.user.id = existing.id;
   }
   next();
   //   app
