@@ -113,9 +113,9 @@ export class AuthService {
       emailVerified: User.emailVerified,
     };
     localStorage.setItem('User', JSON.stringify(this.userData));
-    return userRef.set(this.userData, {
-      merge: true,
-    });
+    // return userRef.set(this.userData, {
+    //   merge: true,
+    // });
   }
 
   // Sign out
