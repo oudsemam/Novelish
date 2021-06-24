@@ -31,7 +31,9 @@ export class MainHomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(localStorage.user)
     if (localStorage.user) {
+      console.log('in if statement')
       this.userSubscription = this.NovelishBackendService.addNewUser().subscribe(() => {});
     }
 
